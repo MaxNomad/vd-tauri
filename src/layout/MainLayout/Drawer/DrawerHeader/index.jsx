@@ -11,10 +11,19 @@ import { getVersion } from '@tauri-apps/api/app';
 import { isTauri } from '@utils/TauriUpdater';
 
 // ==============================|| DRAWER HEADER ||============================== //
-const appVersion = isTauri() ? `${await getVersion()}-Tauri` : "v1.234.1-Front"
 
 const DrawerHeader = ({ open }) => {
     const theme = useTheme();
+    const [appVersion, setAppVersion] = React.useState("");
+    
+    if(isTauri()){
+        getVersion().then((data) => {
+            setAppVersion(`${data}-Tauri`)
+        })
+        
+    } else {
+        setAppVersion("v1.234.1-Front")
+    }
     
     return (
         // only available in paid version

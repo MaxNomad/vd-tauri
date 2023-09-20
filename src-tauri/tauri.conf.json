@@ -39,7 +39,6 @@
       },
       "active": true,
       "endpoints": [
-        "http://localhost:8081/update?current_version={{current_version}}&target={{target}}&arch={{arch}}",
         "https://api.vd.lutsk.ua/app/update?current_version={{current_version}}&target={{target}}&arch={{arch}}"
         ],
       "dialog": false,
