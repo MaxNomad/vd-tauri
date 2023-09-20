@@ -33,11 +33,13 @@ const KnsMain = () => {
         setUpdateTime(new Date());
         setInterval(() => setFirstLoad(true), 400);
     }, [dispatch, timer]);
-    const objectsWithErrors = data.filter(obj => obj.alarmStatus > 0);
-    const objectsWithoutErrors = data.filter(obj => obj.alarmStatus <= 0 || obj.alarmStatus == null);
-    
+    const objectsWithErrors = data.filter((obj) => obj.alarmStatus > 0);
+    const objectsWithoutErrors = data.filter((obj) => obj.alarmStatus <= 0 || obj.alarmStatus == null);
+
     const sortedArray = [...objectsWithErrors, ...objectsWithoutErrors];
-    const permsArray  = sortedArray.filter((obj) => permsCheck(["level_10", "level_9","level_8","dash_kns_read_all",`dash_kns_read_${parseID(obj?.knsID)}`]) );
+    const permsArray = sortedArray.filter((obj) =>
+        permsCheck(['level_10', 'level_9', 'level_8', 'dash_kns_read_all', `dash_kns_read_${parseID(obj?.knsID)}`])
+    );
 
     const renderKns = permsArray.map((kns) => {
         return kns?.visible ? (
@@ -65,10 +67,8 @@ const KnsMain = () => {
                     <Grid container rowSpacing={4.5} columnSpacing={2.75}>
                         <Grid item xs={12} sx={{ mb: -2.25 }}>
                             <Typography variant="h5">Об`єкти</Typography>
-                            
-                           
                         </Grid>
-                       
+
                         {renderKns}
                     </Grid>
                 ) : (

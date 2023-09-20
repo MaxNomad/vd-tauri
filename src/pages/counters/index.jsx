@@ -60,15 +60,15 @@ const CountersMain = () => {
                     <Grid item xs={12} sx={{ mb: -2.25 }}>
                         <Typography variant="h5">Лічильники IOT Sota</Typography>
                     </Grid>
-                    <Grid container sx={{ mt: 3.25, ml: {lg: 2, xs: 3, md: 2}, mb: -3.25}}>
+                    <Grid container sx={{ mt: 3.25, ml: { lg: 2, xs: 3, md: 2 }, mb: -3.25 }}>
                         <Grid item xs={8.5} sm={6} md={6} lg={6}>
                             <Search />
                         </Grid>
-                        <Grid item xs={3.5} sm={6} md={6} lg={6} sx={{ display: 'flex' , justifyContent:  'flex-end' }}>
+                        <Grid item xs={3.5} sm={6} md={6} lg={6} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                             <Typography variant="h6" color="secondary">
-                           
                                 <Button variant="contained" color="warning" size="small">
-                                    Оновити  &nbsp;<RedoOutlined />
+                                    Оновити &nbsp;
+                                    <RedoOutlined />
                                 </Button>
                             </Typography>
                         </Grid>

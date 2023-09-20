@@ -11,33 +11,33 @@ import MainCard from '@components/MainCard';
 // ==============================|| NOTISTACK - ACTION BUTTONS ||============================== //
 
 export default function SnackBarAction() {
-  const { closeSnackbar } = useSnackbar();
-  const actionTask = (snackbarId) => (
-    <>
-      <Button
-        variant="text"
-        onClick={() => {
-          alert(`I belong to snackbar with id ${snackbarId}`);
-        }}
-      >
-        Undo
-      </Button>
-      <Button variant="text" onClick={() => closeSnackbar(snackbarId)}>
-        Dismiss
-      </Button>
-    </>
-  );
+    const { closeSnackbar } = useSnackbar();
+    const actionTask = (snackbarId) => (
+        <>
+            <Button
+                variant="text"
+                onClick={() => {
+                    alert(`I belong to snackbar with id ${snackbarId}`);
+                }}
+            >
+                Undo
+            </Button>
+            <Button variant="text" onClick={() => closeSnackbar(snackbarId)}>
+                Dismiss
+            </Button>
+        </>
+    );
 
-  return (
-    <MainCard title="With Action">
-      <Button
-        variant="contained"
-        fullWidth
-        sx={{ marginBlockStart: 2 }}
-        onClick={() => toast('Your notification here', { action: (key) => actionTask(key) })}
-      >
-        Show Snackbar
-      </Button>
-    </MainCard>
-  );
+    return (
+        <MainCard title="With Action">
+            <Button
+                variant="contained"
+                fullWidth
+                sx={{ marginBlockStart: 2 }}
+                onClick={() => toast('Your notification here', { action: (key) => actionTask(key) })}
+            >
+                Show Snackbar
+            </Button>
+        </MainCard>
+    );
 }

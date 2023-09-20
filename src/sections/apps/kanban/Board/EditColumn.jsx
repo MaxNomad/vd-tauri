@@ -11,51 +11,51 @@ import { editColumn } from '@store/reducers/kanban';
 // ==============================|| KANBAN BOARD - COLUMN EDIT ||============================== //
 
 const EditColumn = ({ column }) => {
-  const theme = useTheme();
-  const dispatch = useDispatch();
+    const theme = useTheme();
+    const dispatch = useDispatch();
 
-  const { columns } = useSelector((state) => state.kanban);
+    const { columns } = useSelector((state) => state.kanban);
 
-  const handleColumnRename = () => {
-    dispatch(
-      editColumn(
-        {
-          id: column.id,
-          title: event.target.value,
-          itemIds: column.itemIds
-        },
-        columns
-      )
+    const handleColumnRename = () => {
+        dispatch(
+            editColumn(
+                {
+                    id: column.id,
+                    title: event.target.value,
+                    itemIds: column.itemIds
+                },
+                columns
+            )
+        );
+    };
+
+    return (
+        <OutlinedInput
+            fullWidth
+            value={column.title}
+            onChange={handleColumnRename}
+            sx={{
+                mb: 1.5,
+                fontWeight: 500,
+                '& input:focus': {
+                    bgcolor: theme.palette.mode === 'dark' ? theme.palette.secondary.grey[100] : theme.palette.grey[50]
+                },
+                '& input:hover': {
+                    bgcolor: theme.palette.mode === 'dark' ? theme.palette.secondary.grey[100] : theme.palette.grey[50]
+                },
+                '& input:hover + fieldset': {
+                    display: 'block'
+                },
+                '&, & input': { bgcolor: 'transparent' },
+                '& fieldset': { display: 'none' },
+                '& input:focus + fieldset': { display: 'block' }
+            }}
+        />
     );
-  };
-
-  return (
-    <OutlinedInput
-      fullWidth
-      value={column.title}
-      onChange={handleColumnRename}
-      sx={{
-        mb: 1.5,
-        fontWeight: 500,
-        '& input:focus': {
-          bgcolor: theme.palette.mode === 'dark' ? theme.palette.secondary.grey[100] : theme.palette.grey[50]
-        },
-        '& input:hover': {
-          bgcolor: theme.palette.mode === 'dark' ? theme.palette.secondary.grey[100] : theme.palette.grey[50]
-        },
-        '& input:hover + fieldset': {
-          display: 'block'
-        },
-        '&, & input': { bgcolor: 'transparent' },
-        '& fieldset': { display: 'none' },
-        '& input:focus + fieldset': { display: 'block' }
-      }}
-    />
-  );
 };
 
 EditColumn.propTypes = {
-  column: PropTypes.object
+    column: PropTypes.object
 };
 
 export default EditColumn;

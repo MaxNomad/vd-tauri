@@ -14,16 +14,20 @@ const PressureList = () => {
     };
     return (
         <>
-            <ListItem onClick={handleClick} disablePadding sx={{ pt: 1, pb: 1, pr: 2, pl: 0,mt: {xs: 2, md: 0}, cursor: "pointer" }} disableGutters>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', width: "100%" }}>
-                <Typography variant="h5" color="textSecondary"sx={{}}>
-                Умовні позначення:
+            <ListItem
+                onClick={handleClick}
+                disablePadding
+                sx={{ pt: 1, pb: 1, pr: 2, pl: 0, mt: { xs: 2, md: 0 }, cursor: 'pointer' }}
+                disableGutters
+            >
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                    <Typography variant="h5" color="textSecondary" sx={{}}>
+                        Умовні позначення:
                     </Typography>
                     <div style={{ marginLeft: 'auto' }}>
                         <Typography variant="h5" color="textSecondary">
                             {!open ? <UpOutlined /> : <DownOutlined />}
                         </Typography>
-                       
                     </div>
                 </Box>
             </ListItem>

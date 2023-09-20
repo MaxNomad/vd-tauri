@@ -19,14 +19,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'simplebar/src/simplebar.css';
 import '@assets/third-party/apex-chart.css';
 import './App.scss';
-
-
-
+import { AppUpdateNotification } from '@utils/TauriUpdater';
 
 // third-party
 
 // apex-chart
-
 
 // ==============================|| APP - THEME, ROUTER, LOCAL  ||============================== //
 
@@ -37,6 +34,7 @@ const App = () => {
                 <ConfigProvider>
                     <ThemeCustomization>
                         <NetworkCheck>
+                            <AppUpdateNotification />
                             <ScrollTop>
                                 <GoogleOAuthProvider clientId="481973527971-fkk5c04av94i9p0fubn3scr97cn7l14f.apps.googleusercontent.com">
                                     <AuthContextProvider>

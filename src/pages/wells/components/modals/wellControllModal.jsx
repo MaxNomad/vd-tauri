@@ -31,29 +31,28 @@ const WellControllModal = ({ wellID, data }) => {
     };
     const changeStatus = (method) => {
         api.defaults.headers.Authorization = `Bearer ${getToken()}`;
-        api.post(`/modbusWellController`, {pumpID: data?.pumpID, method: method})
-        .then((response) => {
-            if (response.status === 200) {
-                if(method === "turnOn"){
-                    toastSuccess(`Свердловину №${data?.pumpID} ввімкнуто`);
-                    handleClose();
+        api.post(`/modbusWellController`, { pumpID: data?.pumpID, method: method })
+            .then((response) => {
+                if (response.status === 200) {
+                    if (method === 'turnOn') {
+                        toastSuccess(`Свердловину №${data?.pumpID} ввімкнуто`);
+                        handleClose();
+                    } else {
+                        toastSuccess(`Свердловину №${data?.pumpID} вимкнуто`);
+                        handleClose();
+                    }
                 } else {
-                    toastSuccess(`Свердловину №${data?.pumpID} вимкнуто`);
-                    handleClose(); 
+                    toastError('Error: ' + response.status);
+                    handleClose();
                 }
-
-            } else {
-                toastError('Error: ' + response.status);
-                handleClose();
-            }
-        })
-        .catch(() => {
-            toastError('Неможливо виконати дію');
-        });
+            })
+            .catch(() => {
+                toastError('Неможливо виконати дію');
+            });
     };
     const changeStatusWell = () => {
-        data?.pump?.workingStatus ? changeStatus("turnOff") : changeStatus("turnOn")
-    }
+        data?.pump?.workingStatus ? changeStatus('turnOff') : changeStatus('turnOn');
+    };
     const intID = parseID(wellID);
     const { userData } = useSelector((state) => state.user);
     return (
@@ -67,7 +66,19 @@ const WellControllModal = ({ wellID, data }) => {
                             color={data?.pump?.workingStatus ? 'primary' : 'success'}
                             size="small"
                             onClick={handleClickOpen}
-                            disabled={!permsCheck(["level_10", "level_9","level_8","dash_well_write_all","dash_well_control_all",`dash_well_write_${intID}`,`dash_well_control_${intID}`]) || data?.modbus?.ip === null || !data?.online}
+                            disabled={
+                                !permsCheck([
+                                    'level_10',
+                                    'level_9',
+                                    'level_8',
+                                    'dash_well_write_all',
+                                    'dash_well_control_all',
+                                    `dash_well_write_${intID}`,
+                                    `dash_well_control_${intID}`
+                                ]) ||
+                                data?.modbus?.ip === null ||
+                                !data?.online
+                            }
                         >
                             {data?.pump?.workingStatus ? 'Вимкнути насос' : 'Увімкнути насос'}
                         </Button>
@@ -81,11 +92,22 @@ const WellControllModal = ({ wellID, data }) => {
                         </Tooltip>
                     </Grid>
                 </Typography>
-                <Typography variant="h6" noWrap color="textSecondary" sx={{ mt: 1.5, mb: -1, display: 'flex', justifyContent: 'space-between' }}>
+                <Typography
+                    variant="h6"
+                    noWrap
+                    color="textSecondary"
+                    sx={{ mt: 1.5, mb: -1, display: 'flex', justifyContent: 'space-between' }}
+                >
                     <Grid xs={9}>
-                        {data?.events?.wellControll?.date ? <>Остання дія <TimeAgo targetTime={new Date(data?.events?.wellControll?.date)} /></>: "Дії відсутні"}
+                        {data?.events?.wellControll?.date ? (
+                            <>
+                                Остання дія <TimeAgo targetTime={new Date(data?.events?.wellControll?.date)} />
+                            </>
+                        ) : (
+                            'Дії відсутні'
+                        )}
                     </Grid>
-                    <Grid>{data?.events?.wellControll?.user? `By ${data?.events?.wellControll?.user}`: null}</Grid>
+                    <Grid>{data?.events?.wellControll?.user ? `By ${data?.events?.wellControll?.user}` : null}</Grid>
                 </Typography>
             </MainCard>
             <Dialog open={open} onClose={handleClose} maxWidth="sm" fullScreen={matchDownSM}>
@@ -117,11 +139,10 @@ const WellControllModal = ({ wellID, data }) => {
                             </Grid>
                         </Typography>
                         <br />
-                        <Divider sx={{ mt: -1.5 ,mb: 1.1}}  />
-                       
-                       
-                                    <Modbus data={data} />
-                     
+                        <Divider sx={{ mt: -1.5, mb: 1.1 }} />
+
+                        <Modbus data={data} />
+
                         <Divider sx={{ mt: 1.5 }} />
                         <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
                             <Grid container>
@@ -154,26 +175,31 @@ const WellControllModal = ({ wellID, data }) => {
                             або питання, будь ласка, зверніться до адміністратора або інженера з для отримання додаткової інформації та
                             підтримки.
                         </Typography>
-                        {wellData?.data?.status ? <Alert severity="success" sx={{ mt: 2 }}>
-                            Пристрій в мережі, керування доступне
-                        </Alert> : <Alert severity="error" sx={{ mt: 2 }}>
-                            Неможливе керування, оскільки об`єкт не в мережі
-                        </Alert> }
+                        {wellData?.data?.status ? (
+                            <Alert severity="success" sx={{ mt: 2 }}>
+                                Пристрій в мережі, керування доступне
+                            </Alert>
+                        ) : (
+                            <Alert severity="error" sx={{ mt: 2 }}>
+                                Неможливе керування, оскільки об`єкт не в мережі
+                            </Alert>
+                        )}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions sx={{ display: 'flex', justifyContent: 'space-between', p: 3 }}>
                     <Button variant="contained" color="success" size="medium" onClick={handleClose}>
                         Скасувати
                     </Button>
-                    {wellData?.data?.status ? <Button
-                        variant="contained"
-                        color={data?.pump?.workingStatus ? 'primary' : 'success'}
-                        size="medium"
-                        
-                        onClick={changeStatusWell}
-                    >
-                        {data?.pump?.workingStatus ? `Вимкнути насос` : `Увімкнути насос`}
-                    </Button> : null}
+                    {wellData?.data?.status ? (
+                        <Button
+                            variant="contained"
+                            color={data?.pump?.workingStatus ? 'primary' : 'success'}
+                            size="medium"
+                            onClick={changeStatusWell}
+                        >
+                            {data?.pump?.workingStatus ? `Вимкнути насос` : `Увімкнути насос`}
+                        </Button>
+                    ) : null}
                 </DialogActions>
             </Dialog>
         </>

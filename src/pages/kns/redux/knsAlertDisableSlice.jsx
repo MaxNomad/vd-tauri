@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { getToken } from '@pages/authentication/helper/token';
 import { api } from '../../../api';
 
-
 export const deleteKNSAlert = createAsyncThunk('kns/deleteKNSAlert', async (props) => {
     api.defaults.headers.Authorization = `Bearer ${getToken()}`;
     const response = await api.delete(`/deleteDissableActiveAlert`, { data: { tag: props.tag, date: props.date } });
@@ -20,9 +19,7 @@ export const knsAlertDisable = createSlice({
     },
     reducers: {},
     extraReducers: (builder) => {
-
         builder.addCase(deleteKNSAlert.pending, (state, action) => {
-
             if (state.reqLoading === 'idle') {
                 state.reqLoading = 'pending';
             }

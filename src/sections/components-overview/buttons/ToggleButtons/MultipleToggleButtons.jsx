@@ -9,27 +9,27 @@ import { BoldOutlined, ItalicOutlined, UnderlineOutlined, BgColorsOutlined, Down
 // ==============================|| TOGGLE BUTTON - MULTIPLE ||============================== //
 
 export default function MultipleToggleButtons() {
-  const [formats, setFormats] = useState(() => ['bold', 'italic']);
+    const [formats, setFormats] = useState(() => ['bold', 'italic']);
 
-  const handleFormat = (event, newFormats) => {
-    setFormats(newFormats);
-  };
+    const handleFormat = (event, newFormats) => {
+        setFormats(newFormats);
+    };
 
-  return (
-    <ToggleButtonGroup value={formats} onChange={handleFormat} aria-label="text formatting">
-      <ToggleButton value="bold" aria-label="bold">
-        <BoldOutlined />
-      </ToggleButton>
-      <ToggleButton value="italic" aria-label="italic">
-        <ItalicOutlined />
-      </ToggleButton>
-      <ToggleButton value="underlined" aria-label="underlined">
-        <UnderlineOutlined />
-      </ToggleButton>
-      <ToggleButton value="color" aria-label="color" disabled>
-        <BgColorsOutlined />
-        <DownOutlined style={{ fontSize: '0.625rem', marginLeft: 6 }} />
-      </ToggleButton>
-    </ToggleButtonGroup>
-  );
+    return (
+        <ToggleButtonGroup value={formats} onChange={handleFormat} aria-label="text formatting">
+            <ToggleButton value="bold" aria-label="bold">
+                <BoldOutlined />
+            </ToggleButton>
+            <ToggleButton value="italic" aria-label="italic">
+                <ItalicOutlined />
+            </ToggleButton>
+            <ToggleButton value="underlined" aria-label="underlined">
+                <UnderlineOutlined />
+            </ToggleButton>
+            <ToggleButton value="color" aria-label="color" disabled>
+                <BgColorsOutlined />
+                <DownOutlined style={{ fontSize: '0.625rem', marginLeft: 6 }} />
+            </ToggleButton>
+        </ToggleButtonGroup>
+    );
 }

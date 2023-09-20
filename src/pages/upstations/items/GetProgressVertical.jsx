@@ -31,7 +31,13 @@ const FillProgress = ({ data }) => {
         tail = theme.palette.grey.A200;
     }
 
-    return <Progress.Circle trailColor={tail} percent={data ? Number(((data / 10) * 100).toFixed(2)) : 0} strokeColor={color ? color : '#1890ff'} />;
+    return (
+        <Progress.Circle
+            trailColor={tail}
+            percent={data ? Number(((data / 10) * 100).toFixed(2)) : 0}
+            strokeColor={color ? color : '#1890ff'}
+        />
+    );
 };
 
 FillProgress.propTypes = {

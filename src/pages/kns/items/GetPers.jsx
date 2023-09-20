@@ -18,10 +18,13 @@ const GetPers = ({ levels }) => {
     if (levels?.current > levels?.max) {
         color = 'secondary';
     }
-    return <Chip label={levels ? `${((levels?.current / levels?.max) * 100).toFixed(2)} %` : 'Не визначено'} size="small" color={color ? color : "error"} />;
-
-
-
+    return (
+        <Chip
+            label={levels ? `${((levels?.current / levels?.max) * 100).toFixed(2)} %` : 'Не визначено'}
+            size="small"
+            color={color ? color : 'error'}
+        />
+    );
 };
 
 GetPers.propTypes = {

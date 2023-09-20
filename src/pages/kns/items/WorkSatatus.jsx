@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Chip} from '@mui/material';
+import { Chip } from '@mui/material';
 import React from 'react';
 const WorkStatus = ({ current }) => {
     let color;

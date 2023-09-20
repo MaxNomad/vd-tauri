@@ -10,15 +10,15 @@ import { a11yDark, a11yLight } from 'react-syntax-highlighter/dist/cjs/styles/hl
 // ==============================|| CODE HIGHLIGHTER ||============================== //
 
 export default function SyntaxHighlight({ children, ...others }) {
-  const theme = useTheme();
+    const theme = useTheme();
 
-  return (
-    <SyntaxHighlighter language="javascript" showLineNumbers style={theme.palette.mode === 'dark' ? a11yLight : a11yDark} {...others}>
-      {children}
-    </SyntaxHighlighter>
-  );
+    return (
+        <SyntaxHighlighter language="javascript" showLineNumbers style={theme.palette.mode === 'dark' ? a11yLight : a11yDark} {...others}>
+            {children}
+        </SyntaxHighlighter>
+    );
 }
 
 SyntaxHighlight.propTypes = {
-  children: PropTypes.string
+    children: PropTypes.string
 };

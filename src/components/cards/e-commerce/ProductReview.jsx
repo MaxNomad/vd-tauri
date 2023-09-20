@@ -12,39 +12,42 @@ import { StarFilled, StarOutlined } from '@ant-design/icons';
 // ==============================|| PRODUCT DETAILS - REVIEW ||============================== //
 
 const ProductReview = ({ avatar, date, name, rating, review }) => (
-  <Grid item xs={12}>
-    <Stack direction="row" spacing={1}>
-      <Avatar alt={name} src={avatar && `/assets/images/users/${avatar}`} />
-      <Stack spacing={2}>
-        <Stack>
-          <Typography variant="subtitle1" sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block' }}>
-            {name}
-          </Typography>
-          <Typography variant="caption" color="textSecondary">
-            {date}
-          </Typography>
-          <Rating
-            size="small"
-            name="simple-controlled"
-            value={rating < 4 ? rating + 1 : rating}
-            icon={<StarFilled style={{ fontSize: 'inherit' }} />}
-            emptyIcon={<StarOutlined style={{ fontSize: 'inherit' }} />}
-            precision={0.1}
-            readOnly
-          />
+    <Grid item xs={12}>
+        <Stack direction="row" spacing={1}>
+            <Avatar alt={name} src={avatar && `/assets/images/users/${avatar}`} />
+            <Stack spacing={2}>
+                <Stack>
+                    <Typography
+                        variant="subtitle1"
+                        sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block' }}
+                    >
+                        {name}
+                    </Typography>
+                    <Typography variant="caption" color="textSecondary">
+                        {date}
+                    </Typography>
+                    <Rating
+                        size="small"
+                        name="simple-controlled"
+                        value={rating < 4 ? rating + 1 : rating}
+                        icon={<StarFilled style={{ fontSize: 'inherit' }} />}
+                        emptyIcon={<StarOutlined style={{ fontSize: 'inherit' }} />}
+                        precision={0.1}
+                        readOnly
+                    />
+                </Stack>
+                <Typography variant="body2">{review}</Typography>
+            </Stack>
         </Stack>
-        <Typography variant="body2">{review}</Typography>
-      </Stack>
-    </Stack>
-  </Grid>
+    </Grid>
 );
 
 ProductReview.propTypes = {
-  avatar: PropTypes.string,
-  date: PropTypes.string,
-  name: PropTypes.string,
-  rating: PropTypes.number,
-  review: PropTypes.string
+    avatar: PropTypes.string,
+    date: PropTypes.string,
+    name: PropTypes.string,
+    rating: PropTypes.number,
+    review: PropTypes.string
 };
 
 export default ProductReview;

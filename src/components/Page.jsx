@@ -11,18 +11,17 @@ import { Box } from '@mui/material';
 
 // eslint-disable-next-line react/display-name
 const Page = forwardRef(({ children, title = '', meta, ...other }, ref) => (
-  <>
-
-    <Box ref={ref} {...other}>
-      {children}
-    </Box>
-  </>
+    <>
+        <Box ref={ref} {...other}>
+            {children}
+        </Box>
+    </>
 ));
 
 Page.propTypes = {
-  title: PropTypes.string,
-  meta: PropTypes.node,
-  children: PropTypes.node
+    title: PropTypes.string,
+    meta: PropTypes.node,
+    children: PropTypes.node
 };
 
 export default Page;

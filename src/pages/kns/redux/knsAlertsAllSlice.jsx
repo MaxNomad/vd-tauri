@@ -15,7 +15,7 @@ export const knsAlertsAll = createSlice({
             allAlarmsListTotal: 0,
             allPage: 0,
             allPerPage: 0,
-            allAlarmsList: [],
+            allAlarmsList: []
         },
         loading: 'idle',
         error: null

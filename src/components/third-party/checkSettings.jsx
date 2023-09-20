@@ -11,17 +11,17 @@ import React from 'react';
 const CheckSettings = ({ ok }) => {
     const theme = useTheme();
     return (
-        <Tooltip title={`Статус налаштування о'єкту: ${ok? "в нормі" : "потребує діагностики"}`} placement="top">
+        <Tooltip title={`Статус налаштування о'єкту: ${ok ? 'в нормі' : 'потребує діагностики'}`} placement="top">
             <span>
-            <Typography sx={{ mr: 1, mt: 0.4 }}>
-                <>
-                {ok ? (
-                    <CheckCircleOutlined style={{ fontSize: 18, color: theme.palette.success.main }} />
-                ) : (
-                    <InfoCircleOutlined style={{ fontSize: 18, color: theme.palette.warning.main }} />
-                )}
-                </>
-            </Typography>
+                <Typography sx={{ mr: 1, mt: 0.4 }}>
+                    <>
+                        {ok ? (
+                            <CheckCircleOutlined style={{ fontSize: 18, color: theme.palette.success.main }} />
+                        ) : (
+                            <InfoCircleOutlined style={{ fontSize: 18, color: theme.palette.warning.main }} />
+                        )}
+                    </>
+                </Typography>
             </span>
         </Tooltip>
     );

@@ -9,8 +9,7 @@ import MainCard from '@components/MainCard';
 
 // ===============================|| COMPONENT - SKELETON ||=============================== //
 
-const ComponentSkeleton = ({ children , renderContent}) => {
-
+const ComponentSkeleton = ({ children, renderContent }) => {
     const skeletonCard = (
         <MainCard
             title={<Skeleton sx={{ width: { xs: 120, md: 180 } }} />}
@@ -50,7 +49,9 @@ const ComponentSkeleton = ({ children , renderContent}) => {
                         {skeletonCard}
                     </Grid>
                 </Grid>
-            ): children}
+            ) : (
+                children
+            )}
         </>
     );
 };

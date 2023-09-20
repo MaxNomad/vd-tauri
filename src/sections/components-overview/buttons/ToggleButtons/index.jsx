@@ -13,16 +13,16 @@ import VerticalToggleButtons from './VerticalToggleButtons';
 // ==============================|| TOGGLE BUTTON ||============================== //
 
 const ToggleButtons = () => (
-  <MainCard title="Toggle Button">
-    <Stack spacing={2} sx={{ mb: 2 }}>
-      <ExclusiveToggleButtons />
-      <MultipleToggleButtons />
-      <ColorToggleButton />
-      <TextToggleButtons />
-      <VariantToggleButtons />
-    </Stack>
-    <VerticalToggleButtons />
-  </MainCard>
+    <MainCard title="Toggle Button">
+        <Stack spacing={2} sx={{ mb: 2 }}>
+            <ExclusiveToggleButtons />
+            <MultipleToggleButtons />
+            <ColorToggleButton />
+            <TextToggleButtons />
+            <VariantToggleButtons />
+        </Stack>
+        <VerticalToggleButtons />
+    </MainCard>
 );
 
 export default ToggleButtons;

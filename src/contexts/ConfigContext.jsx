@@ -7,15 +7,15 @@ import useLocalStorage from '@hooks/useLocalStorage';
 
 // initial state
 const initialState = {
-  ...defaultConfig,
-  onChangeContainer: () => {},
-  onChangeLocalization: () => {},
-  onChangeMode: () => {},
-  onChangePresetColor: () => {},
-  onChangeDirection: () => {},
-  onChangeMiniDrawer: () => {},
-  onChangeMenuOrientation: () => {},
-  onChangeFontFamily: () => {}
+    ...defaultConfig,
+    onChangeContainer: () => {},
+    onChangeLocalization: () => {},
+    onChangeMode: () => {},
+    onChangePresetColor: () => {},
+    onChangeDirection: () => {},
+    onChangeMiniDrawer: () => {},
+    onChangeMenuOrientation: () => {},
+    onChangeFontFamily: () => {}
 };
 
 // ==============================|| CONFIG CONTEXT & PROVIDER ||============================== //
@@ -23,85 +23,85 @@ const initialState = {
 const ConfigContext = createContext(initialState);
 
 function ConfigProvider({ children }) {
-  const [config, setConfig] = useLocalStorage('appConfig', initialState);
+    const [config, setConfig] = useLocalStorage('appConfig', initialState);
 
-  const onChangeContainer = () => {
-    setConfig({
-      ...config,
-      container: !config.container
-    });
-  };
+    const onChangeContainer = () => {
+        setConfig({
+            ...config,
+            container: !config.container
+        });
+    };
 
-  const onChangeLocalization = (lang) => {
-    setConfig({
-      ...config,
-      i18n: lang
-    });
-  };
+    const onChangeLocalization = (lang) => {
+        setConfig({
+            ...config,
+            i18n: lang
+        });
+    };
 
-  const onChangeMode = (mode) => {
-    setConfig({
-      ...config,
-      mode
-    });
-  };
+    const onChangeMode = (mode) => {
+        setConfig({
+            ...config,
+            mode
+        });
+    };
 
-  const onChangePresetColor = (theme) => {
-    setConfig({
-      ...config,
-      presetColor: theme
-    });
-  };
+    const onChangePresetColor = (theme) => {
+        setConfig({
+            ...config,
+            presetColor: theme
+        });
+    };
 
-  const onChangeDirection = (direction) => {
-    setConfig({
-      ...config,
-      themeDirection: direction
-    });
-  };
+    const onChangeDirection = (direction) => {
+        setConfig({
+            ...config,
+            themeDirection: direction
+        });
+    };
 
-  const onChangeMiniDrawer = (miniDrawer) => {
-    setConfig({
-      ...config,
-      miniDrawer
-    });
-  };
+    const onChangeMiniDrawer = (miniDrawer) => {
+        setConfig({
+            ...config,
+            miniDrawer
+        });
+    };
 
-  const onChangeMenuOrientation = (layout) => {
-    setConfig({
-      ...config,
-      menuOrientation: layout
-    });
-  };
+    const onChangeMenuOrientation = (layout) => {
+        setConfig({
+            ...config,
+            menuOrientation: layout
+        });
+    };
 
-  const onChangeFontFamily = (fontFamily) => {
-    setConfig({
-      ...config,
-      fontFamily
-    });
-  };
+    const onChangeFontFamily = (fontFamily) => {
+        setConfig({
+            ...config,
+            fontFamily
+        });
+    };
 
-  return (
-    <ConfigContext.Provider
-      value={{
-        ...config,
-        onChangeContainer,
-        onChangeLocalization,
-        onChangeMode,
-        onChangePresetColor,
-        onChangeDirection,
-        onChangeMiniDrawer,
-        onChangeMenuOrientation,
-        onChangeFontFamily
-      }}
-    >
-      {children}
-    </ConfigContext.Provider>
-  );
+    return (
+        <ConfigContext.Provider
+            value={{
+                ...config,
+                onChangeContainer,
+                onChangeLocalization,
+                onChangeMode,
+                onChangePresetColor,
+                onChangeDirection,
+                onChangeMiniDrawer,
+                onChangeMenuOrientation,
+                onChangeFontFamily
+            }}
+        >
+            {children}
+        </ConfigContext.Provider>
+    );
 }
 
 ConfigProvider.propTypes = {
-  children: PropTypes.node
+    children: PropTypes.node
 };
 
 export { ConfigProvider, ConfigContext };

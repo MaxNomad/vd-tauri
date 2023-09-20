@@ -106,8 +106,6 @@ OrderTableHead.propTypes = {
     orderBy: PropTypes.string
 };
 
-
-
 // ==============================|| ORDER TABLE ||============================== //
 
 const AlertsTableAll = ({ pumpID }) => {
@@ -147,13 +145,12 @@ const AlertsTableAll = ({ pumpID }) => {
             if (!openModal) {
                 setOpenModal(true);
             }
-            
         }
     };
 
     useEffect(() => {
         setTimeout(openGet, 120);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [tableAlertID, counter]);
 
     useEffect(() => {
@@ -161,7 +158,7 @@ const AlertsTableAll = ({ pumpID }) => {
             dispatch(getPumpAlertsAll({ id: pumpID, page: page, perPage: rowsPerPage }));
             setFirstLoad(true);
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page, rowsPerPage, timer, reqData]);
 
     const handleChangePage = (event, newPage) => {
@@ -200,7 +197,19 @@ const AlertsTableAll = ({ pumpID }) => {
     };
     return (
         <Box>
-            <ModalInfo props={{status:status , tableAlertPrority: tableAlertPrority,tableDate: tableDate, tableAlertName:tableAlertName, tableAlertID: tableAlertID, reqListData: reqListData, openModal: openModal, tableAlertState: tableAlertState}} handleClose={handleClose}/>
+            <ModalInfo
+                props={{
+                    status: status,
+                    tableAlertPrority: tableAlertPrority,
+                    tableDate: tableDate,
+                    tableAlertName: tableAlertName,
+                    tableAlertID: tableAlertID,
+                    reqListData: reqListData,
+                    openModal: openModal,
+                    tableAlertState: tableAlertState
+                }}
+                handleClose={handleClose}
+            />
             <TableContainer
                 sx={{
                     width: '100%',
@@ -240,7 +249,7 @@ const AlertsTableAll = ({ pumpID }) => {
                                         selected={isItemSelected}
                                     >
                                         <TableCell component="th" id={labelId} scope="row" align="left">
-                                        <TimeAgo targetTime={new Date(row?.date)} />
+                                            <TimeAgo targetTime={new Date(row?.date)} />
                                         </TableCell>
                                         <TableCell align="left">{row.errName}</TableCell>
                                         <TableCell align="left">{row.object}</TableCell>
@@ -266,7 +275,7 @@ const AlertsTableAll = ({ pumpID }) => {
                                                 }
                                                 color="warning"
                                             >
-                                                <InfoCircleOutlined style={{ fontSize: '12px', color: theme.palette.secondary[800]  }} />
+                                                <InfoCircleOutlined style={{ fontSize: '12px', color: theme.palette.secondary[800] }} />
                                             </Button>
                                         </TableCell>
                                     </TableRow>

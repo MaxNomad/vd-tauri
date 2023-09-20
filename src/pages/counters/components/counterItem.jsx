@@ -11,11 +11,11 @@ import { toastSuccess } from '@pages/components-overview/toasts';
 import TimeAgo from './timeAgo';
 
 const CounterItem = ({ props }) => {
-    const subtractHours = (date, hours)=> {
+    const subtractHours = (date, hours) => {
         date.setHours(date.getHours() - hours);
-      
+
         return date;
-      }
+    };
     const requestSotaTime = new Date(props?.requestSotaTime);
     const requestDataTime = subtractHours(new Date(props?.writeTime), 3);
     return (
@@ -33,16 +33,16 @@ const CounterItem = ({ props }) => {
                             <Chip label={props?.provider} size="small" color="primary" />
                         </Grid>
                         <Grid item lg={12}>
-                        <p />
+                            <p />
                             <Typography variant="h6" color="textSecondary" sx={{ mt: 1 }}>
                                 Модель:&nbsp;&nbsp;
-                                {props?.deviceModel} 
+                                {props?.deviceModel}
                             </Typography>
                             <p />
                             <p />
                             <Typography variant="h6" color="textSecondary" sx={{ mt: 1 }}>
                                 Об`єкт:&nbsp;&nbsp;
-                                {props?.object} 
+                                {props?.object}
                             </Typography>
                             <p />
                             <p />
@@ -90,7 +90,10 @@ const CounterItem = ({ props }) => {
                             </Typography>
                             <p />
                             <Typography variant="h6" color="textSecondary" sx={{ mt: 1 }}>
-                                <TimeAgo text="Оновлено " targetTime={requestSotaTime} />  &nbsp;<Tooltip title={<TimeAgo text="Записано" targetTime={requestDataTime} />} placement="top"><AppstoreOutlined /></Tooltip>
+                                <TimeAgo text="Оновлено " targetTime={requestSotaTime} /> &nbsp;
+                                <Tooltip title={<TimeAgo text="Записано" targetTime={requestDataTime} />} placement="top">
+                                    <AppstoreOutlined />
+                                </Tooltip>
                             </Typography>
                             <p />
                         </Grid>

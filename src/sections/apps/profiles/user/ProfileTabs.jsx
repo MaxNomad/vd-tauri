@@ -21,39 +21,37 @@ import { FacebookFilled, LinkedinFilled, MoreOutlined, TwitterSquareFilled, Came
 // ==============================|| USER PROFILE - TAB CONTENT ||============================== //
 
 const ProfileTabs = () => {
-  const theme = useTheme();
+    const theme = useTheme();
 
+    const [selectedImage, setSelectedImage] = useState(undefined);
+    const [avatar, setAvatar] = useState('');
 
-  const [selectedImage, setSelectedImage] = useState(undefined);
-  const [avatar, setAvatar] = useState('');
+    useEffect(() => {
+        if (selectedImage) {
+            setAvatar(URL.createObjectURL(selectedImage));
+        }
+    }, [selectedImage]);
 
-  useEffect(() => {
-    if (selectedImage) {
-      setAvatar(URL.createObjectURL(selectedImage));
-    }
-  }, [selectedImage]);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
 
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event?.currentTarget);
+    };
 
-  const handleClick = (event) => {
-    setAnchorEl(event?.currentTarget);
-  };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  return (
-
-    <Grid item xs={12}>
-      <ProfileTab />
-    </Grid>
-  );
+    return (
+        <Grid item xs={12}>
+            <ProfileTab />
+        </Grid>
+    );
 };
 
 ProfileTabs.propTypes = {
-  focusInput: PropTypes.func
+    focusInput: PropTypes.func
 };
 
 export default ProfileTabs;

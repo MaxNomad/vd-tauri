@@ -16,7 +16,7 @@ import {
     Typography,
     Grid,
     Button,
-    Alert,
+    Alert
 } from '@mui/material';
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 // third-party
@@ -25,7 +25,7 @@ import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 import { getKNSAlertsActive } from '@pages/kns/redux/knsAlertsActiveSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteKNSAlert } from '@pages/kns/redux/knsAlertDisableSlice';
-import config from "../../../config"
+import config from '../../../config';
 import { useTheme } from '@mui/material/styles';
 import ModalDissble from './ModalDissble';
 import OrderStatus from './OrderStatus';
@@ -130,7 +130,10 @@ const AlertsTableActive = ({ knsID, status }) => {
     const theme = useTheme();
 
     useEffect(() => {
-        const interval = setInterval(() => setTimer(Date.now()), localStorage.apiUpdateTime ? localStorage.apiUpdateTime : config.defaultUpdateTime);
+        const interval = setInterval(
+            () => setTimer(Date.now()),
+            localStorage.apiUpdateTime ? localStorage.apiUpdateTime : config.defaultUpdateTime
+        );
         return () => {
             clearInterval(interval);
         };
@@ -142,8 +145,8 @@ const AlertsTableActive = ({ knsID, status }) => {
     }, [page, rowsPerPage, timer, delCounter, reqData]);
 
     useEffect(() => {
-        if(data.activeAlarmsListTotal !== 0 && data.activeAlarmsList.length === 0){
-            setPage(p => p > 0 ? p - 1 : 0);
+        if (data.activeAlarmsListTotal !== 0 && data.activeAlarmsList.length === 0) {
+            setPage((p) => (p > 0 ? p - 1 : 0));
         }
     }, [data]);
 
@@ -160,7 +163,7 @@ const AlertsTableActive = ({ knsID, status }) => {
         name: PropTypes.string,
         date: PropTypes.string,
         id: PropTypes.string,
-        priority: PropTypes.number,
+        priority: PropTypes.number
     };
 
     const handleClose = () => {
@@ -173,15 +176,13 @@ const AlertsTableActive = ({ knsID, status }) => {
     };
 
     const disableSingleAlert = () => {
-    dispatch(deleteKNSAlert({ tag: tableAlertID, date: tableDate }));
-    SetdelCounter(x=> x > 0 ? x + 1 : 0);
-    handleClose();
-        
+        dispatch(deleteKNSAlert({ tag: tableAlertID, date: tableDate }));
+        SetdelCounter((x) => (x > 0 ? x + 1 : 0));
+        handleClose();
     };
-    
+
     const handleChangePage = (event, newPage) => {
         setPage(parseInt(newPage));
-        
     };
 
     const handleChangeRowsPerPage = (event) => {
@@ -189,10 +190,21 @@ const AlertsTableActive = ({ knsID, status }) => {
         setPage(0);
     };
 
-
     return (
         <Box>
-            <ModalDissble props={{status:status , tableAlertPrority: tableAlertPrority, tableDate: tableDate, tableAlertName:tableAlertName, tableAlertID: tableAlertID, open: open, tableAlertState: tableAlertState}} disableSingleAlert={disableSingleAlert} handleClose={handleClose} />
+            <ModalDissble
+                props={{
+                    status: status,
+                    tableAlertPrority: tableAlertPrority,
+                    tableDate: tableDate,
+                    tableAlertName: tableAlertName,
+                    tableAlertID: tableAlertID,
+                    open: open,
+                    tableAlertState: tableAlertState
+                }}
+                disableSingleAlert={disableSingleAlert}
+                handleClose={handleClose}
+            />
             <TableContainer
                 sx={{
                     width: '100%',
@@ -232,7 +244,7 @@ const AlertsTableActive = ({ knsID, status }) => {
                                         selected={isItemSelected}
                                     >
                                         <TableCell component="th" id={labelId} scope="row" align="left">
-                                        <TimeAgo targetTime={new Date(row?.date)} />
+                                            <TimeAgo targetTime={new Date(row?.date)} />
                                         </TableCell>
                                         <TableCell align="left">{row?.errName}</TableCell>
                                         <TableCell align="left">{row?.object}</TableCell>
@@ -257,7 +269,7 @@ const AlertsTableActive = ({ knsID, status }) => {
                                                 color="error"
                                                 sx={{ p: 0.7, minWidth: 20 }}
                                             >
-                                                <CloseOutlined style={{ fontSize: '12px', color: 'white'}} />
+                                                <CloseOutlined style={{ fontSize: '12px', color: 'white' }} />
                                             </Button>
                                         </TableCell>
                                     </TableRow>
@@ -268,7 +280,7 @@ const AlertsTableActive = ({ knsID, status }) => {
                 ) : (
                     <Grid item lg={12} style={{ textAlign: 'center' }}>
                         <Typography variant="h5" color="textSecondary" sx={{ p: 5 }}>
-                            Активних аварій не виявлено <CheckOutlined style={{ fontSize: '24px', color: theme.palette.success.main }}/>
+                            Активних аварій не виявлено <CheckOutlined style={{ fontSize: '24px', color: theme.palette.success.main }} />
                         </Typography>
                     </Grid>
                 )}
@@ -294,5 +306,5 @@ export default React.memo(AlertsTableActive);
 
 AlertsTableActive.propTypes = {
     knsID: PropTypes.string,
-    status: PropTypes.string,
+    status: PropTypes.string
 };

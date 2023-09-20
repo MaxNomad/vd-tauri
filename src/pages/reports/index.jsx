@@ -22,7 +22,7 @@ const ReportsRoot = () => {
     const handleChangeType = (event) => {
         setTypeReport(event.target.value);
     };
-    const handleChangeName= (event) => {
+    const handleChangeName = (event) => {
         setNameObject(event.target.value);
     };
     const handleChangeNum = (event) => {
@@ -156,9 +156,9 @@ const ReportsRoot = () => {
                                 </Typography>
                             </Grid>
                             <Grid item lg={12}>
-                            <Button variant="outlined" color="success">
-                                Завантажити звіт
-                            </Button>
+                                <Button variant="outlined" color="success">
+                                    Завантажити звіт
+                                </Button>
                             </Grid>
                         </Grid>
                     </MainCard>

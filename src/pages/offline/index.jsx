@@ -4,7 +4,7 @@ import { Box, Typography, Button } from '@mui/material';
 const AppOffline = () => {
     const refreshPage = () => {
         window.location.reload(false);
-      }
+    };
     return (
         <>
             <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" sx={{ mt: '30vh' }}>
@@ -17,7 +17,7 @@ const AppOffline = () => {
                 <Typography variant="body1" color="textSecondary" align="center" sx={{ mb: 3 }}>
                     Відсутній доступ до інтернету або сервери недоступні.
                 </Typography>
-                <Button onClick={()=> refreshPage()}>Перезавантажити сторінку</Button>
+                <Button onClick={() => refreshPage()}>Перезавантажити сторінку</Button>
             </Box>
         </>
     );

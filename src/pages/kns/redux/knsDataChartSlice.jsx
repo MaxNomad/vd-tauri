@@ -17,7 +17,7 @@ export const knsChartData = createSlice({
             alerts: [],
             m1Status: [],
             m2Status: [],
-            m3Status: [],
+            m3Status: []
         },
         loading: 'idle',
         error: null

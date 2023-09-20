@@ -5,8 +5,7 @@ import MainCard from './MainCard';
 import { useSelector } from 'react-redux';
 
 const GitHubStats = () => {
-    
-    const {data}  = useSelector((state) => state.rootGithub);
+    const { data } = useSelector((state) => state.rootGithub);
 
     return (
         <MainCard>
@@ -14,13 +13,13 @@ const GitHubStats = () => {
                 Git commit data
             </Typography>
             <Typography variant="h6" noWrap sx={{ mb: 1 }}>
-               Commit hash: {data?.shortCommit}
+                Commit hash: {data?.shortCommit}
             </Typography>
             <Typography variant="h6" sx={{ mb: 1 }}>
-                Commited date: <TimeAgo targetTime={new Date(data?.date)}/>
+                Commited date: <TimeAgo targetTime={new Date(data?.date)} />
             </Typography>
             <Typography variant="h6" noWrap sx={{ mb: 1 }}>
-               Comment: {data?.message}
+                Comment: {data?.message}
             </Typography>
         </MainCard>
     );

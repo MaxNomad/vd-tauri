@@ -10,8 +10,8 @@ import knsAlertsAll from '@pages/kns/redux/knsAlertsAllSlice';
 import knsAlertDisable from '@pages/kns/redux/knsAlertDisableSlice';
 import knsFoundAlertList from '@pages/kns/redux/knsAlertDataListSlice';
 import knsChartData from '@pages/kns/redux/knsDataChartSlice';
-import PumpRoot from "@pages/wells/redux/pumpListSlice";
-import PnsRoot from "@pages/upstations/redux/pnsListSlice";
+import PumpRoot from '@pages/wells/redux/pumpListSlice';
+import PnsRoot from '@pages/upstations/redux/pnsListSlice';
 import rootGlobal from '@pages/dashboard/redux/rootGlobalSlice';
 import pump from '@pages/wells/redux/pumpSlice';
 import pumpAlertsActive from '@pages/wells/redux/pumpAlertsActiveSlice';
@@ -36,7 +36,7 @@ const reducers = combineReducers({
     knsAlertDisable: knsAlertDisable,
     knsFoundAlertList: knsFoundAlertList,
     knsChartData: knsChartData,
-    PumpRoot : PumpRoot,
+    PumpRoot: PumpRoot,
     pumpAlertsActive: pumpAlertsActive,
     pumpAlertsAll: pumpAlertsAll,
     auth: authReducer,
@@ -46,9 +46,8 @@ const reducers = combineReducers({
     CountersRoot: CountersRoot,
     RootPumpStation: PumpStation,
     wellModbus: wellModbus,
-    pumpWellEvents : pumpWellEvents,
+    pumpWellEvents: pumpWellEvents,
     rootGithub: rootGithub
-
 });
 
 export default reducers;

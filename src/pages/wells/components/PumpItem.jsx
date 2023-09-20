@@ -8,7 +8,6 @@ import CheckOnline from '@pages/kns/items/CheckOnline';
 import AlarmStatus from '@pages/kns/items/GetAlert';
 import BlockAlert from '@pages/kns/items/BlockAlert';
 
-
 const PumpItem = ({ props }) => {
     return (
         <>
@@ -81,6 +80,6 @@ PumpItem.propTypes = {
     alarmIndex: PropTypes.number,
     queueIndex: PropTypes.number,
     engineHours: PropTypes.number,
-    blockAlarm: PropTypes.bool,
+    blockAlarm: PropTypes.bool
 };
 export default React.memo(PumpItem);

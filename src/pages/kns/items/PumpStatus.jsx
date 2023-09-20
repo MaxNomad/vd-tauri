@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Chip, Grid, Avatar, Box, Badge, Tooltip  } from '@mui/material';
+import { Chip, Grid, Avatar, Box, Badge, Tooltip } from '@mui/material';
 import pump_img from '@assets/images/icons/pump.png';
 import React from 'react';
 
@@ -42,8 +42,16 @@ const PumpStatus = ({ isOnline, setImage, current, cols = 4 }) => {
     return (
         <Grid item xs={4} sm={4} md={4} lg={cols} sx={{ mt: -2.25, mb: 0.5 }}>
             <Box direction="column" align="center">
-                {!setImage ? <Tooltip title={`Режим роботи насосу: ${titleMode}`} placement="top"><Badge color={colorMode} badgeContent={titleMode}  sx={{display: "inline-block"}}  size="sm" ><Avatar alt="" src={pump_img} sx={{ width: 60, height: 60 }} /></Badge></Tooltip> : ''}
-                <p/>
+                {!setImage ? (
+                    <Tooltip title={`Режим роботи насосу: ${titleMode}`} placement="top">
+                        <Badge color={colorMode} badgeContent={titleMode} sx={{ display: 'inline-block' }} size="sm">
+                            <Avatar alt="" src={pump_img} sx={{ width: 60, height: 60 }} />
+                        </Badge>
+                    </Tooltip>
+                ) : (
+                    ''
+                )}
+                <p />
                 <Chip label={title} size="small" color={color} />
             </Box>
         </Grid>
@@ -53,7 +61,7 @@ PumpStatus.propTypes = {
     isOnline: PropTypes.bool,
     setImage: PropTypes.bool,
     cols: PropTypes.number,
-    current: PropTypes.number,
+    current: PropTypes.number
 };
 
 export default PumpStatus;

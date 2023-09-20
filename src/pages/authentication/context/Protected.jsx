@@ -15,7 +15,7 @@ const OAuthMiddleware = ({ routes }) => {
                     if (!getToken() && !getTokenRef() && data) {
                         navigate('/login');
                     }
-                    if(getToken() && getTokenRef() && data && window.location.pathname === "/login"){
+                    if (getToken() && getTokenRef() && data && window.location.pathname === '/login') {
                         navigate('/dash');
                     }
                 } catch (error) {

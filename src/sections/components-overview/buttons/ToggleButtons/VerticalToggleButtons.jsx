@@ -9,23 +9,23 @@ import { ApartmentOutlined, AppstoreOutlined, TableOutlined } from '@ant-design/
 // ==============================|| TOGGLE BUTTON - VERTICAL ||============================== //
 
 export default function VerticalToggleButtons() {
-  const [view, setView] = useState('tree');
+    const [view, setView] = useState('tree');
 
-  const handleChange = (event, nextView) => {
-    setView(nextView);
-  };
+    const handleChange = (event, nextView) => {
+        setView(nextView);
+    };
 
-  return (
-    <ToggleButtonGroup orientation="vertical" value={view} exclusive onChange={handleChange}>
-      <ToggleButton value="tree" aria-label="tree">
-        <ApartmentOutlined />
-      </ToggleButton>
-      <ToggleButton value="grid" aria-label="grid">
-        <AppstoreOutlined />
-      </ToggleButton>
-      <ToggleButton value="table" aria-label="table">
-        <TableOutlined />
-      </ToggleButton>
-    </ToggleButtonGroup>
-  );
+    return (
+        <ToggleButtonGroup orientation="vertical" value={view} exclusive onChange={handleChange}>
+            <ToggleButton value="tree" aria-label="tree">
+                <ApartmentOutlined />
+            </ToggleButton>
+            <ToggleButton value="grid" aria-label="grid">
+                <AppstoreOutlined />
+            </ToggleButton>
+            <ToggleButton value="table" aria-label="table">
+                <TableOutlined />
+            </ToggleButton>
+        </ToggleButtonGroup>
+    );
 }

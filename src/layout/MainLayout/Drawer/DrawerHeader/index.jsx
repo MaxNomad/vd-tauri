@@ -15,7 +15,7 @@ const DrawerHeader = ({ open }) => {
 
     return (
         // only available in paid version
-        <DrawerHeaderStyled theme={theme} open={open} className={"drawlerVD"}>
+        <DrawerHeaderStyled theme={theme} open={open} className={'drawlerVD'}>
             <Stack direction="row" spacing={1} alignItems="center">
                 <Logo />
                 <Chip

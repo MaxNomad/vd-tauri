@@ -3,7 +3,7 @@ import { Progress } from 'rsuite';
 import { useTheme } from '@mui/material/styles';
 import React from 'react';
 
-const FillProgress = ({ data,  active }) => {
+const FillProgress = ({ data, active }) => {
     const theme = useTheme();
     let color;
     let tail;
@@ -32,7 +32,14 @@ const FillProgress = ({ data,  active }) => {
         tail = theme.palette.grey.A200;
     }
 
-    return <Progress.Line trailColor={tail} status={active ? "active" : null} percent={data ? Number(((data / 8) * 100).toFixed(2)) : 0} strokeColor={color ? color : '#1890ff'} />;
+    return (
+        <Progress.Line
+            trailColor={tail}
+            status={active ? 'active' : null}
+            percent={data ? Number(((data / 8) * 100).toFixed(2)) : 0}
+            strokeColor={color ? color : '#1890ff'}
+        />
+    );
 };
 
 FillProgress.propTypes = {

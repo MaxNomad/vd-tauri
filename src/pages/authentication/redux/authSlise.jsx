@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { login, signOut, loginGoogle} from './authThunk';
+import { createSlice } from '@reduxjs/toolkit';
+import { login, signOut, loginGoogle } from './authThunk';
 import React from 'react';
 
 const initialState = {
@@ -8,7 +8,6 @@ const initialState = {
     error: null,
     loading: false,
     signOut: false
-
 };
 
 export const authSlice = createSlice({
@@ -37,7 +36,7 @@ export const authSlice = createSlice({
         [login.rejected]: (state, action) => {
             state.loading = false;
             state.error = action.error;
-            state.access_token = null
+            state.access_token = null;
             state.refresh_token = null;
         },
         [loginGoogle.pending]: (state, action) => {
@@ -53,14 +52,11 @@ export const authSlice = createSlice({
         [loginGoogle.rejected]: (state, action) => {
             state.loading = false;
             state.error = action.error;
-            state.access_token = null
+            state.access_token = null;
             state.refresh_token = null;
-        },
-    },
-})
-
-
-
+        }
+    }
+});
 
 // eslint-disable-next-line no-empty-pattern
 export const {} = authSlice.actions;

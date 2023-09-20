@@ -14,33 +14,33 @@ import Loader from '@components/Loader';
 // ==============================|| GUEST GUARD ||============================== //
 
 const GuestGuard = ({ children }) => {
-  const { data: session, status } = useSession();
-  const router = useRouter();
+    const { data: session, status } = useSession();
+    const router = useRouter();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch('/api/auth/protected');
-      const json = await res.json();
-      if (json.protected) {
-        let RedirectPath = router.query.from ? router.query.from : DEFAULT_PATH;
-        router.push({
-          pathname: RedirectPath,
-          query: {}
-        });
-      }
-    };
-    fetchData();
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await fetch('/api/auth/protected');
+            const json = await res.json();
+            if (json.protected) {
+                let RedirectPath = router.query.from ? router.query.from : DEFAULT_PATH;
+                router.push({
+                    pathname: RedirectPath,
+                    query: {}
+                });
+            }
+        };
+        fetchData();
 
-    // eslint-disable-next-line
-  }, [session]);
+        // eslint-disable-next-line
+    }, [session]);
 
-  if (status === 'loading' || session?.user) return <Loader />;
+    if (status === 'loading' || session?.user) return <Loader />;
 
-  return children;
+    return children;
 };
 
 GuestGuard.propTypes = {
-  children: PropTypes.node
+    children: PropTypes.node
 };
 
 export default GuestGuard;

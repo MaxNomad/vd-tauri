@@ -9,7 +9,7 @@ import ReactApexChart from 'react-apexcharts';
 import { getChartData } from '@pages/kns/redux/knsDataChartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import config from "../../../config"
+import config from '../../../config';
 // chart options
 const areaChartOptions = {
     chart: {
@@ -20,8 +20,7 @@ const areaChartOptions = {
         },
         toolbar: {
             show: false
-        },
-
+        }
     },
     dataLabels: {
         enabled: false
@@ -32,7 +31,7 @@ const areaChartOptions = {
     },
     grid: {
         strokeDashArray: 0
-    },  
+    }
 };
 
 // ==============================|| INCOME AREA CHART ||============================== //
@@ -40,8 +39,8 @@ const areaChartOptions = {
 const IncomeAreaChart = ({ props }) => {
     const theme = useTheme();
     const dispatch = useDispatch();
-    
-    const { data, loading} = useSelector((state) => state.knsChartData);
+
+    const { data, loading } = useSelector((state) => state.knsChartData);
     const { primary, secondary, error } = theme.palette.text;
     const line = theme.palette.divider;
     const [searchParams] = useSearchParams();
@@ -51,12 +50,17 @@ const IncomeAreaChart = ({ props }) => {
 
     const [timer, setTimer] = useState(Date.now());
     useEffect(() => {
-        const interval = setInterval(() => setTimer(Date.now()), localStorage.apiChartUpdateTime ? localStorage.apiChartUpdateTime : config.defaultChartUpdateTime);
-        return () => { clearInterval(interval) };
+        const interval = setInterval(
+            () => setTimer(Date.now()),
+            localStorage.apiChartUpdateTime ? localStorage.apiChartUpdateTime : config.defaultChartUpdateTime
+        );
+        return () => {
+            clearInterval(interval);
+        };
     }, []);
 
     useEffect(() => {
-        setStoreSlot(props?.slot ? props.slot : 4)
+        setStoreSlot(props?.slot ? props.slot : 4);
     }, [props, searchParams]);
 
     const [series, setSeries] = useState([
@@ -82,12 +86,11 @@ const IncomeAreaChart = ({ props }) => {
         setOptions((prevState) => ({
             ...prevState,
             colors: [
-                "#52c41a",
+                '#52c41a',
                 theme.palette.warning.main,
                 theme.palette.primary[700],
                 theme.palette.primary[400],
-                theme.palette.primary.light,
-                
+                theme.palette.primary.light
             ],
             xaxis: {
                 categories: data.date,
@@ -114,47 +117,45 @@ const IncomeAreaChart = ({ props }) => {
                 borderColor: line
             },
 
-                tooltips: {
-                    callbacks: {
-                        label: function(tooltipItem, data) {
-                            return "12312"
-                        }
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem, data) {
+                        return '12312';
                     }
                 }
-          
-           
+            }
         }));
     }, [primary, secondary, line, theme, error, storeSlot, loading]);
 
     useEffect(() => {
-        dispatch(getChartData({ knsID: searchParams.get('id'), timeline: storeSlot}));
+        dispatch(getChartData({ knsID: searchParams.get('id'), timeline: storeSlot }));
     }, [searchParams, storeSlot, timer]);
 
     useEffect(() => {
         if (loading === 'idle') {
-        setSeries([
-            {
-                name: 'Рівень резервуару',
-                data: data.level
-            },
-            {
-                name: 'Активні аварії',
-                data: data.alerts
-            },
-            {
-                name: 'Робота насосу №1',
-                data: data.m1Status
-            },
-            {
-                name: 'Робота насосу №2',
-                data: data.m2Status
-            },
-            {
-                name: 'Робота насосу №3',
-                data: data.m3Status
-            }
-        ]);
-    }
+            setSeries([
+                {
+                    name: 'Рівень резервуару',
+                    data: data.level
+                },
+                {
+                    name: 'Активні аварії',
+                    data: data.alerts
+                },
+                {
+                    name: 'Робота насосу №1',
+                    data: data.m1Status
+                },
+                {
+                    name: 'Робота насосу №2',
+                    data: data.m2Status
+                },
+                {
+                    name: 'Робота насосу №3',
+                    data: data.m3Status
+                }
+            ]);
+        }
     }, [loading]);
 
     return <ReactApexChart options={options} series={series} type="area" height={450} />;

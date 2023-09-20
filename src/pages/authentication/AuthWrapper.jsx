@@ -49,7 +49,7 @@ const AuthWrapper = ({ children }) => {
             </Grid>
         </Box>
     );
-}
+};
 
 AuthWrapper.propTypes = {
     children: PropTypes.node

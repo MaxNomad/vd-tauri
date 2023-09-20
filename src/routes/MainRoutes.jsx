@@ -26,7 +26,6 @@ const NotFound = Loadable(lazy(() => import('@pages/notFound')));
 const User = Loadable(lazy(() => import('@pages/profiles/user')));
 const Account = Loadable(lazy(() => import('@pages/profiles/account')));
 
-
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -47,7 +46,7 @@ const MainRoutes = {
         },
         {
             path: 'upstations',
-            element: <UpstationsPage />,
+            element: <UpstationsPage />
         },
         {
             path: '/',
@@ -60,7 +59,7 @@ const MainRoutes = {
         },
         {
             path: 'kns',
-            element: <KnsMain />,
+            element: <KnsMain />
         },
         {
             path: 'kns-single',
@@ -109,7 +108,7 @@ const MainRoutes = {
         },
         {
             path: 'profile/edit',
-            element: <User  />
+            element: <User />
         },
         {
             path: 'countersRoot',
@@ -118,8 +117,7 @@ const MainRoutes = {
         {
             path: 'pumpStations',
             element: <PumpStationsRoot />
-        },
-        
+        }
     ]
 };
 

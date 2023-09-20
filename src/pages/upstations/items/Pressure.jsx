@@ -41,7 +41,6 @@ const Pressure = ({ num, title = null, levelsInput, levelsOutput }) => {
     } else {
         return <Chip label={!title ? (num ?? 0).toFixed(2) + ' bar' : title} size="small" color={colorOut} />;
     }
-    
 };
 Pressure.propTypes = {
     num: PropTypes.number,

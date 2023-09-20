@@ -15,75 +15,77 @@ import { FacebookFilled, LinkedinFilled, TwitterSquareFilled } from '@ant-design
 // ==============================|| ORGANIZATION CHART - DATACARD||============================== //
 
 function DataCard({ name, role, avatar, linkedin, facebook, skype, root }) {
-  const linkHandler = (link) => {
-    if (typeof window !== 'undefined') window.open(link);
-  };
-  const theme = useTheme();
+    const linkHandler = (link) => {
+        if (typeof window !== 'undefined') window.open(link);
+    };
+    const theme = useTheme();
 
-  const subTree = theme.palette.secondary.lighter + 40;
-  const rootTree = theme.palette.primary.lighter + 60;
+    const subTree = theme.palette.secondary.lighter + 40;
+    const rootTree = theme.palette.primary.lighter + 60;
 
-  return (
-    <MainCard
-      sx={{
-        bgcolor: root ? rootTree : subTree,
-        border: root ? `1px solid ${theme.palette.primary.light} !important` : `1px solid ${theme.palette.secondary.light} !important`,
-        width: 'max-content',
-        m: '0px auto',
-        p: 1.5,
-        direction: 'ltr'
-      }}
-      border={false}
-      content={false}
-    >
-      <Stack direction="row" spacing={2}>
-        <Avatar sx={{ mt: 0.3 }} src={avatar} size="sm" />
-        <Stack spacing={1.5}>
-          <Stack alignItems="flex-start">
-            <Typography variant="subtitle1" sx={{ color: root ? theme.palette.primary.main : theme.palette.text.primary }}>
-              {name}
-            </Typography>
-            {!root && (
-              <Chip
-                label={role}
-                sx={{ fontSize: '0.675rem', '& .MuiChip-label': { px: 0.75 }, width: 'max-content' }}
-                color="primary"
-                variant="outlined"
-                size="small"
-              />
-            )}
-            {root && (
-              <Typography sx={{ color: theme.palette.primary.darker }} variant="caption">
-                {role}
-              </Typography>
-            )}
-          </Stack>
-          <Stack spacing={0} direction="row">
-            <IconButton color="secondary" onClick={() => linkHandler(linkedin)} size="small">
-              <LinkedinFilled style={{ fontSize: '1.15rem', color: theme.palette.secondary[600] }} />
-            </IconButton>
-            <IconButton color="primary" onClick={() => linkHandler(facebook)} size="small">
-              <FacebookFilled style={{ fontSize: '1.15rem', color: theme.palette.primary[600] }} />
-            </IconButton>
-            <IconButton color="info" onClick={() => linkHandler(skype)} size="small">
-              <TwitterSquareFilled style={{ fontSize: '1.15rem' }} />
-            </IconButton>
-          </Stack>
-        </Stack>
-      </Stack>
-    </MainCard>
-  );
+    return (
+        <MainCard
+            sx={{
+                bgcolor: root ? rootTree : subTree,
+                border: root
+                    ? `1px solid ${theme.palette.primary.light} !important`
+                    : `1px solid ${theme.palette.secondary.light} !important`,
+                width: 'max-content',
+                m: '0px auto',
+                p: 1.5,
+                direction: 'ltr'
+            }}
+            border={false}
+            content={false}
+        >
+            <Stack direction="row" spacing={2}>
+                <Avatar sx={{ mt: 0.3 }} src={avatar} size="sm" />
+                <Stack spacing={1.5}>
+                    <Stack alignItems="flex-start">
+                        <Typography variant="subtitle1" sx={{ color: root ? theme.palette.primary.main : theme.palette.text.primary }}>
+                            {name}
+                        </Typography>
+                        {!root && (
+                            <Chip
+                                label={role}
+                                sx={{ fontSize: '0.675rem', '& .MuiChip-label': { px: 0.75 }, width: 'max-content' }}
+                                color="primary"
+                                variant="outlined"
+                                size="small"
+                            />
+                        )}
+                        {root && (
+                            <Typography sx={{ color: theme.palette.primary.darker }} variant="caption">
+                                {role}
+                            </Typography>
+                        )}
+                    </Stack>
+                    <Stack spacing={0} direction="row">
+                        <IconButton color="secondary" onClick={() => linkHandler(linkedin)} size="small">
+                            <LinkedinFilled style={{ fontSize: '1.15rem', color: theme.palette.secondary[600] }} />
+                        </IconButton>
+                        <IconButton color="primary" onClick={() => linkHandler(facebook)} size="small">
+                            <FacebookFilled style={{ fontSize: '1.15rem', color: theme.palette.primary[600] }} />
+                        </IconButton>
+                        <IconButton color="info" onClick={() => linkHandler(skype)} size="small">
+                            <TwitterSquareFilled style={{ fontSize: '1.15rem' }} />
+                        </IconButton>
+                    </Stack>
+                </Stack>
+            </Stack>
+        </MainCard>
+    );
 }
 
 DataCard.propTypes = {
-  name: PropTypes.string,
-  role: PropTypes.string,
-  avatar: PropTypes.string,
-  linkedin: PropTypes.string,
-  facebook: PropTypes.string,
-  meet: PropTypes.string,
-  skype: PropTypes.string,
-  root: PropTypes.bool
+    name: PropTypes.string,
+    role: PropTypes.string,
+    avatar: PropTypes.string,
+    linkedin: PropTypes.string,
+    facebook: PropTypes.string,
+    meet: PropTypes.string,
+    skype: PropTypes.string,
+    root: PropTypes.bool
 };
 
 export default DataCard;

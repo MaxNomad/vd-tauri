@@ -1,12 +1,16 @@
 // assets
-import { ChromeOutlined, QuestionOutlined,     AppstoreAddOutlined,
+import {
+    ChromeOutlined,
+    QuestionOutlined,
+    AppstoreAddOutlined,
     AntDesignOutlined,
     BarcodeOutlined,
     BgColorsOutlined,
     FontSizeOutlined,
     LoadingOutlined,
     CopyOutlined,
-    SettingOutlined } from '@ant-design/icons';
+    SettingOutlined
+} from '@ant-design/icons';
 
 // icons
 const icons = {

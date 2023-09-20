@@ -32,123 +32,127 @@ const PnsSingle = ({ data, lastUpdate }) => {
         return color;
     };
     const renderPumps = data.pumps.map((pump) => {
-        return <PumpStatus isOnline={pump?.pumpActive} key={pump?.pumpID} cols={2} current={1}/>;
+        return <PumpStatus isOnline={pump?.pumpActive} key={pump?.pumpID} cols={2} current={1} />;
     });
     const renderTanks = data.levels.current.map((tank) => {
-        return tank.exist ? <TankStatus props={tank} cols={2}/>: "";
+        return tank.exist ? <TankStatus props={tank} cols={2} /> : '';
     });
     return (
         <>
             <Grid item xs={12} sm={6} md={6} lg={6} UWHD={4}>
                 <Tooltip title={`Переглянути інформацію про НС №${data?.nsID}`} placement="top">
-                <Link to={`/pumpstation-single?id=${data?.nsID}`} style={{ textDecoration: 'none' }}>
-                <MainCard contentSX={{ p: 2.25, borderColor: AlarmColor() }} borderCustom hoverActive >
-                        <Grid container rowSpacing={4.5} columnSpacing={2.75}>
-                            <Grid item xs={9} sm={6} md={6} lg={8}>
-                                <Typography variant="h5" color="textSecondary">
-                                    НС №{data?.nsID} - {data?.address}
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={3} sm={6} md={6} lg={4} display="flex" justifyContent="flex-end">
-                                <CheckOnline isOnline={data?.online} />
-                            </Grid>
-                            {data?.maintenance ? (
-                                <>
-                                    <Grid item xs={12} sm={12} md={12} lg={12} sx={{ mt: -2.25, mb: -2 }}>
-                                        <Box direction="column" align="center">
-                                            <Typography variant="h5" color="textSecondary" sx={{ mt: 16 }}>
-                                                Технічне обслуговування НС №{data?.pnsID}
-                                            </Typography>
-                                            <Typography variant="h6" color="textSecondary" sx={{ mb: 16 }}>
-                                                Керування відключено
-                                            </Typography>
-                                        </Box>
-                                    </Grid>
-                                </>
-                            ) : data?.online ? (
-                                <>
-                                    <Grid item xs={12} sm={12} md={12} lg={12} sx={{ mt: -2.75 }}>
-                                        <Typography variant="h6" color="textSecondary">
-                                            Аварії:&nbsp;&nbsp;
-                                            <AlarmStatus current={data?.alarmStatus} />
-                                        </Typography>
-                                        <Divider sx={{ mt: 1 }} />
-                                    </Grid>
-
-                                    <Grid item xs={12} sm={6} md={6} lg={6} sx={{ mt: -2.75 }}>
-                                        <Typography variant="h5" color="textSecondary">
-                                            Загальні дані
-                                        </Typography>
-                                        <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
-                                            Вхідний тиск:&nbsp;&nbsp;
-                                            <Pressure num={data?.pressure_in} />
-                                            &nbsp;
-                                        </Typography>
-                                        <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
-                                            Вихідний тиск на місто:&nbsp;&nbsp;
-                                            <Pressure num={data?.pressureCity} />
-                                            &nbsp;
-                                        </Typography>
-                                        
-                                    </Grid>
-                                    
-                                    <Grid item xs={12} sm={6} md={6} lg={6} sx={{ mt: -2.75 }}>
-                                    <Typography variant="h5" color="textSecondary" sx={{ mt: 1.85 }}>
-                                            Додатково
-                                        </Typography>
-                                        <Typography variant="h6" color="textSecondary" sx={{ mt: 1 }}>
-                                            Вхідний потік:&nbsp;&nbsp;<b><NumberWithAnimation number={(data?.inputFlow ?? 0).toFixed(2)} one/> м³/год. </b>
-                                        </Typography>
-                                        <Typography variant="h6" color="textSecondary" sx={{ mt: 1 }}>
-                                            Загальна ємність:&nbsp;&nbsp;<b><NumberWithAnimation number={data?.levels?.global} rev/> м³ </b>
-                                        </Typography>
-
-                                    </Grid>
-                                    <Grid item xs={12} sx={{ mt: -3.25 }}>
-                                                <Typography variant="h5" color="textSecondary">
-                                                    Насоси
-                                                    <Divider />
+                    <Link to={`/pumpstation-single?id=${data?.nsID}`} style={{ textDecoration: 'none' }}>
+                        <MainCard contentSX={{ p: 2.25, borderColor: AlarmColor() }} borderCustom hoverActive>
+                            <Grid container rowSpacing={4.5} columnSpacing={2.75}>
+                                <Grid item xs={9} sm={6} md={6} lg={8}>
+                                    <Typography variant="h5" color="textSecondary">
+                                        НС №{data?.nsID} - {data?.address}
+                                    </Typography>
+                                </Grid>
+                                <Grid item xs={3} sm={6} md={6} lg={4} display="flex" justifyContent="flex-end">
+                                    <CheckOnline isOnline={data?.online} />
+                                </Grid>
+                                {data?.maintenance ? (
+                                    <>
+                                        <Grid item xs={12} sm={12} md={12} lg={12} sx={{ mt: -2.25, mb: -2 }}>
+                                            <Box direction="column" align="center">
+                                                <Typography variant="h5" color="textSecondary" sx={{ mt: 16 }}>
+                                                    Технічне обслуговування НС №{data?.pnsID}
                                                 </Typography>
-                                            </Grid>
-                                            {renderPumps}
-                                            <Grid item xs={12} sx={{ mt: -3.25 }}>
-                                                <Typography variant="h5" color="textSecondary">
-                                                    Резервуари
-                                                    <Divider />
+                                                <Typography variant="h6" color="textSecondary" sx={{ mb: 16 }}>
+                                                    Керування відключено
                                                 </Typography>
-                                            </Grid>
-                                            {renderTanks}
-                                </>
-                            ) : (
-                                <>
-                                    <Grid item xs={12} sm={12} md={12} lg={12} sx={{ mt: -2.25, mb: -2 }}>
-                                        <Box direction="column" align="center">
-                                            {data?.exist ? (
-                                                <>
-                                                    <Typography variant="h5" color="textSecondary" sx={{ mt: 16 }}>
-                                                        Відсутнє підкнючення до НС №{data?.pnsID}
-                                                    </Typography>
-                                                    <Typography variant="h6" color="textSecondary" sx={{ mb: 16 }}>
-                                                        <TimeAgo targetTime={new Date(lastUpdate)} text="Востаннє в мережі"/>
-                                                    </Typography>
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <Typography variant="h5" color="textSecondary" sx={{ mt: 16 }}>
-                                                        Відсутні дані про НС № {data?.pnsID}
-                                                    </Typography>
-                                                    <Typography variant="h6" color="textSecondary" sx={{ mb: 16 }}>
-                                                        Перевірте налашутвання панелі.
-                                                    </Typography>
-                                                </>
-                                            )}
-                                        </Box>
-                                    </Grid>
-                                </>
-                            )}
-                        </Grid>
-                </MainCard>
-                </Link>
+                                            </Box>
+                                        </Grid>
+                                    </>
+                                ) : data?.online ? (
+                                    <>
+                                        <Grid item xs={12} sm={12} md={12} lg={12} sx={{ mt: -2.75 }}>
+                                            <Typography variant="h6" color="textSecondary">
+                                                Аварії:&nbsp;&nbsp;
+                                                <AlarmStatus current={data?.alarmStatus} />
+                                            </Typography>
+                                            <Divider sx={{ mt: 1 }} />
+                                        </Grid>
+
+                                        <Grid item xs={12} sm={6} md={6} lg={6} sx={{ mt: -2.75 }}>
+                                            <Typography variant="h5" color="textSecondary">
+                                                Загальні дані
+                                            </Typography>
+                                            <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
+                                                Вхідний тиск:&nbsp;&nbsp;
+                                                <Pressure num={data?.pressure_in} />
+                                                &nbsp;
+                                            </Typography>
+                                            <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
+                                                Вихідний тиск на місто:&nbsp;&nbsp;
+                                                <Pressure num={data?.pressureCity} />
+                                                &nbsp;
+                                            </Typography>
+                                        </Grid>
+
+                                        <Grid item xs={12} sm={6} md={6} lg={6} sx={{ mt: -2.75 }}>
+                                            <Typography variant="h5" color="textSecondary" sx={{ mt: 1.85 }}>
+                                                Додатково
+                                            </Typography>
+                                            <Typography variant="h6" color="textSecondary" sx={{ mt: 1 }}>
+                                                Вхідний потік:&nbsp;&nbsp;
+                                                <b>
+                                                    <NumberWithAnimation number={(data?.inputFlow ?? 0).toFixed(2)} one /> м³/год.{' '}
+                                                </b>
+                                            </Typography>
+                                            <Typography variant="h6" color="textSecondary" sx={{ mt: 1 }}>
+                                                Загальна ємність:&nbsp;&nbsp;
+                                                <b>
+                                                    <NumberWithAnimation number={data?.levels?.global} rev /> м³{' '}
+                                                </b>
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item xs={12} sx={{ mt: -3.25 }}>
+                                            <Typography variant="h5" color="textSecondary">
+                                                Насоси
+                                                <Divider />
+                                            </Typography>
+                                        </Grid>
+                                        {renderPumps}
+                                        <Grid item xs={12} sx={{ mt: -3.25 }}>
+                                            <Typography variant="h5" color="textSecondary">
+                                                Резервуари
+                                                <Divider />
+                                            </Typography>
+                                        </Grid>
+                                        {renderTanks}
+                                    </>
+                                ) : (
+                                    <>
+                                        <Grid item xs={12} sm={12} md={12} lg={12} sx={{ mt: -2.25, mb: -2 }}>
+                                            <Box direction="column" align="center">
+                                                {data?.exist ? (
+                                                    <>
+                                                        <Typography variant="h5" color="textSecondary" sx={{ mt: 16 }}>
+                                                            Відсутнє підкнючення до НС №{data?.pnsID}
+                                                        </Typography>
+                                                        <Typography variant="h6" color="textSecondary" sx={{ mb: 16 }}>
+                                                            <TimeAgo targetTime={new Date(lastUpdate)} text="Востаннє в мережі" />
+                                                        </Typography>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <Typography variant="h5" color="textSecondary" sx={{ mt: 16 }}>
+                                                            Відсутні дані про НС № {data?.pnsID}
+                                                        </Typography>
+                                                        <Typography variant="h6" color="textSecondary" sx={{ mb: 16 }}>
+                                                            Перевірте налашутвання панелі.
+                                                        </Typography>
+                                                    </>
+                                                )}
+                                            </Box>
+                                        </Grid>
+                                    </>
+                                )}
+                            </Grid>
+                        </MainCard>
+                    </Link>
                 </Tooltip>
                 <br />
             </Grid>

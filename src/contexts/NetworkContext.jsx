@@ -4,36 +4,34 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toastError, toastAlert } from '@pages/components-overview/toasts';
 import { getGitData } from '@pages/dashboard/redux/gitstatusSlice';
 import { fetchUserData } from '@pages/authentication/redux/authThunk';
+import { getToken } from '@pages/authentication/helper/token';
 
 const NetworkCheck = ({ children }) => {
-
     const dispatch = useDispatch();
-    const {data}  = useSelector((state) => state.rootGithub);
+    const { data } = useSelector((state) => state.rootGithub);
 
     const dispatchAction = () => {
         dispatch(getGitData());
-      };
-      const dispatchUser = () => {
-        dispatch(fetchUserData());
-      };
-    
-      useEffect(() => {
+    };
+    const dispatchUser = () => {
+        if (getToken()) dispatch(fetchUserData());
+    };
+
+    useEffect(() => {
         dispatchAction();
-        const intervalId = setInterval(dispatchAction, 30000); 
+        const intervalId = setInterval(dispatchAction, 30000);
         return () => clearInterval(intervalId);
-      }, []);
+    }, []);
 
-      useEffect(() => {
-        dispatchUser()
-        const intervalId = setInterval(dispatchUser, 5000); 
+    useEffect(() => {
+        dispatchUser();
+        const intervalId = setInterval(dispatchUser, 5000);
         return () => clearInterval(intervalId);
-      }, []);
+    }, []);
 
-      
-
-      useEffect(() => {
-         // window.location.reload();
-      }, [data]);
+    useEffect(() => {
+        // window.location.reload();
+    }, [data]);
 
     const [isOnline, setIsOnline] = useState(navigator.onLine);
 

@@ -9,26 +9,26 @@ import { AlignLeftOutlined, AlignCenterOutlined, AlignRightOutlined, UnorderedLi
 // ==============================|| TOGGLE BUTTON - EXCLUSIVE ||============================== //
 
 export default function ExclusiveToggleButtons() {
-  const [alignment, setAlignment] = useState('left');
+    const [alignment, setAlignment] = useState('left');
 
-  const handleAlignment = (event, newAlignment) => {
-    setAlignment(newAlignment);
-  };
+    const handleAlignment = (event, newAlignment) => {
+        setAlignment(newAlignment);
+    };
 
-  return (
-    <ToggleButtonGroup value={alignment} exclusive onChange={handleAlignment} aria-label="text alignment">
-      <ToggleButton value="left" aria-label="left aligned">
-        <AlignLeftOutlined />
-      </ToggleButton>
-      <ToggleButton value="center" aria-label="centered">
-        <AlignCenterOutlined />
-      </ToggleButton>
-      <ToggleButton value="right" aria-label="right aligned">
-        <AlignRightOutlined />
-      </ToggleButton>
-      <ToggleButton value="list" aria-label="list" disabled sx={{ '&.Mui-disabled': { color: 'text.disabled' } }}>
-        <UnorderedListOutlined />
-      </ToggleButton>
-    </ToggleButtonGroup>
-  );
+    return (
+        <ToggleButtonGroup value={alignment} exclusive onChange={handleAlignment} aria-label="text alignment">
+            <ToggleButton value="left" aria-label="left aligned">
+                <AlignLeftOutlined />
+            </ToggleButton>
+            <ToggleButton value="center" aria-label="centered">
+                <AlignCenterOutlined />
+            </ToggleButton>
+            <ToggleButton value="right" aria-label="right aligned">
+                <AlignRightOutlined />
+            </ToggleButton>
+            <ToggleButton value="list" aria-label="list" disabled sx={{ '&.Mui-disabled': { color: 'text.disabled' } }}>
+                <UnorderedListOutlined />
+            </ToggleButton>
+        </ToggleButtonGroup>
+    );
 }

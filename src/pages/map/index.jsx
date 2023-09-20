@@ -4,7 +4,7 @@ import ComponentSkeleton from '@pages/components-overview/ComponentSkeleton';
 import GoogleMapComponent from './mapComponent';
 import React from 'react';
 
-const MapRoot= () => {
+const MapRoot = () => {
     return (
         <>
             <ComponentSkeleton renderContent>

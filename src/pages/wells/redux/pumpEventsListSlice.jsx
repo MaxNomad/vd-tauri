@@ -15,7 +15,7 @@ export const pumpWellEvents = createSlice({
             eventsTotal: 0,
             activePage: 0,
             activePerPage: 0,
-            events: [],
+            events: []
         },
         loading: 'idle',
         error: null

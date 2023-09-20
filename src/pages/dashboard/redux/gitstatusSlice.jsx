@@ -11,8 +11,7 @@ export const getGitData = createAsyncThunk('root/getGithub', async () => {
 export const rootGithub = createSlice({
     name: 'rootGithub',
     initialState: {
-        data: {
-        },
+        data: {},
         loading: 'idle',
         error: null
     },

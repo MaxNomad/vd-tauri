@@ -106,7 +106,6 @@ const DashboardDefault = () => {
                     <Status title="Інше" text="В нормі" status extraText="Перевірено 16 об'єктів" />
                 </Grid>
 
-              
                 <Grid item xs={12} sm={6} md={4} lg={3} sx={{ mb: 0 }}>
                     <Typography variant="h5" sx={{ mb: 2.4 }}>
                         Дані GitHub

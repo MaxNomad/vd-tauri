@@ -17,40 +17,40 @@ import { CodeOutlined, CopyOutlined } from '@ant-design/icons';
 // ==============================|| CLIPBOARD & HIGHLIGHTER ||============================== //
 
 const Highlighter = ({ codeString, codeHighlight }) => {
-  const [highlight, setHighlight] = useState(codeHighlight);
+    const [highlight, setHighlight] = useState(codeHighlight);
 
-  return (
-    <>
-      <CardActions sx={{ justifyContent: 'flex-end' }}>
-        <Box sx={{ display: 'flex' }}>
-          <CopyToClipboard text={codeString}>
-            <Tooltip title="Copy the source" placement="top-end">
-              <IconButton color="secondary" size="small" sx={{ fontSize: '0.875rem' }}>
-                <CopyOutlined />
-              </IconButton>
-            </Tooltip>
-          </CopyToClipboard>
-          <Divider orientation="vertical" variant="middle" flexItem sx={{ mx: 1 }} />
-          <Tooltip title="Show the source" placement="top-end">
-            <IconButton
-              sx={{ fontSize: '0.875rem' }}
-              size="small"
-              color={highlight ? 'primary' : 'secondary'}
-              onClick={() => setHighlight(!highlight)}
-            >
-              <CodeOutlined />
-            </IconButton>
-          </Tooltip>
-        </Box>
-      </CardActions>
-      <Collapse in={highlight}>{highlight && <SyntaxHighlight>{codeString}</SyntaxHighlight>}</Collapse>
-    </>
-  );
+    return (
+        <>
+            <CardActions sx={{ justifyContent: 'flex-end' }}>
+                <Box sx={{ display: 'flex' }}>
+                    <CopyToClipboard text={codeString}>
+                        <Tooltip title="Copy the source" placement="top-end">
+                            <IconButton color="secondary" size="small" sx={{ fontSize: '0.875rem' }}>
+                                <CopyOutlined />
+                            </IconButton>
+                        </Tooltip>
+                    </CopyToClipboard>
+                    <Divider orientation="vertical" variant="middle" flexItem sx={{ mx: 1 }} />
+                    <Tooltip title="Show the source" placement="top-end">
+                        <IconButton
+                            sx={{ fontSize: '0.875rem' }}
+                            size="small"
+                            color={highlight ? 'primary' : 'secondary'}
+                            onClick={() => setHighlight(!highlight)}
+                        >
+                            <CodeOutlined />
+                        </IconButton>
+                    </Tooltip>
+                </Box>
+            </CardActions>
+            <Collapse in={highlight}>{highlight && <SyntaxHighlight>{codeString}</SyntaxHighlight>}</Collapse>
+        </>
+    );
 };
 
 Highlighter.propTypes = {
-  codeHighlight: PropTypes.bool,
-  codeString: PropTypes.string
+    codeHighlight: PropTypes.bool,
+    codeString: PropTypes.string
 };
 
 export default Highlighter;

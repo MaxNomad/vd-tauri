@@ -5,7 +5,7 @@ import utilities from './utilities';
 import support from './support';
 
 // ==============================|| MENU ITEMS ||============================== //
-const menuItemsArray = [dashboard, pages, utilities, support]
+const menuItemsArray = [dashboard, pages, utilities, support];
 const menuItems = {
     items: menuItemsArray
 };

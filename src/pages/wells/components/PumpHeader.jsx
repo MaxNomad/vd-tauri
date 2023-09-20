@@ -1,4 +1,4 @@
-import { Grid, Typography, Tooltip} from '@mui/material';
+import { Grid, Typography, Tooltip } from '@mui/material';
 import MainCard from '@components/MainCard';
 import AlertsCount from '@pages/kns/items/AlertsCount';
 import CheckOnline from '@pages/kns/items/CheckOnline';

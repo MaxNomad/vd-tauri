@@ -16,8 +16,7 @@ import { useSelector } from 'react-redux';
 import permsCheck from '@pages/authentication/context/permsCheck';
 import parseID from '@utils/getObjID';
 
-
-const ClearTableModal = ({wellID, data}) => {
+const ClearTableModal = ({ wellID, data }) => {
     const matchDownSM = useMediaQuery((theme) => theme.breakpoints.down('md'));
     const [open, setOpen] = React.useState(false);
 
@@ -30,19 +29,20 @@ const ClearTableModal = ({wellID, data}) => {
     };
     const clearTable = () => {
         api.defaults.headers.Authorization = `Bearer ${getToken()}`;
-        api.delete(`/deleteClearWellTable?pumpID=${wellID}`).then((response) => {
-            if (response.status === 200) {
-                toastWarn("Таблицю очищено")
-                handleClose()
-            } else {
-                toastError("Помилка при очищені данних")
-                handleClose()
-            }
-        }).catch(()=> {
-            toastError('Помилка при очищені данних (500)');
-        });
-        
-    }
+        api.delete(`/deleteClearWellTable?pumpID=${wellID}`)
+            .then((response) => {
+                if (response.status === 200) {
+                    toastWarn('Таблицю очищено');
+                    handleClose();
+                } else {
+                    toastError('Помилка при очищені данних');
+                    handleClose();
+                }
+            })
+            .catch(() => {
+                toastError('Помилка при очищені данних (500)');
+            });
+    };
     const intID = parseID(wellID);
     return (
         <>
@@ -50,7 +50,13 @@ const ClearTableModal = ({wellID, data}) => {
                 <Typography variant="h6" color="secondary" sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     Очистити таблицю
                     <Grid sx={{ mt: -0.5 }}>
-                        <Button variant="contained" color="error" size="small" onClick={handleClickOpen} disabled={!permsCheck(["level_10"])}>
+                        <Button
+                            variant="contained"
+                            color="error"
+                            size="small"
+                            onClick={handleClickOpen}
+                            disabled={!permsCheck(['level_10'])}
+                        >
                             Очистити
                         </Button>
                         <Tooltip title="" placement="bottom">
@@ -60,33 +66,45 @@ const ClearTableModal = ({wellID, data}) => {
                         </Tooltip>
                     </Grid>
                 </Typography>
-                <Typography variant="h6" noWrap color="textSecondary" sx={{ mt: 1.5, mb: -1, display: 'flex', justifyContent: 'space-between' }}>
+                <Typography
+                    variant="h6"
+                    noWrap
+                    color="textSecondary"
+                    sx={{ mt: 1.5, mb: -1, display: 'flex', justifyContent: 'space-between' }}
+                >
                     <Grid xs={9}>
-                        {data?.events?.clearTable?.date ? <>Остання дія <TimeAgo targetTime={new Date(data?.events?.clearTable?.date)} /></>: "Дії відсутні"}
+                        {data?.events?.clearTable?.date ? (
+                            <>
+                                Остання дія <TimeAgo targetTime={new Date(data?.events?.clearTable?.date)} />
+                            </>
+                        ) : (
+                            'Дії відсутні'
+                        )}
                     </Grid>
-                    <Grid>{data?.events?.clearTable?.user? `By ${data?.events?.clearTable?.user}`: null}</Grid>
+                    <Grid>{data?.events?.clearTable?.user ? `By ${data?.events?.clearTable?.user}` : null}</Grid>
                 </Typography>
             </MainCard>
-            <Dialog open={open} onClose={handleClose} maxWidth='sm' fullScreen={matchDownSM}>
+            <Dialog open={open} onClose={handleClose} maxWidth="sm" fullScreen={matchDownSM}>
                 <DialogTitle>Ви впевнені, що хочете очистити дані таблиці WELL{intID}?</DialogTitle>
                 <DialogContent dividers>
                     <DialogContentText>
-                    <Typography variant="h6" color="secondary">
-                    Усі дані, які в ній зберігаються, будуть безповоротно видалені, і цю дію не можна буде скасувати. Будь ласка, підтвердьте своє рішення, натиснувши <b>{"'Очистити'"}</b>, або скасуйте операцію, натиснувши <b>{"'Скасувати'"}</b>.
-                    </Typography>
-                    
+                        <Typography variant="h6" color="secondary">
+                            Усі дані, які в ній зберігаються, будуть безповоротно видалені, і цю дію не можна буде скасувати. Будь ласка,
+                            підтвердьте своє рішення, натиснувши <b>{"'Очистити'"}</b>, або скасуйте операцію, натиснувши{' '}
+                            <b>{"'Скасувати'"}</b>.
+                        </Typography>
                     </DialogContentText>
                 </DialogContent>
-                <DialogActions sx={{display: "flex", justifyContent: 'space-between', p:3}}>
+                <DialogActions sx={{ display: 'flex', justifyContent: 'space-between', p: 3 }}>
                     <Button variant="contained" color="primary" size="medium" onClick={handleClose}>
-                            Скасувати
-                        </Button>
+                        Скасувати
+                    </Button>
                     <Button variant="contained" color="error" size="medium" onClick={clearTable}>
-                            Очистити
-                        </Button>
+                        Очистити
+                    </Button>
                 </DialogActions>
             </Dialog>
         </>
     );
-}
+};
 export default React.memo(ClearTableModal);

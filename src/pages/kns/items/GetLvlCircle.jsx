@@ -12,9 +12,9 @@ const FillCircle = ({ levels }) => {
     const matchDownMD = useMediaQuery(theme.breakpoints.up('sm'));
 
     const fractionAsInt = (value) => {
-        let str = ("" + value).split(".")[1];
-        return str ? + str : "00";
-    }
+        let str = ('' + value).split('.')[1];
+        return str ? +str : '00';
+    };
     const CircleStyle = {
         width: matchDownMD ? 142 : 100,
         padding: 5
@@ -54,35 +54,38 @@ const FillCircle = ({ levels }) => {
             stopColor: tail,
             stopOpacity: 1,
             offset: levels?.current
-        },
+        }
     ];
-    
-    const value = levels ? Number(((levels?.current / levels?.max) * 100).toFixed(2)) : 0
-    return !JSON.parse(localStorage.liqChartsPreset || config.liqChartsPreset) ? <Progress.Circle trailColor={tail} percent={value} strokeColor={color ? color : '#1890ff'} /> : <LiquidFillGauge
-        value={parseInt(value)}
-        percent={`.${fractionAsInt(value)}%`}
-        width={CircleStyle.width}
-        height={CircleStyle.width}
-        textSize={0.7}
-        textOffsetX={0}
-        textOffsetY={0}
-        gradientStops={gradientStops}
-        riseAnimation
-        waveAnimation
-        waveFrequency={2}
-        waveAmplitude={1}
-        gradient
-        circleStyle={{
-            fill: color ? color : '#1890ff'
-        }}
-        textStyle={{
-            fill: theme.palette.secondary.dark,
 
-        }}
-        waveTextStyle={{
-            fill: theme.palette.secondary.dark,
-        }}
-    />;
+    const value = levels ? Number(((levels?.current / levels?.max) * 100).toFixed(2)) : 0;
+    return !JSON.parse(localStorage.liqChartsPreset || config.liqChartsPreset) ? (
+        <Progress.Circle trailColor={tail} percent={value} strokeColor={color ? color : '#1890ff'} />
+    ) : (
+        <LiquidFillGauge
+            value={parseInt(value)}
+            percent={`.${fractionAsInt(value)}%`}
+            width={CircleStyle.width}
+            height={CircleStyle.width}
+            textSize={0.7}
+            textOffsetX={0}
+            textOffsetY={0}
+            gradientStops={gradientStops}
+            riseAnimation
+            waveAnimation
+            waveFrequency={2}
+            waveAmplitude={1}
+            gradient
+            circleStyle={{
+                fill: color ? color : '#1890ff'
+            }}
+            textStyle={{
+                fill: theme.palette.secondary.dark
+            }}
+            waveTextStyle={{
+                fill: theme.palette.secondary.dark
+            }}
+        />
+    );
 };
 
 FillCircle.propTypes = {

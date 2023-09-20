@@ -19,7 +19,7 @@ import OrderStatus from './OrderStatus';
 import AlertStatus from './AlertStatus';
 import { useTheme } from '@mui/material/styles';
 
-const ModalDelete = ({props, disableSingleAlert, handleClose}) => {
+const ModalDelete = ({ props, disableSingleAlert, handleClose }) => {
     const theme = useTheme();
     const style = {
         position: 'absolute',
@@ -36,7 +36,12 @@ const ModalDelete = ({props, disableSingleAlert, handleClose}) => {
         pb: 2
     };
     return (
-        <Modal open={props?.open} onClose={()=> handleClose()} aria-labelledby="child-modal-title" aria-describedby="child-modal-description">
+        <Modal
+            open={props?.open}
+            onClose={() => handleClose()}
+            aria-labelledby="child-modal-title"
+            aria-describedby="child-modal-description"
+        >
             <Box sx={{ ...style, width: { lg: 600, md: 520, xs: 360 } }}>
                 <Grid container>
                     <Grid item lg={12} md={12} xs={12}>
@@ -60,14 +65,17 @@ const ModalDelete = ({props, disableSingleAlert, handleClose}) => {
                     <Grid item lg={6} md={6} xs={6}>
                         <Button
                             variant="contained"
-                            onClick={()=> disableSingleAlert()}
+                            onClick={() => disableSingleAlert()}
                             color="error"
                             disabled={props?.tableAlertPrority === 2}
                         >
                             Прийняти
                         </Button>
 
-                        <Tooltip title="Деактивація аварій з високим пріорітетом неможлива при аварійному статусі об'єкту." placement="bottom">
+                        <Tooltip
+                            title="Деактивація аварій з високим пріорітетом неможлива при аварійному статусі об'єкту."
+                            placement="bottom"
+                        >
                             <Button sx={{ p: 0, minWidth: 0, ml: 2 }}>
                                 <QuestionCircleOutlined style={{ fontSize: '24px', color: 'rgb(255 212 0)' }} />
                             </Button>
@@ -83,7 +91,5 @@ const ModalDelete = ({props, disableSingleAlert, handleClose}) => {
         </Modal>
     );
 };
-
-
 
 export default React.memo(ModalDelete);

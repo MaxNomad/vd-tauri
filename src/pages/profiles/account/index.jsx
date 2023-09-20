@@ -23,8 +23,8 @@ const AccountProfile = () => {
 
     const [value, setValue] = useState('basic');
     useEffect(() => {
-      dispatch(fetchUserData());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        dispatch(fetchUserData());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [value]);
 
     const handleChange = (event, newValue) => {
@@ -32,26 +32,26 @@ const AccountProfile = () => {
     };
 
     return (
-            <MainCard border={false} boxShadow>
-                <Box sx={{ borderBottom: 1, borderColor: 'divider', width: '100%' }}>
-                    <Tabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto" aria-label="account profile tab">
-                        <Tab label="Профіль" icon={<UserOutlined />} value="basic" iconPosition="start" />
-                        <Tab label="Активні сесії" icon={<ContainerOutlined />} value="my-account" iconPosition="start" />
-                        <Tab label="Безпека" icon={<LockOutlined />} value="password" iconPosition="start" />
-                        <Tab label="Редагувати профіль" icon={<FileTextOutlined />} value="personal" iconPosition="start" />
-                        <Tab label="Налаштування" icon={<SettingOutlined />} value="settings" iconPosition="start" />
-                        <Tab label="Глобальні" icon={<ControlOutlined />} value="pannel" iconPosition="start" />
-                    </Tabs>
-                </Box>
-                <Box sx={{ mt: 2.5 }}>
-                    {value === 'basic' && <TabProfile />}
-                    {value === 'personal' && <TabPersonal />}
-                    {value === 'my-account' && <TabAccount />}
-                    {value === 'password' && <TabPassword />}
-                    {value === 'settings' && <TabSettings />}
-                    {value === 'pannel' && <TabPannel />}
-                </Box>
-            </MainCard>
+        <MainCard border={false} boxShadow>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider', width: '100%' }}>
+                <Tabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto" aria-label="account profile tab">
+                    <Tab label="Профіль" icon={<UserOutlined />} value="basic" iconPosition="start" />
+                    <Tab label="Активні сесії" icon={<ContainerOutlined />} value="my-account" iconPosition="start" />
+                    <Tab label="Безпека" icon={<LockOutlined />} value="password" iconPosition="start" />
+                    <Tab label="Редагувати профіль" icon={<FileTextOutlined />} value="personal" iconPosition="start" />
+                    <Tab label="Налаштування" icon={<SettingOutlined />} value="settings" iconPosition="start" />
+                    <Tab label="Глобальні" icon={<ControlOutlined />} value="pannel" iconPosition="start" />
+                </Tabs>
+            </Box>
+            <Box sx={{ mt: 2.5 }}>
+                {value === 'basic' && <TabProfile />}
+                {value === 'personal' && <TabPersonal />}
+                {value === 'my-account' && <TabAccount />}
+                {value === 'password' && <TabPassword />}
+                {value === 'settings' && <TabSettings />}
+                {value === 'pannel' && <TabPannel />}
+            </Box>
+        </MainCard>
     );
 };
 

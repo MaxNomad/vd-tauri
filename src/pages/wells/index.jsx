@@ -34,15 +34,19 @@ const WellsRoot = () => {
         setUpdateTime(new Date().toLocaleString());
         setInterval(() => setFirstLoad(true), 400);
     }, [dispatch, timer]);
-    
+
     const objectsWithErrors = data.filter((obj) => obj.alarmStatus > 0);
     const objectsWithoutErrors = data.filter((obj) => obj.alarmStatus <= 0 || obj.alarmStatus == null);
-    const objectsSortedPerms = data.filter((obj) => permsCheck(["level_10", "level_9","level_8","dash_well_read_all",`dash_well_read_${parseID(obj?.pumpID)}`]) );
+    const objectsSortedPerms = data.filter((obj) =>
+        permsCheck(['level_10', 'level_9', 'level_8', 'dash_well_read_all', `dash_well_read_${parseID(obj?.pumpID)}`])
+    );
     const sortedArray = [...objectsWithErrors, ...objectsWithoutErrors];
-    const permsArray  = data.filter((obj) => permsCheck(["level_10", "level_9","level_8","dash_well_read_all",`dash_well_read_${parseID(obj?.pumpID)}`]) );
+    const permsArray = data.filter((obj) =>
+        permsCheck(['level_10', 'level_9', 'level_8', 'dash_well_read_all', `dash_well_read_${parseID(obj?.pumpID)}`])
+    );
     const renderPumps = useMemo(
         () =>
-        permsArray?.map((pump) => {
+            permsArray?.map((pump) => {
                 return pump?.visible ? <PumpSingle data={pump} lastUpdate={pump?.timeStamp} key={pump.pumpID} /> : '';
             }),
         [updateTime, data]

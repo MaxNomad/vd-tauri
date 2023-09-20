@@ -4,7 +4,7 @@ import { api } from '../../../api';
 
 export const getFoundAlertList = createAsyncThunk('kns/getFoundAlertList', async (props) => {
     api.defaults.headers.Authorization = `Bearer ${getToken()}`;
-    const response = await api.post(`/getFoundAlertList`, {tag: props.tag, date: props.date });
+    const response = await api.post(`/getFoundAlertList`, { tag: props.tag, date: props.date });
     return response.data;
 });
 
@@ -17,9 +17,7 @@ export const knsFoundAlertList = createSlice({
     },
     reducers: {},
     extraReducers: (builder) => {
-
         builder.addCase(getFoundAlertList.pending, (state, action) => {
-
             if (state.reqListLoading === 'idle') {
                 state.reqListLoading = 'pending';
             }

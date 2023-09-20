@@ -36,6 +36,7 @@ import { useSelector } from 'react-redux';
 import { useGoogleLogin, useGoogleOneTapLogin } from '@react-oauth/google';
 import { useTheme } from '@mui/material/styles';
 import isElectron from 'is-electron';
+import { isTauri } from '@utils/TauriUpdater';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
@@ -46,7 +47,7 @@ const AuthLogin = () => {
     const [status, setStatus] = useState(null);
     const [enableForm, setEnableForm] = useState(isElectron());
     const theme = useTheme();
-    const ref = React.useRef()
+    const ref = React.useRef();
     useEffect(() => {
         setTimeout(() => {
             if (status === 'solved') {
@@ -103,7 +104,7 @@ const AuthLogin = () => {
                 }}
             >
                 {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
-                    <form noValidate onSubmit={handleSubmit} >
+                    <form noValidate onSubmit={handleSubmit}>
                         {enableForm ? (
                             <Grid container spacing={3}>
                                 <Grid item xs={12}>
@@ -193,20 +194,22 @@ const AuthLogin = () => {
                                         </LoadingButton>
                                     </AnimateButton>
                                 </Grid>
-                                <Grid item xs={12}>
-                                    <AnimateButton>
-                                        <LoadingButton
-                                            variant="outlined"
-                                            color="secondary"
-                                            size="large"
-                                            fullWidth
-                                            disabled={isSubmitting || loading}
-                                            onClick={() => googleHandler()}
-                                        >
-                                            <img src={Google} alt="Google" /> &nbsp;Google
-                                        </LoadingButton>
-                                    </AnimateButton>
-                                </Grid>
+                                {!isTauri() ? (
+                                    <Grid item xs={12}>
+                                        <AnimateButton>
+                                            <LoadingButton
+                                                variant="outlined"
+                                                color="secondary"
+                                                size="large"
+                                                fullWidth
+                                                disabled={isSubmitting || loading}
+                                                onClick={() => googleHandler()}
+                                            >
+                                                <img src={Google} alt="Google" /> &nbsp;Google
+                                            </LoadingButton>
+                                        </AnimateButton>
+                                    </Grid>
+                                ) : null}
                             </Grid>
                         ) : (
                             <Grid container spacing={3} direction="column" alignItems="center" justifyContent="center">
@@ -230,7 +233,7 @@ const AuthLogin = () => {
                                         ref={ref}
                                         scriptOptions={{
                                             appendTo: 'body'
-                                          }}
+                                        }}
                                         onError={() => {
                                             setStatus('error');
                                             toastError('Captcha failed');
@@ -238,19 +241,18 @@ const AuthLogin = () => {
                                         onExpire={() => {
                                             setStatus('expired');
                                             toastWarn('Captcha expired');
-                                            ref.current?.reset()
+                                            ref.current?.reset();
                                         }}
                                         onSuccess={() => {
                                             setStatus('solved');
                                             toastSuccess('Browser check completed');
-                                            setTimeout(() => ref.current?.remove(),1500)
-                                            
+                                            setTimeout(() => ref.current?.remove(), 1500);
                                         }}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sx={{ mt: 2, mb: 2 }}>
                                     <Typography variant="h6" color="secondary">
-                                        Powered by <span style={{color: '#f59926'}}>CloudFlare</span>
+                                        Powered by <span style={{ color: '#f59926' }}>CloudFlare</span>
                                     </Typography>
                                 </Grid>
                             </Grid>

@@ -1,7 +1,7 @@
 [package]
 name = "vd-dash"
 version = "0.0.0"
-description = "VD Controll Panel"
+description = "VD Controll Alpha"
 authors = ["you"]
 license = ""
 repository = ""

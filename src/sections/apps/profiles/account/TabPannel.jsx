@@ -29,12 +29,16 @@ import useConfig from '@hooks/useConfig';
 const TabPannel = () => {
     const { onChangePresetColor, onChangeMode } = useConfig();
     const [globaVal, setChangeGlobal] = useState(localStorage.apiUpdateTime ? localStorage.apiUpdateTime : config.defaultUpdateTime);
-    const [chartsVal, setChangeCharts] = useState(localStorage.apiChartUpdateTime ? localStorage.apiChartUpdateTime : config.defaultChartUpdateTime);
+    const [chartsVal, setChangeCharts] = useState(
+        localStorage.apiChartUpdateTime ? localStorage.apiChartUpdateTime : config.defaultChartUpdateTime
+    );
     const [apiEnableVal, setCheckedApi] = useState(localStorage.apiUpdateEnable ? JSON.parse(localStorage.apiUpdateEnable) : true);
     const [themeMode, setThemeMode] = useState(localStorage.themeMode ? localStorage.themeMode : config.mode);
     const [useLight, setUseLight] = useState(themeMode === 'light' ? false : true);
-    const [colorPreset, setColorPreset] = useState(localStorage.presetColor ? localStorage.presetColor : "default");
-    const [liqChartsPreset, setLiqChartsPreset] = useState(localStorage.liqChartsPreset ? JSON.parse(localStorage.liqChartsPreset) : config.liqChartsPreset);
+    const [colorPreset, setColorPreset] = useState(localStorage.presetColor ? localStorage.presetColor : 'default');
+    const [liqChartsPreset, setLiqChartsPreset] = useState(
+        localStorage.liqChartsPreset ? JSON.parse(localStorage.liqChartsPreset) : config.liqChartsPreset
+    );
 
     const handleChangeGlobal = (event) => {
         setChangeGlobal(event.target.value);
@@ -48,13 +52,12 @@ const TabPannel = () => {
 
     const switchColorHandler = (event) => {
         setColorPreset(event.target.value);
-        onChangePresetColor(event.target.value)
+        onChangePresetColor(event.target.value);
     };
 
     const liqChartsHandler = () => {
         setLiqChartsPreset(!liqChartsPreset);
         toastSuccess('Стиль змінено');
-
     };
 
     const switchModeHandler = (event) => {
@@ -71,12 +74,11 @@ const TabPannel = () => {
     };
 
     const switchApiHandler = (event) => {
-        setCheckedApi(event.target.checked)
+        setCheckedApi(event.target.checked);
         if (event.target.checked) {
             setChangeGlobal(config.defaultUpdateTime);
             setChangeCharts(config.defaultChartUpdateTime);
             toastSuccess('Life update enabled');
-
         } else {
             setChangeGlobal(10 ** 10);
             setChangeCharts(10 ** 10);
@@ -195,15 +197,15 @@ const TabPannel = () => {
                                                 displayEmpty
                                                 inputProps={{ 'aria-label': 'Without label' }}
                                             >
-                                                <MenuItem value='default'>Default</MenuItem>
-                                                <MenuItem value='theme1'>Theme №1</MenuItem>
-                                                <MenuItem value='theme2'>Theme №2</MenuItem>
-                                                <MenuItem value='theme3'>Theme №3</MenuItem>
-                                                <MenuItem value='theme4'>Theme №4</MenuItem>
-                                                <MenuItem value='theme5'>Theme №5</MenuItem>
-                                                <MenuItem value='theme6'>Theme №6</MenuItem>
-                                                <MenuItem value='theme7'>Theme №7</MenuItem>
-                                                <MenuItem value='theme8'>Theme №8</MenuItem>
+                                                <MenuItem value="default">Default</MenuItem>
+                                                <MenuItem value="theme1">Theme №1</MenuItem>
+                                                <MenuItem value="theme2">Theme №2</MenuItem>
+                                                <MenuItem value="theme3">Theme №3</MenuItem>
+                                                <MenuItem value="theme4">Theme №4</MenuItem>
+                                                <MenuItem value="theme5">Theme №5</MenuItem>
+                                                <MenuItem value="theme6">Theme №6</MenuItem>
+                                                <MenuItem value="theme7">Theme №7</MenuItem>
+                                                <MenuItem value="theme8">Theme №8</MenuItem>
                                             </Select>
                                         </FormControl>
                                     </ListItem>

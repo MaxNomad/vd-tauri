@@ -26,7 +26,7 @@ const TankStatus = ({ props, cols = 4 }) => {
                         pr: { lg: 2, md: 1, xs: 0.5 }
                     }}
                 >
-                    <Progress.Circle percent={0}/>
+                    <Progress.Circle percent={0} />
                 </Box>
                 <Chip label={`${props?.value} м³`} size="small" />
             </Box>

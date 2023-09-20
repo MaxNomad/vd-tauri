@@ -3,18 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import TablePagination from '@mui/material/TablePagination';
 // material-ui
-import {
-    Box,
-    Link,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Typography,
-    Grid
-} from '@mui/material';
+import { Box, Link, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, Grid } from '@mui/material';
 
 import { useDispatch, useSelector } from 'react-redux';
 import config from '../../../config';
@@ -103,15 +92,15 @@ OrderTableHead.propTypes = {
     orderBy: PropTypes.string
 };
 
-const subtractHours = (date, hours)=> {
+const subtractHours = (date, hours) => {
     date.setHours(date.getHours() - hours);
-  
+
     return date;
-  }
+};
 
 // ==============================|| ORDER TABLE ||============================== //
 
-const EventsAllTable = ({ pumpID , update }) => {
+const EventsAllTable = ({ pumpID, update }) => {
     const dispatch = useDispatch();
     const { data, loading } = useSelector((state) => state.pumpWellEvents);
     const [order] = useState('asc');
@@ -134,7 +123,7 @@ const EventsAllTable = ({ pumpID , update }) => {
 
     useEffect(() => {
         dispatch(getPumpEventsList({ id: pumpID, page: page, perPage: rowsPerPage }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page, rowsPerPage, timer, update]);
 
     const handleChangePage = (event, newPage) => {
@@ -187,17 +176,29 @@ const EventsAllTable = ({ pumpID , update }) => {
                                         selected={isItemSelected}
                                     >
                                         <TableCell component="th" id={labelId} scope="row" align="left">
-                                            
-                                                <TimeAgo targetTime={subtractHours(new Date(row.Time_Stamp), 3)} text="Виконано"/>
-                                           
+                                            <TimeAgo targetTime={subtractHours(new Date(row.Time_Stamp), 3)} text="Виконано" />
                                         </TableCell>
-                                        <TableCell component="th" align="left" scope="row">{row.GlobalUser}</TableCell>
-                                        <TableCell component="th" align="left" scope="row">{row.NickName}</TableCell>
-                                        <TableCell component="th" align="left" scope="row">{row.GlobalEmail}</TableCell>
-                                        <TableCell component="th" align="left" scope="row">{row.IpAdress}</TableCell>
-                                        <TableCell component="th" align="left" scope="row">{row.Object}</TableCell>
-                                        <TableCell component="th" align="left" scope="row">{row.Event}</TableCell>
-                                        <TableCell component="th" align="right" scope="row">{row.EventMes}</TableCell>
+                                        <TableCell component="th" align="left" scope="row">
+                                            {row.GlobalUser}
+                                        </TableCell>
+                                        <TableCell component="th" align="left" scope="row">
+                                            {row.NickName}
+                                        </TableCell>
+                                        <TableCell component="th" align="left" scope="row">
+                                            {row.GlobalEmail}
+                                        </TableCell>
+                                        <TableCell component="th" align="left" scope="row">
+                                            {row.IpAdress}
+                                        </TableCell>
+                                        <TableCell component="th" align="left" scope="row">
+                                            {row.Object}
+                                        </TableCell>
+                                        <TableCell component="th" align="left" scope="row">
+                                            {row.Event}
+                                        </TableCell>
+                                        <TableCell component="th" align="right" scope="row">
+                                            {row.EventMes}
+                                        </TableCell>
                                     </TableRow>
                                 );
                             })}

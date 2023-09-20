@@ -24,13 +24,25 @@ const PumpSingleSmall = ({ data }) => {
     };
 
     return (
-        <>  
-            <Grid item xs={0.55} sm={0.55} md={0.55} lg={0.55} UWHD={0.4} sx={{minWidth: 80}} >
-                <Tooltip title={`Свердловина №${data?.pumpID}. Статус: ${data?.pump?.workingStatus ? "В роботі" : "Призупинено"}  `} placement="top">
+        <>
+            <Grid item xs={0.55} sm={0.55} md={0.55} lg={0.55} UWHD={0.4} sx={{ minWidth: 80 }}>
+                <Tooltip
+                    title={`Свердловина №${data?.pumpID}. Статус: ${data?.pump?.workingStatus ? 'В роботі' : 'Призупинено'}  `}
+                    placement="top"
+                >
                     <Link to={`/pump-single?id=${data?.pumpID}`} style={{ textDecoration: 'none' }}>
-                        <MainCard contentSX={{ p: 1.25, borderColor: AlarmColor(), textAlign: "center" }} hoverActive borderCustom>
-                            <Badge color={data?.pump?.workingStatus ? "success" : "error"} invisible={!data?.online} variant="dot" sx={{ display: 'inline-block', mb: -2, mt: -0.5 }}>
-                                <Typography variant="h5" noWrap color={data?.pumpID === searchParams.get('id') ? "secondary" : "textSecondary"}>
+                        <MainCard contentSX={{ p: 1.25, borderColor: AlarmColor(), textAlign: 'center' }} hoverActive borderCustom>
+                            <Badge
+                                color={data?.pump?.workingStatus ? 'success' : 'error'}
+                                invisible={!data?.online}
+                                variant="dot"
+                                sx={{ display: 'inline-block', mb: -2, mt: -0.5 }}
+                            >
+                                <Typography
+                                    variant="h5"
+                                    noWrap
+                                    color={data?.pumpID === searchParams.get('id') ? 'secondary' : 'textSecondary'}
+                                >
                                     {data?.pumpID}
                                 </Typography>
                             </Badge>

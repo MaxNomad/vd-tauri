@@ -14,7 +14,7 @@ export const wellModbus = createSlice({
         data: { status: null },
         loading: 'idle',
         error: null,
-        currentId: null, // Track the current ID
+        currentId: null // Track the current ID
     },
     reducers: {
         // Add a reducer to reset the state when id changes
@@ -22,7 +22,7 @@ export const wellModbus = createSlice({
             state.data = { status: null };
             state.loading = 'idle';
             state.error = null;
-        },
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(getWellModbus.pending, (state, action) => {
@@ -42,7 +42,7 @@ export const wellModbus = createSlice({
                 state.error = 'Error occurred';
             }
         });
-    },
+    }
 });
 
 export const { resetState } = wellModbus.actions; // Export the resetState action

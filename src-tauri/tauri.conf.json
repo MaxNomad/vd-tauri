@@ -7,7 +7,7 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "VD Control",
+    "productName": "VD Control Alpha",
     "version": "../package.json"
   },
   "tauri": {
@@ -39,9 +39,10 @@
       },
       "active": true,
       "endpoints": [
+        "http://localhost:8081/update?current_version={{current_version}}&target={{target}}&arch={{arch}}",
         "https://api.vd.lutsk.ua/app/update?current_version={{current_version}}&target={{target}}&arch={{arch}}"
         ],
-      "dialog": true,
+      "dialog": false,
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IERCM0ZDMzBEMzQ1RTJCMEYKUldRUEsxNDBEY00vMitzV3RvTGh2K0dYMk8zOS9jSVA4bnRDU3VwcXpHMng5R1RtSHFzU0UzRGoK"
     },
     "windows": [

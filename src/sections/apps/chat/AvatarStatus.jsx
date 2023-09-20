@@ -9,25 +9,25 @@ import { CheckCircleFilled, ClockCircleFilled, MinusCircleFilled } from '@ant-de
 // ==============================|| AVATAR STATUS ICONS ||============================== //
 
 const AvatarStatus = ({ status }) => {
-  const theme = useTheme();
+    const theme = useTheme();
 
-  switch (status) {
-    case 'available':
-      return <CheckCircleFilled style={{ color: theme.palette.success.main }} />;
+    switch (status) {
+        case 'available':
+            return <CheckCircleFilled style={{ color: theme.palette.success.main }} />;
 
-    case 'do_not_disturb':
-      return <MinusCircleFilled style={{ color: theme.palette.secondary.main }} />;
+        case 'do_not_disturb':
+            return <MinusCircleFilled style={{ color: theme.palette.secondary.main }} />;
 
-    case 'offline':
-      return <ClockCircleFilled style={{ color: theme.palette.error.main }} />;
+        case 'offline':
+            return <ClockCircleFilled style={{ color: theme.palette.error.main }} />;
 
-    default:
-      return null;
-  }
+        default:
+            return null;
+    }
 };
 
 AvatarStatus.propTypes = {
-  status: PropTypes.string
+    status: PropTypes.string
 };
 
 export default AvatarStatus;

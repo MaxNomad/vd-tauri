@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { Progress } from 'rsuite';
 
-
 const FillProgressPump = ({ data }) => {
     let color;
     if (data < 1) {
@@ -28,7 +27,7 @@ const FillProgressPump = ({ data }) => {
 
 FillProgressPump.propTypes = {
     data: PropTypes.object,
-    type: PropTypes.object,
+    type: PropTypes.object
 };
 
 export default FillProgressPump;

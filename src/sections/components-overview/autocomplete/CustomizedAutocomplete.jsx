@@ -12,7 +12,7 @@ import data from '@data/movies';
 import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 
 const Root = styled('div')(
-  ({ theme }) => `
+    ({ theme }) => `
   color: ${theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.65)' : 'rgba(0,0,0,.85)'};
   font-size: 14px;
 `
@@ -20,7 +20,7 @@ const Root = styled('div')(
 Root.displayName = 'Root';
 
 const InputWrapper = styled('div')(
-  ({ theme }) => `
+    ({ theme }) => `
   width: 100%;
   border: 1px solid ${theme.palette.mode === 'dark' ? '#434343' : '#d9d9d9'};
   background-color: ${theme.palette.mode === 'dark' ? '#141414' : '#fff'};
@@ -54,21 +54,21 @@ const InputWrapper = styled('div')(
 );
 
 function Tag({ label, onDelete, ...other }) {
-  return (
-    <div {...other}>
-      <span>{label}</span>
-      <CloseOutlined onClick={onDelete} />
-    </div>
-  );
+    return (
+        <div {...other}>
+            <span>{label}</span>
+            <CloseOutlined onClick={onDelete} />
+        </div>
+    );
 }
 
 Tag.propTypes = {
-  label: PropTypes.string,
-  onDelete: PropTypes.func
+    label: PropTypes.string,
+    onDelete: PropTypes.func
 };
 
 const StyledTag = styled(Tag)(
-  ({ theme }) => `
+    ({ theme }) => `
   display: flex;
   align-items: center;
   height: 24px;
@@ -97,7 +97,7 @@ const StyledTag = styled(Tag)(
 );
 
 const Listbox = styled('ul')(
-  ({ theme }) => `
+    ({ theme }) => `
   width: 300px;
   margin: 2px 0 0;
   padding: 0;
@@ -146,39 +146,39 @@ const Listbox = styled('ul')(
 // ==============================|| AUTOCOMPLETE - CUSTOMIZED ||============================== //
 
 export default function CustomizedAutocomplete() {
-  const { getRootProps, getInputProps, getTagProps, getListboxProps, getOptionProps, groupedOptions, value, focused, setAnchorEl } =
-    useAutocomplete({
-      id: 'customized-hook-demo',
-      defaultValue: [data[1], data[3], data[8]],
-      multiple: true,
-      options: data,
-      getOptionLabel: (option) => option.label
-    });
+    const { getRootProps, getInputProps, getTagProps, getListboxProps, getOptionProps, groupedOptions, value, focused, setAnchorEl } =
+        useAutocomplete({
+            id: 'customized-hook-demo',
+            defaultValue: [data[1], data[3], data[8]],
+            multiple: true,
+            options: data,
+            getOptionLabel: (option) => option.label
+        });
 
-  return (
-    <MainCard title="Customized" sx={{ overflow: 'visible' }}>
-      <Root>
-        <div {...getRootProps()}>
-          <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
-            {value.map((option, index) => (
-              <span key={index}>
-                <StyledTag label={option.label} {...getTagProps({ index })} />
-              </span>
-            ))}
-            <input {...getInputProps()} />
-          </InputWrapper>
-        </div>
-        {groupedOptions.length > 0 ? (
-          <Listbox {...getListboxProps()}>
-            {groupedOptions.map((option, index) => (
-              <li key={index} {...getOptionProps({ option, index })}>
-                <span>{option.label}</span>
-                <CheckOutlined style={{ marginTop: 2 }} />
-              </li>
-            ))}
-          </Listbox>
-        ) : null}
-      </Root>
-    </MainCard>
-  );
+    return (
+        <MainCard title="Customized" sx={{ overflow: 'visible' }}>
+            <Root>
+                <div {...getRootProps()}>
+                    <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
+                        {value.map((option, index) => (
+                            <span key={index}>
+                                <StyledTag label={option.label} {...getTagProps({ index })} />
+                            </span>
+                        ))}
+                        <input {...getInputProps()} />
+                    </InputWrapper>
+                </div>
+                {groupedOptions.length > 0 ? (
+                    <Listbox {...getListboxProps()}>
+                        {groupedOptions.map((option, index) => (
+                            <li key={index} {...getOptionProps({ option, index })}>
+                                <span>{option.label}</span>
+                                <CheckOutlined style={{ marginTop: 2 }} />
+                            </li>
+                        ))}
+                    </Listbox>
+                ) : null}
+            </Root>
+        </MainCard>
+    );
 }

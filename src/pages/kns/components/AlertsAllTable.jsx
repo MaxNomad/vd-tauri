@@ -106,8 +106,6 @@ OrderTableHead.propTypes = {
     orderBy: PropTypes.string
 };
 
-
-
 // ==============================|| ORDER TABLE ||============================== //
 
 const AlertsTableAll = ({ knsID }) => {
@@ -195,10 +193,22 @@ const AlertsTableAll = ({ knsID }) => {
         setTableAlertState(false);
         setOpenModal(false);
     };
-    
+
     return (
         <Box>
-            <ModalInfo props={{status:status , tableAlertPrority: tableAlertPrority,tableDate: tableDate, tableAlertName:tableAlertName, tableAlertID: tableAlertID, reqListData: reqListData, openModal: openModal, tableAlertState: tableAlertState}} handleClose={handleClose}/>
+            <ModalInfo
+                props={{
+                    status: status,
+                    tableAlertPrority: tableAlertPrority,
+                    tableDate: tableDate,
+                    tableAlertName: tableAlertName,
+                    tableAlertID: tableAlertID,
+                    reqListData: reqListData,
+                    openModal: openModal,
+                    tableAlertState: tableAlertState
+                }}
+                handleClose={handleClose}
+            />
             <TableContainer
                 sx={{
                     width: '100%',
@@ -238,7 +248,7 @@ const AlertsTableAll = ({ knsID }) => {
                                         selected={isItemSelected}
                                     >
                                         <TableCell component="th" id={labelId} scope="row" align="left">
-                                        <TimeAgo targetTime={new Date(row?.date)} />
+                                            <TimeAgo targetTime={new Date(row?.date)} />
                                         </TableCell>
                                         <TableCell align="left">{row.errName}</TableCell>
                                         <TableCell align="left">{row.object}</TableCell>
@@ -264,7 +274,7 @@ const AlertsTableAll = ({ knsID }) => {
                                                 }
                                                 color="warning"
                                             >
-                                                <InfoCircleOutlined style={{ fontSize: '12px', color: theme.palette.secondary[800]  }} />
+                                                <InfoCircleOutlined style={{ fontSize: '12px', color: theme.palette.secondary[800] }} />
                                             </Button>
                                         </TableCell>
                                     </TableRow>
@@ -290,7 +300,6 @@ const AlertsTableAll = ({ knsID }) => {
                         rowsPerPage={rowsPerPage}
                         rowsPerPageOptions={[5, 10, 15, 20]}
                         onRowsPerPageChange={handleChangeRowsPerPage}
-                       
                         sx={{ mt: 2.25 }}
                     />
                 </Grid>

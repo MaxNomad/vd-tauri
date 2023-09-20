@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Chip, Grid} from '@mui/material';
+import { Chip, Grid } from '@mui/material';
 import React from 'react';
 
 const AlarmStatus = ({ current }) => {
@@ -22,7 +22,7 @@ const AlarmStatus = ({ current }) => {
             color = 'error';
             title = 'Не визначено';
     }
-    return <Chip label={title} noWrap size="small" sx={{maxWidth: {xs:50, sm: 120}}} color={color} />;
+    return <Chip label={title} noWrap size="small" sx={{ maxWidth: { xs: 50, sm: 120 } }} color={color} />;
 };
 
 AlarmStatus.propTypes = {

@@ -24,7 +24,7 @@ api.interceptors.response.use(
         const endTime = new Date();
         const startTime = response.config.metadata.startTime;
         const pingTime = endTime - startTime;
-        lastPing = pingTime
+        lastPing = pingTime;
         totalPing += pingTime;
 
         // Increment the total number of requests
@@ -34,9 +34,9 @@ api.interceptors.response.use(
         lastRequestDate = endTime.toISOString();
 
         // Calculate requests per second
-        const totalTimeInSeconds = (endTime - startTime) ;
-        totalTime += totalTimeInSeconds
-        requestsPerSecond = totalRequests /  totalTime * 100;
+        const totalTimeInSeconds = endTime - startTime;
+        totalTime += totalTimeInSeconds;
+        requestsPerSecond = (totalRequests / totalTime) * 100;
 
         return response;
     },

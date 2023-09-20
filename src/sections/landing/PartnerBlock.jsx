@@ -26,139 +26,152 @@ const techDotnetDark = 'assets/images/landing/technology/tech-dot-net-dark.png';
 // ================================|| SLIDER - ITEMS ||================================ //
 
 const Item = ({ item }) => (
-  <Typography
-    variant="h2"
-    sx={{
-      cursor: 'pointer',
-      fontWeight: 600,
-      my: 1,
-      mx: 4.5,
-      transition: 'all 0.3s ease-in-out',
-      opacity: item.highlight ? 0.75 : 0.4,
-      '&:hover': { opacity: '1' }
-    }}
-  >
-    {item.text}
-  </Typography>
+    <Typography
+        variant="h2"
+        sx={{
+            cursor: 'pointer',
+            fontWeight: 600,
+            my: 1,
+            mx: 4.5,
+            transition: 'all 0.3s ease-in-out',
+            opacity: item.highlight ? 0.75 : 0.4,
+            '&:hover': { opacity: '1' }
+        }}
+    >
+        {item.text}
+    </Typography>
 );
 
 Item.propTypes = {
-  item: PropTypes.shape({
-    text: PropTypes.string,
-    highlight: PropTypes.bool
-  })
+    item: PropTypes.shape({
+        text: PropTypes.string,
+        highlight: PropTypes.bool
+    })
 };
 
 // ==============================|| LANDING - PARTNER PAGE ||============================== //
 
 const PartnerBlock = () => {
-  const theme = useTheme();
-  const partnerimage = [
-    { image: theme.palette.mode === 'dark' ? techCIDark : techCI, link: 'https://codedthemes.com/item/mantis-codeigniter-admin-template/' },
-    {
-      image: theme.palette.mode === 'dark' ? techReactDark : techReact,
-      link: 'https://mui.com/store/items/mantis-react-admin-dashboard-template/'
-    },
-    {
-      image: theme.palette.mode === 'dark' ? techAngularDark : techAngular,
-      link: 'https://codedthemes.com/item/mantis-angular-admin-template/'
-    },
-    {
-      image: theme.palette.mode === 'dark' ? techBootstrapDark : techBootstrap,
-      link: 'https://codedthemes.com/item/mantis-bootstrap-admin-dashboard/'
-    },
-    {
-      image: theme.palette.mode === 'dark' ? techDotnetDark : techDotnet,
-      link: 'https://codedthemes.com/item/mantis-dotnet-bootstrap-dashboard-template/'
-    }
-  ];
-  const items = [
-    { text: 'Auth Methods' },
-    { text: '150+ Pages' },
-    { text: '6+ Preset Colors' },
-    { text: '50+ Widgets' },
-    { text: 'Best User Experience' },
-    { text: 'Live Customizer' },
-    { text: '5+ Apps' },
-    { text: 'Material UI v5' },
-    { text: 'Highly Flexible' },
-    { text: 'Always Updated' },
-    { text: 'Professional Design' },
-    { text: 'TypeScript Support' },
-    { text: 'Figma Design' },
-    { text: 'Dark Layout' },
-    { text: 'RTL Support' },
-    { text: 'Retina Ready' },
-    { text: 'Prettier Code' },
-    { text: 'i18n Support' }
-  ];
-  return (
-    <Box sx={{ overflowX: 'hidden' }}>
-      <Container>
-        <Grid container alignItems="center" justifyContent="center" spacing={2} sx={{ mt: { md: 15, xs: 2.5 }, mb: { md: 5, xs: 2.5 } }}>
-          <Grid item xs={12}>
-            <Grid container spacing={1} justifyContent="center" sx={{ mb: 4, textAlign: 'center' }}>
-              <Grid item sm={10} md={6}>
-                <Grid container spacing={1} justifyContent="center">
-                  <Grid item xs={12}>
-                    <Typography variant="subtitle1" color="primary">
-                      Multiple Tech Stack
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Typography variant="h2">Available Technology</Typography>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Typography variant="body1">
-                      Mantis is available in multiple technologies. Simply click to dive in and discover the perfect solution for your
-                      needs. Each sold{' '}
-                      <Link variant="subtitle1" href="https://codedthemes.gitbook.io/mantis/mantis-eco-system" target="_blank">
-                        separately
-                      </Link>
-                    </Typography>
-                  </Grid>
+    const theme = useTheme();
+    const partnerimage = [
+        {
+            image: theme.palette.mode === 'dark' ? techCIDark : techCI,
+            link: 'https://codedthemes.com/item/mantis-codeigniter-admin-template/'
+        },
+        {
+            image: theme.palette.mode === 'dark' ? techReactDark : techReact,
+            link: 'https://mui.com/store/items/mantis-react-admin-dashboard-template/'
+        },
+        {
+            image: theme.palette.mode === 'dark' ? techAngularDark : techAngular,
+            link: 'https://codedthemes.com/item/mantis-angular-admin-template/'
+        },
+        {
+            image: theme.palette.mode === 'dark' ? techBootstrapDark : techBootstrap,
+            link: 'https://codedthemes.com/item/mantis-bootstrap-admin-dashboard/'
+        },
+        {
+            image: theme.palette.mode === 'dark' ? techDotnetDark : techDotnet,
+            link: 'https://codedthemes.com/item/mantis-dotnet-bootstrap-dashboard-template/'
+        }
+    ];
+    const items = [
+        { text: 'Auth Methods' },
+        { text: '150+ Pages' },
+        { text: '6+ Preset Colors' },
+        { text: '50+ Widgets' },
+        { text: 'Best User Experience' },
+        { text: 'Live Customizer' },
+        { text: '5+ Apps' },
+        { text: 'Material UI v5' },
+        { text: 'Highly Flexible' },
+        { text: 'Always Updated' },
+        { text: 'Professional Design' },
+        { text: 'TypeScript Support' },
+        { text: 'Figma Design' },
+        { text: 'Dark Layout' },
+        { text: 'RTL Support' },
+        { text: 'Retina Ready' },
+        { text: 'Prettier Code' },
+        { text: 'i18n Support' }
+    ];
+    return (
+        <Box sx={{ overflowX: 'hidden' }}>
+            <Container>
+                <Grid
+                    container
+                    alignItems="center"
+                    justifyContent="center"
+                    spacing={2}
+                    sx={{ mt: { md: 15, xs: 2.5 }, mb: { md: 5, xs: 2.5 } }}
+                >
+                    <Grid item xs={12}>
+                        <Grid container spacing={1} justifyContent="center" sx={{ mb: 4, textAlign: 'center' }}>
+                            <Grid item sm={10} md={6}>
+                                <Grid container spacing={1} justifyContent="center">
+                                    <Grid item xs={12}>
+                                        <Typography variant="subtitle1" color="primary">
+                                            Multiple Tech Stack
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <Typography variant="h2">Available Technology</Typography>
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <Typography variant="body1">
+                                            Mantis is available in multiple technologies. Simply click to dive in and discover the perfect
+                                            solution for your needs. Each sold{' '}
+                                            <Link
+                                                variant="subtitle1"
+                                                href="https://codedthemes.gitbook.io/mantis/mantis-eco-system"
+                                                target="_blank"
+                                            >
+                                                separately
+                                            </Link>
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Grid container spacing={5} justifyContent="center" sx={{ mb: 4, textAlign: 'center' }}>
+                            {partnerimage.map((item, index) => (
+                                <Grid item key={index}>
+                                    <Animation
+                                        variants={{
+                                            visible: { opacity: 1 },
+                                            hidden: { opacity: 0 }
+                                        }}
+                                    >
+                                        <Link href={item.link} target="_blank">
+                                            <CardMedia component="img" src={item.image} alt="feature" />
+                                        </Link>
+                                    </Animation>
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </Grid>
                 </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item xs={12}>
-            <Grid container spacing={5} justifyContent="center" sx={{ mb: 4, textAlign: 'center' }}>
-              {partnerimage.map((item, index) => (
-                <Grid item key={index}>
-                  <Animation
-                    variants={{
-                      visible: { opacity: 1 },
-                      hidden: { opacity: 0 }
-                    }}
-                  >
-                    <Link href={item.link} target="_blank">
-                      <CardMedia component="img" src={item.image} alt="feature" />
-                    </Link>
-                  </Animation>
+            </Container>
+            <Grid container spacing={4}>
+                <Grid item xs={12}>
+                    <Marquee pauseOnHover gradient={false}>
+                        {items.map((item, index) => (
+                            <Item key={index} item={item} />
+                        ))}
+                    </Marquee>
                 </Grid>
-              ))}
+                <Grid item xs={12}>
+                    <Marquee pauseOnHover direction="right" gradient={false}>
+                        {items.map((item, index) => (
+                            <Item key={index} item={item} />
+                        ))}
+                    </Marquee>
+                </Grid>
             </Grid>
-          </Grid>
-        </Grid>
-      </Container>
-      <Grid container spacing={4}>
-        <Grid item xs={12}>
-          <Marquee pauseOnHover gradient={false}>
-            {items.map((item, index) => (
-              <Item key={index} item={item} />
-            ))}
-          </Marquee>
-        </Grid>
-        <Grid item xs={12}>
-          <Marquee pauseOnHover direction="right" gradient={false}>
-            {items.map((item, index) => (
-              <Item key={index} item={item} />
-            ))}
-          </Marquee>
-        </Grid>
-      </Grid>
-    </Box>
-  );
+        </Box>
+    );
 };
 
 export default PartnerBlock;

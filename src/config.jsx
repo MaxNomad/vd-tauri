@@ -6,11 +6,11 @@ const config = {
     i18n: 'uk',
     miniDrawer: false,
     container: true,
-    mode: localStorage.themeMode ? localStorage.themeMode : "dark",
-    presetColor: localStorage.presetColor ? localStorage.presetColor : "default",
+    mode: localStorage.themeMode ? localStorage.themeMode : 'dark',
+    presetColor: localStorage.presetColor ? localStorage.presetColor : 'default',
     defaultUpdateTime: 10000,
     defaultChartUpdateTime: 60000,
-    liqChartsPreset: localStorage.liqChartsPreset ? localStorage.liqChartsPreset: true,
+    liqChartsPreset: localStorage.liqChartsPreset ? localStorage.liqChartsPreset : true,
     themeDirection: 'ltr',
     //apiUrl: 'http://localhost:8080/api/v1'
     apiUrl: 'https://api.vd.lutsk.ua/api/v1'

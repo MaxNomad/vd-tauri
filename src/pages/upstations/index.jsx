@@ -35,15 +35,16 @@ const UpstationsRoot = () => {
         setInterval(() => setFirstLoad(true), 400);
     }, [dispatch, timer]);
 
+    const objectsWithErrors = data.filter((obj) => obj.alarmStatus > 0);
+    const objectsWithoutErrors = data.filter((obj) => obj.alarmStatus <= 0 || obj.alarmStatus == null);
 
-    const objectsWithErrors = data.filter(obj => obj.alarmStatus > 0);
-    const objectsWithoutErrors = data.filter(obj => obj.alarmStatus <= 0 || obj.alarmStatus == null);
-    
     const sortedArray = [...objectsWithErrors, ...objectsWithoutErrors];
-    const permsArray  = sortedArray.filter((obj) => permsCheck(["level_10", "level_9","level_8","dash_pns_read_all",`dash_pns_read_${parseID(obj?.pnsID)}`]) );
+    const permsArray = sortedArray.filter((obj) =>
+        permsCheck(['level_10', 'level_9', 'level_8', 'dash_pns_read_all', `dash_pns_read_${parseID(obj?.pnsID)}`])
+    );
     const renderPns = useMemo(
         () =>
-        permsArray?.map((pns) => {
+            permsArray?.map((pns) => {
                 return pns?.visible ? <PnsSingle data={pns} lastUpdate={new Date(pns.timeStamp)} key={pns.pnsID} /> : '';
             }),
         [updateTime, data]
@@ -51,13 +52,14 @@ const UpstationsRoot = () => {
     return (
         <>
             <ComponentSkeletonKns renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
-            {firstLoad && permsArray.length !== 0 ? (<Grid container rowSpacing={4.5} columnSpacing={2.75}>
-                    <Grid item xs={12} sx={{ mb: -2.25 }}>
-                        <Typography variant="h5">Об`єкти</Typography>
+                {firstLoad && permsArray.length !== 0 ? (
+                    <Grid container rowSpacing={4.5} columnSpacing={2.75}>
+                        <Grid item xs={12} sx={{ mb: -2.25 }}>
+                            <Typography variant="h5">Об`єкти</Typography>
+                        </Grid>
+                        {renderPns}
                     </Grid>
-                    {renderPns}
-                </Grid>)
-                : (
+                ) : (
                     <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" sx={{ mt: '30vh' }}>
                         <Typography variant="h1" color="primary" gutterBottom>
                             404

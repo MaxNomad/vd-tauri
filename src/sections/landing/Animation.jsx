@@ -8,39 +8,39 @@ import { motion, useAnimation } from 'framer-motion';
 // =============================|| LANDING - FADE IN ANIMATION ||============================= //
 
 function Animation({ children, variants }) {
-  const controls = useAnimation();
-  const [ref, inView] = useInView();
+    const controls = useAnimation();
+    const [ref, inView] = useInView();
 
-  useEffect(() => {
-    if (inView) {
-      controls.start('visible');
-    }
-  }, [controls, inView]);
+    useEffect(() => {
+        if (inView) {
+            controls.start('visible');
+        }
+    }, [controls, inView]);
 
-  return (
-    <motion.div
-      ref={ref}
-      animate={controls}
-      initial="hidden"
-      transition={{
-        x: {
-          type: 'spring',
-          stiffness: 150,
-          damping: 30,
-          duration: 0.5
-        },
-        opacity: { duration: 1 }
-      }}
-      variants={variants}
-    >
-      {children}
-    </motion.div>
-  );
+    return (
+        <motion.div
+            ref={ref}
+            animate={controls}
+            initial="hidden"
+            transition={{
+                x: {
+                    type: 'spring',
+                    stiffness: 150,
+                    damping: 30,
+                    duration: 0.5
+                },
+                opacity: { duration: 1 }
+            }}
+            variants={variants}
+        >
+            {children}
+        </motion.div>
+    );
 }
 
 Animation.propTypes = {
-  children: PropTypes.node,
-  variants: PropTypes.object
+    children: PropTypes.node,
+    variants: PropTypes.object
 };
 
 export default Animation;

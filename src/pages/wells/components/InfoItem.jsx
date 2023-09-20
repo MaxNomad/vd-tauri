@@ -26,7 +26,11 @@ const InfoItem = ({ data }) => {
                             Тиск:&nbsp;&nbsp;
                             <Pressure num={data?.pressure} />
                         </Typography>
-                        <Typography variant="h6" color="textSecondary" sx={{ ml: -1.2, mt: 0.3, mb: { lg: -1.6 }, maxWidth: {md:280, xs:380}, pr: 2 }}>
+                        <Typography
+                            variant="h6"
+                            color="textSecondary"
+                            sx={{ ml: -1.2, mt: 0.3, mb: { lg: -1.6 }, maxWidth: { md: 280, xs: 380 }, pr: 2 }}
+                        >
                             <FillProgress data={data?.pressure} active={data?.pump?.workingStatus} />
                         </Typography>
                     </Grid>
@@ -44,7 +48,11 @@ const InfoItem = ({ data }) => {
                         </Typography>
                     </Grid>
                     <Grid item xs={12} sm={12} md={12} lg={6}>
-                        <Typography variant="h6" color="textSecondary" sx={{ mt: {md:data?.energyMeter != null ? 1.4 : -2.75 , xs: 1.4}}}>
+                        <Typography
+                            variant="h6"
+                            color="textSecondary"
+                            sx={{ mt: { md: data?.energyMeter != null ? 1.4 : -2.75, xs: 1.4 } }}
+                        >
                             Лічильник води:&nbsp;&nbsp;{data?.waterMeter}&nbsp;<b>м³</b>
                         </Typography>
                     </Grid>
@@ -97,19 +105,18 @@ const InfoItem = ({ data }) => {
                                             1000
                                         ).toFixed(4)}{' '}
                                     </b>{' '}
-                                    
                                     <Typography variant="caption" color="textSecondary">
                                         &nbsp;&nbsp;Кв/год.
-                                        <p/>
-                                        {data?.pump?.voltagePers != null ?(<Typography variant="caption" color="textSecondary" sx={{mt: -10,ml: 0.7}}>
-                                     {data?.pump.voltagePers}%
-                                    </Typography>) : ''}
+                                        <p />
+                                        {data?.pump?.voltagePers != null ? (
+                                            <Typography variant="caption" color="textSecondary" sx={{ mt: -10, ml: 0.7 }}>
+                                                {data?.pump.voltagePers}%
+                                            </Typography>
+                                        ) : (
+                                            ''
+                                        )}
                                     </Typography>
-                                   
-                      
-                                    
                                 </Typography>
-                               
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} lg={7}>
                                 <Typography variant="h6" color="textSecondary" sx={{ mt: 0.9 }}>

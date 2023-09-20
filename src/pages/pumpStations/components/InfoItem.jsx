@@ -15,7 +15,7 @@ const InfoItem = ({ data }) => {
     const matchDownMD = useMediaQuery(theme.breakpoints.up('sm'));
     const hardVoltage = 400;
     const CircleStyle = {
-        width: matchDownMD ? '10em' : "8.5em",
+        width: matchDownMD ? '10em' : '8.5em',
         padding: 5
     };
     return (
@@ -44,10 +44,9 @@ const InfoItem = ({ data }) => {
                             <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
                                 Миттєва втрата:&nbsp;&nbsp;{data?.InstWconsumption}&nbsp;<b>м³/год</b>
                             </Typography>
-                            <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4, }}>
+                            <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
                                 Показник лічильника:&nbsp;&nbsp;{data?.waterMeter}&nbsp;<b>м³</b>
                             </Typography>
-
                         </Grid>
                     </Grid>
                     <Grid item xs={12} sm={12} md={12} lg={12} sx={{ mt: 2 }}>
@@ -56,7 +55,7 @@ const InfoItem = ({ data }) => {
                         </Typography>
                         <Divider sx={{ mt: 0, mb: 2 }} />
                     </Grid>
-                    <Grid item xs={12} md={12} lg={12} >
+                    <Grid item xs={12} md={12} lg={12}>
                         <Grid container lg={12} sx={{ mt: -1.5 }}>
                             <Grid item lg={6} md={6} xs={6}>
                                 <Typography variant="h6" color="textSecondary" sx={{ mt: 1 }}>
@@ -65,7 +64,13 @@ const InfoItem = ({ data }) => {
                                 </Typography>
                             </Grid>
 
-                            <Grid item lg={6} md={6} xs={6} sx={{ display: { md: 'flex', xs: 'flex' }, justifyContent: { md: 'flex-end', xs: 'flex-end' } }}>
+                            <Grid
+                                item
+                                lg={6}
+                                md={6}
+                                xs={6}
+                                sx={{ display: { md: 'flex', xs: 'flex' }, justifyContent: { md: 'flex-end', xs: 'flex-end' } }}
+                            >
                                 <Typography variant="h6" color="textSecondary" sx={{ mt: 1 }}>
                                     Статус:&nbsp;&nbsp;
                                     <PumpStatusClear isOnline={data?.pump?.workingStatus} />
@@ -103,21 +108,21 @@ const InfoItem = ({ data }) => {
 };
 
 InfoItem.propTypes = {
-  data: PropTypes.shape({
-    InstWconsumption: PropTypes.number,
-    pressure: PropTypes.number,
-    pump: PropTypes.shape({
-      currentAmpsL1: PropTypes.number,
-      currentAmpsL2: PropTypes.number,
-      currentAmpsL3: PropTypes.number,
-      engineHours: PropTypes.number,
-      mode: PropTypes.number,
-      runTimes: PropTypes.number,
-      voltagePers: PropTypes.number,
-      workingStatus: PropTypes.bool
+    data: PropTypes.shape({
+        InstWconsumption: PropTypes.number,
+        pressure: PropTypes.number,
+        pump: PropTypes.shape({
+            currentAmpsL1: PropTypes.number,
+            currentAmpsL2: PropTypes.number,
+            currentAmpsL3: PropTypes.number,
+            engineHours: PropTypes.number,
+            mode: PropTypes.number,
+            runTimes: PropTypes.number,
+            voltagePers: PropTypes.number,
+            workingStatus: PropTypes.bool
+        }),
+        waterMeter: PropTypes.number
     }),
-    waterMeter: PropTypes.number
-  }),
-  levels: PropTypes.object
-}
+    levels: PropTypes.object
+};
 export default React.memo(InfoItem);

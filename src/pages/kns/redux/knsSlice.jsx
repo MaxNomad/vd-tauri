@@ -15,7 +15,7 @@ export const kns = createSlice({
             pumps: [],
             grids: [],
             alarmsList: [],
-            alarmsActive: [],
+            alarmsActive: []
         },
         loading: 'idle',
         error: null

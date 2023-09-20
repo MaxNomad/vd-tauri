@@ -10,9 +10,9 @@ const NumberChangeAnimation = ({ number, rev, one }) => {
     const [color, setColor] = useState('inherit');
     useEffect(() => {
         if (number > prevNumber) {
-            setColor(!one ? !rev ? theme.palette.success.main : theme.palette.error.main : theme.palette.primary.main);
+            setColor(!one ? (!rev ? theme.palette.success.main : theme.palette.error.main) : theme.palette.primary.main);
         } else if (number < prevNumber) {
-            setColor(!one ? rev ? theme.palette.success.main : theme.palette.error.main : theme.palette.primary.main);
+            setColor(!one ? (rev ? theme.palette.success.main : theme.palette.error.main) : theme.palette.primary.main);
         }
 
         const timeoutId = setTimeout(() => {

@@ -17,10 +17,10 @@ const PumpShortStatus = ({ isWorking }) => {
             color = 'error';
             title = 'Не визначено';
     }
-    return (<Chip label={title} size="small" color={color} />);
+    return <Chip label={title} size="small" color={color} />;
 };
 PumpShortStatus.propTypes = {
-    isWorking: PropTypes.bool,
+    isWorking: PropTypes.bool
 };
 
 export default PumpShortStatus;

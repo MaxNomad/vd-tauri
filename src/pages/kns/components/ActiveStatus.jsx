@@ -33,4 +33,4 @@ const ActiveStatus = ({ active }) => {
 ActiveStatus.propTypes = {
     active: PropTypes.bool
 };
-export default React.memo(ActiveStatus)
+export default React.memo(ActiveStatus);

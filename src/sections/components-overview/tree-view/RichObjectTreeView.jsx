@@ -8,46 +8,46 @@ import MainCard from '@components/MainCard';
 import { DownOutlined, RightOutlined } from '@ant-design/icons';
 
 const data = {
-  id: 'root',
-  name: 'Parent',
-  children: [
-    {
-      id: '1',
-      name: 'Child - 1'
-    },
-    {
-      id: '3',
-      name: 'Child - 3',
-      children: [
+    id: 'root',
+    name: 'Parent',
+    children: [
         {
-          id: '4',
-          name: 'Child - 4'
+            id: '1',
+            name: 'Child - 1'
+        },
+        {
+            id: '3',
+            name: 'Child - 3',
+            children: [
+                {
+                    id: '4',
+                    name: 'Child - 4'
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 };
 
 // ==============================|| TREE VIEW - RICH OBJECT ||============================== //
 
 export default function RichObjectTreeView() {
-  const renderTree = (nodes) => (
-    <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
-      {Array.isArray(nodes.children) ? nodes.children.map((node) => renderTree(node)) : null}
-    </TreeItem>
-  );
+    const renderTree = (nodes) => (
+        <TreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
+            {Array.isArray(nodes.children) ? nodes.children.map((node) => renderTree(node)) : null}
+        </TreeItem>
+    );
 
-  return (
-    <MainCard title="Rich Object">
-      <TreeView
-        aria-label="rich object"
-        defaultCollapseIcon={<DownOutlined />}
-        defaultExpandIcon={<RightOutlined />}
-        defaultExpanded={['root']}
-        sx={{ height: 180, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
-      >
-        {renderTree(data)}
-      </TreeView>
-    </MainCard>
-  );
+    return (
+        <MainCard title="Rich Object">
+            <TreeView
+                aria-label="rich object"
+                defaultCollapseIcon={<DownOutlined />}
+                defaultExpandIcon={<RightOutlined />}
+                defaultExpanded={['root']}
+                sx={{ height: 180, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
+            >
+                {renderTree(data)}
+            </TreeView>
+        </MainCard>
+    );
 }

@@ -1,10 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 import { fetchUserData } from './authThunk';
 
 const initialState = {
     error: null,
     loading: false,
-    userData: {},
+    userData: {}
 };
 
 export const userSlice = createSlice({
@@ -25,12 +25,9 @@ export const userSlice = createSlice({
             state.loading = false;
             state.userData = {};
             state.error = action.error;
-        },
-    },
-})
-
-
-
+        }
+    }
+});
 
 // eslint-disable-next-line no-empty-pattern
 export const {} = userSlice.actions;

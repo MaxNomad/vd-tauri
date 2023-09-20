@@ -11,32 +11,32 @@ import Loader from '@components/Loader';
 // ==============================|| AUTH GUARD ||============================== //
 
 const AuthGuard = ({ children }) => {
-  const { data: session, status } = useSession();
-  const router = useRouter();
+    const { data: session, status } = useSession();
+    const router = useRouter();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch('/api/auth/protected');
-      const json = await res.json();
-      if (!json.protected) {
-        router.push({
-          pathname: '/login',
-          query: { from: router.asPath }
-        });
-      }
-    };
-    fetchData();
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await fetch('/api/auth/protected');
+            const json = await res.json();
+            if (!json.protected) {
+                router.push({
+                    pathname: '/login',
+                    query: { from: router.asPath }
+                });
+            }
+        };
+        fetchData();
 
-    // eslint-disable-next-line
-  }, [session]);
+        // eslint-disable-next-line
+    }, [session]);
 
-  if (status === 'loading' || !session?.user) return <Loader />;
+    if (status === 'loading' || !session?.user) return <Loader />;
 
-  return children;
+    return children;
 };
 
 AuthGuard.propTypes = {
-  children: PropTypes.node
+    children: PropTypes.node
 };
 
 export default AuthGuard;

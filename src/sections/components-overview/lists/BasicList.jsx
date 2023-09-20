@@ -10,44 +10,44 @@ import { LayoutOutlined, FilePptOutlined, RadiusUprightOutlined } from '@ant-des
 // ==============================|| LIST - BASIC ||============================== //
 
 const BasicList = () => (
-  <MainCard content={false}>
-    <List sx={{ p: 0 }}>
-      <ListItem disablePadding divider>
-        <ListItemButton>
-          <ListItemText primary="List item 01" />
-        </ListItemButton>
-      </ListItem>
-      <ListItem disablePadding divider>
-        <ListItemButton>
-          <ListItemText primary="List item 02" />
-        </ListItemButton>
-      </ListItem>
-      <ListItem disablePadding divider>
-        <ListItemButton>
-          <ListItemIcon>
-            <LayoutOutlined />
-          </ListItemIcon>
-          <ListItemText primary="Sample" />
-        </ListItemButton>
-      </ListItem>
-      <ListItem disablePadding divider>
-        <ListItemButton>
-          <ListItemIcon>
-            <FilePptOutlined />
-          </ListItemIcon>
-          <ListItemText primary="Page" />
-        </ListItemButton>
-      </ListItem>
-      <ListItem disablePadding>
-        <ListItemButton>
-          <ListItemIcon>
-            <RadiusUprightOutlined />
-          </ListItemIcon>
-          <ListItemText primary="UI Elements" />
-        </ListItemButton>
-      </ListItem>
-    </List>
-  </MainCard>
+    <MainCard content={false}>
+        <List sx={{ p: 0 }}>
+            <ListItem disablePadding divider>
+                <ListItemButton>
+                    <ListItemText primary="List item 01" />
+                </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding divider>
+                <ListItemButton>
+                    <ListItemText primary="List item 02" />
+                </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding divider>
+                <ListItemButton>
+                    <ListItemIcon>
+                        <LayoutOutlined />
+                    </ListItemIcon>
+                    <ListItemText primary="Sample" />
+                </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding divider>
+                <ListItemButton>
+                    <ListItemIcon>
+                        <FilePptOutlined />
+                    </ListItemIcon>
+                    <ListItemText primary="Page" />
+                </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+                <ListItemButton>
+                    <ListItemIcon>
+                        <RadiusUprightOutlined />
+                    </ListItemIcon>
+                    <ListItemText primary="UI Elements" />
+                </ListItemButton>
+            </ListItem>
+        </List>
+    </MainCard>
 );
 
 export default BasicList;

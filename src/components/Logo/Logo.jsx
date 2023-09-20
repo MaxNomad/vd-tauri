@@ -1,6 +1,4 @@
-import {
-    Typography
-} from '@mui/material';
+import { Typography } from '@mui/material';
 import React from 'react';
 /**
  * if you want to use image instead of <svg> uncomment following.
@@ -13,7 +11,6 @@ import React from 'react';
 // ==============================|| LOGO SVG ||============================== //
 
 const Logo = () => {
-
     return (
         /**
          * if you want to use image instead of svg uncomment following, and comment out <svg> element.

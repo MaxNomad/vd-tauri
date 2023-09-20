@@ -16,7 +16,7 @@ import { useSelector } from 'react-redux';
 import permsCheck from '@pages/authentication/context/permsCheck';
 import parseID from '@utils/getObjID';
 
-const UpdateDBModal = ({ wellID, scheme, data  }) => {
+const UpdateDBModal = ({ wellID, scheme, data }) => {
     const matchDownSM = useMediaQuery((theme) => theme.breakpoints.down('md'));
     const [open, setOpen] = React.useState(false);
 
@@ -29,17 +29,19 @@ const UpdateDBModal = ({ wellID, scheme, data  }) => {
     };
     const clearTable = () => {
         api.defaults.headers.Authorization = `Bearer ${getToken()}`;
-        api.post(`/postUpdateWellTrigger`,{pumpID: wellID, schema: scheme}).then((response) => {
-            if (response.status === 200) {
-                toastSuccess('Схему оновлено');
-                handleClose();
-            } else {
-                toastError('Помилка при оновленні');
-                handleClose();
-            }
-        }).catch(()=> {
-            toastError('Помилка при оновленні трігера (500)');
-        });
+        api.post(`/postUpdateWellTrigger`, { pumpID: wellID, schema: scheme })
+            .then((response) => {
+                if (response.status === 200) {
+                    toastSuccess('Схему оновлено');
+                    handleClose();
+                } else {
+                    toastError('Помилка при оновленні');
+                    handleClose();
+                }
+            })
+            .catch(() => {
+                toastError('Помилка при оновленні трігера (500)');
+            });
     };
     const intID = parseID(wellID);
     const { userData } = useSelector((state) => state.user);
@@ -49,7 +51,13 @@ const UpdateDBModal = ({ wellID, scheme, data  }) => {
                 <Typography variant="h6" color="secondary" sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     Обновити схеми БД
                     <Grid sx={{ mt: -0.5 }}>
-                        <Button variant="contained" color="error" size="small"  disabled={!permsCheck(["level_10"])} onClick={handleClickOpen}>
+                        <Button
+                            variant="contained"
+                            color="error"
+                            size="small"
+                            disabled={!permsCheck(['level_10'])}
+                            onClick={handleClickOpen}
+                        >
                             Оновити
                         </Button>
                         <Tooltip title="" placement="bottom">
@@ -59,11 +67,22 @@ const UpdateDBModal = ({ wellID, scheme, data  }) => {
                         </Tooltip>
                     </Grid>
                 </Typography>
-                <Typography variant="h6" noWrap color="textSecondary" sx={{ mt: 1.5, mb: -1, display: 'flex', justifyContent: 'space-between' }}>
+                <Typography
+                    variant="h6"
+                    noWrap
+                    color="textSecondary"
+                    sx={{ mt: 1.5, mb: -1, display: 'flex', justifyContent: 'space-between' }}
+                >
                     <Grid xs={9}>
-                        {data?.events?.updateSchem?.date ? <>Остання дія <TimeAgo targetTime={new Date(data?.events?.updateSchem?.date)} /></>: "Дії відсутні"}
+                        {data?.events?.updateSchem?.date ? (
+                            <>
+                                Остання дія <TimeAgo targetTime={new Date(data?.events?.updateSchem?.date)} />
+                            </>
+                        ) : (
+                            'Дії відсутні'
+                        )}
                     </Grid>
-                    <Grid>{data?.events?.updateSchem?.user? `By ${data?.events?.updateSchem?.user}`: null}</Grid>
+                    <Grid>{data?.events?.updateSchem?.user ? `By ${data?.events?.updateSchem?.user}` : null}</Grid>
                 </Typography>
             </MainCard>
             <Dialog open={open} onClose={handleClose} maxWidth="sm" fullScreen={matchDownSM}>
@@ -98,9 +117,9 @@ const UpdateDBModal = ({ wellID, scheme, data  }) => {
                             увагу на те, що внесені зміни можуть вплинути на роботу бази даних та додатків, які її використовують.
                             <br />
                             <br />
-                            Після перевірки і підтвердження, ви можете натиснути кнопку <b>{"'Оновити схему'"}</b>, щоб
-                            продовжити. Якщо у вас є сумніви або питання, будь ласка, зверніться до адміністратора бази даних або інженера з
-                            баз даних для отримання додаткової інформації та підтримки.
+                            Після перевірки і підтвердження, ви можете натиснути кнопку <b>{"'Оновити схему'"}</b>, щоб продовжити. Якщо у
+                            вас є сумніви або питання, будь ласка, зверніться до адміністратора бази даних або інженера з баз даних для
+                            отримання додаткової інформації та підтримки.
                         </Typography>
                     </DialogContentText>
                 </DialogContent>

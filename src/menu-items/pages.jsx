@@ -1,5 +1,13 @@
 // assets
-import { LoginOutlined, ProfileOutlined, HomeOutlined, ProjectOutlined, AimOutlined, UpCircleOutlined, MergeCellsOutlined } from '@ant-design/icons';
+import {
+    LoginOutlined,
+    ProfileOutlined,
+    HomeOutlined,
+    ProjectOutlined,
+    AimOutlined,
+    UpCircleOutlined,
+    MergeCellsOutlined
+} from '@ant-design/icons';
 
 // icons
 const icons = {
@@ -9,7 +17,7 @@ const icons = {
     ProjectOutlined,
     AimOutlined,
     MergeCellsOutlined,
-    UpCircleOutlined 
+    UpCircleOutlined
 };
 
 // ==============================|| MENU ITEMS - EXTRA PAGES ||============================== //
@@ -45,8 +53,7 @@ const pages = {
             icon: icons.ProjectOutlined,
             target: false,
             breadcrumbs: false
-        }
-        ,
+        },
         {
             id: 'pumpStations',
             title: 'Насосні станції',
@@ -66,6 +73,6 @@ const test = {
     icon: icons.HomeOutlined,
     target: false,
     breadcrumbs: false
-}
+};
 
 export default pages;
