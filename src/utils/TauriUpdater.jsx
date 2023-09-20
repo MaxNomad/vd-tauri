@@ -21,7 +21,7 @@ const AppUpdateNotification = () => {
 
     React.useEffect(() => {
         dispatchUpdate();
-        const intervalId = setInterval(dispatchUpdate, 5*60000);
+        const intervalId = setInterval(dispatchUpdate, 5 * 60000);
         return () => clearInterval(intervalId);
     }, []);
 
@@ -33,13 +33,12 @@ const AppUpdateNotification = () => {
         setOpen(true);
     };
 
-    console.log(update)
+    console.log(update);
 
     const handleClose = () => {
         installUpdate()
             .then((data) => console.log(data))
             .catch((err) => console.log(err));
-    
     };
     return (
         <>
@@ -48,7 +47,7 @@ const AppUpdateNotification = () => {
                 <DialogContent dividers>
                     <DialogContentText>
                         <Typography variant="h6" color="textSecondary">
-                            {parse((update?.manifest?.body || "").toString())}
+                            {parse((update?.manifest?.body || '').toString())}
                         </Typography>
                     </DialogContentText>
                 </DialogContent>

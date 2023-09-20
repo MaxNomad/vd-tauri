@@ -14,17 +14,16 @@ import { isTauri } from '@utils/TauriUpdater';
 
 const DrawerHeader = ({ open }) => {
     const theme = useTheme();
-    const [appVersion, setAppVersion] = React.useState("");
-    
-    if(isTauri()){
+    const [appVersion, setAppVersion] = React.useState('');
+
+    if (isTauri()) {
         getVersion().then((data) => {
-            setAppVersion(`${data}-Tauri`)
-        })
-        
+            setAppVersion(`${data}-Tauri`);
+        });
     } else {
-        setAppVersion("v1.234.1-Front")
+        setAppVersion('v1.234.1-Front');
     }
-    
+
     return (
         // only available in paid version
         <DrawerHeaderStyled theme={theme} open={open} className={'drawlerVD'}>
