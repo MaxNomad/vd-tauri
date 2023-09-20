@@ -1,6 +1,7 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
 import { toastSuccess } from '@pages/components-overview/toasts';
 import { checkUpdate, installUpdate } from '@tauri-apps/api/updater';
+import { getVersion } from '@tauri-apps/api/app';
 import parse from 'html-react-parser';
 import React from 'react';
 
@@ -9,6 +10,7 @@ const isTauri = () => (window.__TAURI__ ? true : false);
 const AppUpdateNotification = () => {
     const [open, setOpen] = React.useState(false);
     const [update, setUpdate] = React.useState({});
+    const [appVersion, setAppVersion] = React.useState('');
 
     const dispatchUpdate = () => {
         checkUpdate()
@@ -18,10 +20,19 @@ const AppUpdateNotification = () => {
             });
         //toastSuccess("Check completed successfully")
     };
+    
+
+    if (isTauri()) {
+        getVersion().then((data) => {
+            setAppVersion(`${data}-Tauri`);
+        });
+    } else {
+        setAppVersion('v1.234.1-Front');
+    }
 
     React.useEffect(() => {
         dispatchUpdate();
-        const intervalId = setInterval(dispatchUpdate, 5 * 60000);
+        const intervalId = setInterval(dispatchUpdate, 5000);
         return () => clearInterval(intervalId);
     }, []);
 
@@ -33,8 +44,6 @@ const AppUpdateNotification = () => {
         setOpen(true);
     };
 
-    console.log(update);
-
     const handleClose = () => {
         installUpdate()
             .then((data) => console.log(data))
@@ -43,7 +52,7 @@ const AppUpdateNotification = () => {
     return (
         <>
             <Dialog open={open} maxWidth="xs">
-                <DialogTitle>Доступне оновлення {update?.manifest?.version}</DialogTitle>
+                <DialogTitle>Доступне оновлення {update?.manifest?.version} ({appVersion})</DialogTitle>
                 <DialogContent dividers>
                     <DialogContentText>
                         <Typography variant="h6" color="textSecondary">

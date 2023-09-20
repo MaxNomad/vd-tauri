@@ -34,7 +34,7 @@ const DrawerHeader = ({ open }) => {
                     size="small"
                     sx={{ height: 16, '& .MuiChip-label': { fontSize: '0.625rem', py: 0.25 } }}
                     component="a"
-                    href="https://github.com/MaxNomad/vdControl"
+                    href="https://github.com/MaxNomad/vd-tauri"
                     target="_blank"
                     clickable
                 />
