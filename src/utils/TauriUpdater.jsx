@@ -1,4 +1,5 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
+import { toastSuccess } from '@pages/components-overview/toasts';
 import { checkUpdate, installUpdate } from '@tauri-apps/api/updater';
 import React from 'react';
 
@@ -14,6 +15,7 @@ const AppUpdateNotification = () => {
             .catch((err) => {
                 console.log(err);
             });
+        toastSuccess("Check completed successfully")
     };
 
     React.useEffect(() => {
