@@ -1,0 +1,125 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Asteria Launcher</title>
+    </head>
+    <body>
+        <style>
+            @font-face {
+                font-family: 'Inter';
+                src: url('/fonts/Inter-Bold.ttf');
+            }
+            .main {
+                user-select: none;
+                position: absolute;
+                width: 400px;
+                height: 200px;
+                background: #1a1a1a;
+                border-radius: 8px;
+                display: flex;
+                margin:20px;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .text1 {
+                /* width: 109px; */
+                height: 12px;
+                left: 190px;
+                top: 234px;
+
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 700;
+                font-size:18px;
+                line-height: 19px;
+                /* display: flex; */
+                align-items: center;
+                text-align: center;
+                color: rgb(165, 165, 165);
+
+            }
+            .text1sub{
+                margin-top: 10px;
+                align-items: center;
+                text-align: center;
+            }
+            span {
+                font-family: 'Inter';
+                font-style: normal;
+                font-size:10px;
+                color: rgb(68, 68, 68);
+                }
+            .error {
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 12px;
+                margin-top: 4px;
+                /* display: flex; */
+                align-items: center;
+                text-align: center;
+                color: rgba(218, 0, 0, 0.5);
+            }
+
+            .text2 {
+                margin-top: 15px;
+                margin-left: 75px;
+                margin-right: 75px;
+
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 24px;
+                /* display: flex; */
+                align-items: center;
+                text-align: center;
+                color: #494949;
+            }
+
+            .text3 {
+                margin-left: 10px;
+                /* width: 136px; */
+                /* height: 10px; */
+
+                font-family: 'Inter';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 17px;
+                /* display: flex; */
+                align-items: center;
+
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+            .spinner {
+                width: 14px;
+                height: 14px;
+                /* left: 234px; */
+                /* top: 332px; */
+            }
+
+            .spin-holder {
+                margin-top: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        </style>
+        <div class="main">
+            <div class="text1">VD Control Alpha</div>
+            <div class="text1sub"><span>v0.234.13</span></div>
+            <div class="text2" id="text">Завантаження компонентів</div>
+            <br />
+            <div class="spin-holder">
+                <img class="spinner" src="/fonts/load.gif" />
+                <div class="text3" id="installText">React DOM</div>
+            </div>
+            <div class="error" id="error">&nbsp;</div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,82 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "prettier",
+    "plugin:react/jsx-runtime",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react-hooks/recommended",
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "plugins": [
+    "prettier",
+    "react",
+    "react-hooks"
+  ],
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": 2021, // Adjust this based on your project's ECMAScript version
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true,
+      "impliedStrict": true
+    }
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      },
+      "alias": {
+        "map": [
+          ["@components", "./src/components"],
+          ["@src", "./src"],
+          ["@assets", "./src/assets"],
+          ["@application", "./src/app"],
+          ["@pages", "./src/pages"],
+          ["@utils", "./src/utils"],
+          ["@store", "./src/store"],
+          ["@layout", "./src/layout"],
+          ["@hooks", "./src/hooks"],
+          ["@contexts", "./src/contexts"],
+          ["@themes", "./src/themes"],
+          ["@routes", "./src/routes"],
+          ["@config", "./src/config"],
+          ["@sections", "./src/sections"],
+          ["@data", "./src/data"],
+          ["@menuItems", "./src/menu-items"]
+        ],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    },
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "react/react-in-jsx-scope": "error",
+    "react/jsx-filename-extension": 0,
+    "no-param-reassign": 0,
+    "react/prop-types": 1,
+    "react/require-default-props": 0,
+    "react/no-array-index-key": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/forbid-prop-types": 0,
+    "import/order": 0,
+    "no-console": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "prefer-destructuring": 0,
+    "no-shadow": 0,
+    "no-unused-vars": [
+      0,
+      {
+        "ignoreRestSiblings": false
+      }
+    ]
+  }
+}

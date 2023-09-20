@@ -1,0 +1,30 @@
+{
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties",
+      ["module-resolver", {
+        "root": ["./src"],
+        "alias": {
+          "@components": "./components",
+          "@src": "./",
+          "@assets": "./assets",
+          "@application": "./app",
+          "@pages": "./pages",
+          "@utils": "./utils",
+          "@store": "./store",
+          "@sections": "./sections",
+          "@layout": "./layout",
+          "@config": "./config",
+          "@hooks": "./hooks",
+          "@contexts": "./contexts",
+          "@themes": "./themes",
+          "@routes": "./routes",
+          "@data": "./data",
+          "@menuItems/*": "./menu-items"
+        }
+      }]
+    ]
+  }

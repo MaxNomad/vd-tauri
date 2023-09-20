@@ -1,0 +1,71 @@
+{
+  "build": {
+    "beforeDevCommand": "yarn dev",
+    "beforeBuildCommand": "yarn build",
+    "devPath": "http://localhost:1420",
+    "distDir": "../dist",
+    "withGlobalTauri": false
+  },
+  "package": {
+    "productName": "vd-dash",
+    "version": "0.0.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": false,
+      "shell": {
+        "all": false,
+        "open": true
+      }
+    },
+    "bundle": {
+      "active": true,
+      "targets": "all",
+      "identifier": "com.tauri.vd",
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ]
+    },
+    "security": {
+      "csp": null
+    },
+    "updater": {
+      "windows": {
+        "installMode": "passive"
+      },
+      "active": true,
+      "endpoints": [
+        "https://api.vd.lutsk.ua/app/update?current_version={{current_version}}&target={{target}}&arch={{arch}}"
+        ],
+      "dialog": true,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IERCM0ZDMzBEMzQ1RTJCMEYKUldRUEsxNDBEY00vMitzV3RvTGh2K0dYMk8zOS9jSVA4bnRDU3VwcXpHMng5R1RtSHFzU0UzRGoK"
+    },
+    "windows": [
+      {
+        "fullscreen": false,
+        "resizable": true,
+        "title": "VD Control Alpha",
+        "width": 1240,
+        "height": 800,
+        "minWidth": 800,
+        "minHeight": 600,
+        "center": true,
+        "visible": false
+      },
+      {
+         "width": 450,
+         "height": 300,
+         "decorations": false,
+         "center": true,
+         "transparent": true,
+         "resizable": false,
+         "url": "splashscreen.html",
+         "label": "splashscreen"
+        }
+    ]
+  }
+}
