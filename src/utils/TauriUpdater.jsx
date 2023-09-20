@@ -1,6 +1,7 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
 import { toastSuccess } from '@pages/components-overview/toasts';
 import { checkUpdate, installUpdate } from '@tauri-apps/api/updater';
+import parse from 'html-react-parser';
 import React from 'react';
 
 const isTauri = () => (window.__TAURI__ ? true : false);
@@ -15,12 +16,12 @@ const AppUpdateNotification = () => {
             .catch((err) => {
                 console.log(err);
             });
-        toastSuccess("Check completed successfully")
+        //toastSuccess("Check completed successfully")
     };
 
     React.useEffect(() => {
         dispatchUpdate();
-        const intervalId = setInterval(dispatchUpdate, 5 * 60000);
+        const intervalId = setInterval(dispatchUpdate, 5*60000);
         return () => clearInterval(intervalId);
     }, []);
 
@@ -31,6 +32,9 @@ const AppUpdateNotification = () => {
     const handleClickOpen = () => {
         setOpen(true);
     };
+
+    console.log(update)
+
     const handleClose = () => {
         installUpdate()
             .then((data) => console.log(data))
@@ -44,7 +48,7 @@ const AppUpdateNotification = () => {
                 <DialogContent dividers>
                     <DialogContentText>
                         <Typography variant="h6" color="textSecondary">
-                            <div dangerouslySetInnerHTML={{ __html: update?.manifest?.body }} />
+                            {parse((update?.manifest?.body || "").toString())}
                         </Typography>
                     </DialogContentText>
                 </DialogContent>
