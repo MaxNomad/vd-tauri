@@ -7,8 +7,8 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "vd-dash",
-    "version": "0.0.0"
+    "productName": "VD Control",
+    "version": "../package.json"
   },
   "tauri": {
     "allowlist": {
