@@ -7,23 +7,12 @@ import { Stack, Chip } from '@mui/material';
 // project import
 import DrawerHeaderStyled from './DrawerHeaderStyled';
 import Logo from '@components/Logo';
-import { getVersion } from '@tauri-apps/api/app';
-import { isTauri } from '@utils/TauriUpdater';
+import { appVersion } from '@utils/Tauri';
 
 // ==============================|| DRAWER HEADER ||============================== //
 
 const DrawerHeader = ({ open }) => {
     const theme = useTheme();
-    const [appVersion, setAppVersion] = React.useState('');
-
-    if (isTauri()) {
-        getVersion().then((data) => {
-            setAppVersion(`${data}-Tauri`);
-        });
-    } else {
-        setAppVersion('v1.234.1-Front');
-    }
-
     return (
         // only available in paid version
         <DrawerHeaderStyled theme={theme} open={open} className={'drawlerVD'}>

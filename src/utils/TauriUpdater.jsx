@@ -1,39 +1,29 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
+import { Button, Chip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material';
 import { toastSuccess } from '@pages/components-overview/toasts';
 import { checkUpdate, installUpdate } from '@tauri-apps/api/updater';
-import { getVersion } from '@tauri-apps/api/app';
-import parse from 'html-react-parser';
+import { marked } from 'marked';
 import React from 'react';
-
-const isTauri = () => (window.__TAURI__ ? true : false);
+import { appVersion, isTauri } from './Tauri';
 
 const AppUpdateNotification = () => {
     const [open, setOpen] = React.useState(false);
     const [update, setUpdate] = React.useState({});
-    const [appVersion, setAppVersion] = React.useState('');
-
+    const [terminated, setTerminated] = React.useState(false);
+    
     const dispatchUpdate = () => {
         checkUpdate()
             .then((data) => setUpdate(data))
             .catch((err) => {
                 console.log(err);
             });
-        //toastSuccess("Check completed successfully")
     };
-    
-
-    if (isTauri()) {
-        getVersion().then((data) => {
-            setAppVersion(`${data}-Tauri`);
-        });
-    } else {
-        setAppVersion('v1.234.1-Front');
-    }
 
     React.useEffect(() => {
-        dispatchUpdate();
-        const intervalId = setInterval(dispatchUpdate, 5000);
-        return () => clearInterval(intervalId);
+        if(isTauri && !terminated) {
+            dispatchUpdate();
+            const intervalId = setInterval(dispatchUpdate, 5000);
+            return () => clearInterval(intervalId);
+        }
     }, []);
 
     React.useEffect(() => {
@@ -45,25 +35,38 @@ const AppUpdateNotification = () => {
     };
 
     const handleClose = () => {
+        setOpen(false);
+    };
+    const handleUpdate = () => {
         installUpdate()
             .then((data) => console.log(data))
             .catch((err) => console.log(err));
     };
+
+    const html = marked.parse((update?.manifest?.body || '').toString());
+    
     return (
         <>
-            <Dialog open={open} maxWidth="xs">
-                <DialogTitle>Доступне оновлення {update?.manifest?.version} ({appVersion})</DialogTitle>
+            <Dialog open={open} maxWidth="md">
+                <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', p: 3 }}>
+                    <div>Доступне оновлення {update?.manifest?.version}</div><Chip color="secondary" variant="outlined" size="small" label={appVersion} />
+                </DialogTitle>
                 <DialogContent dividers>
                     <DialogContentText>
-                        <Typography variant="h6" color="textSecondary">
-                            {parse((update?.manifest?.body || '').toString())}
+                        <Typography variant="caption" color="textSecondary" className='updateDialogText'>
+                        <div dangerouslySetInnerHTML={{ __html: html }} />
                         </Typography>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions sx={{ display: 'flex', justifyContent: 'space-between', p: 3 }}>
-                    <Button variant="contained" color="success" size="medium" onClick={handleClose}>
+                    <Button variant="contained" color="success" size="medium" onClick={handleUpdate}>
                         <Typography variant="h6" color="secondary">
                             Оновити та перезапустити
+                        </Typography>
+                    </Button>
+                    <Button variant="contained" color="warning" size="medium" onClick={handleClose}>
+                        <Typography variant="h6" color="secondary">
+                            Нагадати пізніше
                         </Typography>
                     </Button>
                 </DialogActions>
@@ -72,4 +75,4 @@ const AppUpdateNotification = () => {
     );
 };
 
-export { AppUpdateNotification, isTauri };
+export default AppUpdateNotification;

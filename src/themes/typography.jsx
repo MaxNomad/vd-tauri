@@ -63,6 +63,9 @@ const Typography = (fontFamily) => ({
     overline: {
         lineHeight: 1.66
     },
+    low50: {
+        fontSize: '20%'
+    },
     button: {
         textTransform: 'capitalize'
     }

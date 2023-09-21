@@ -114,3 +114,23 @@ html,
 body {
     transition: color 0.5s ease !important;
 }
+
+.updateDialogText{
+    h1 {
+        font-size: 190%!important;
+        font-weight: 300;
+        margin-bottom: -25px;
+    }
+    h2 {
+        font-size: 160%!important;
+        font-weight: 800;
+    }
+    h3 {
+        font-size: 120%!important;
+    }
+    ul {
+        padding-left: 14px;
+        font-size: 110%!important;
+    }
+
+}

@@ -35,7 +35,7 @@
     },
     "updater": {
       "windows": {
-        "installMode": "passive"
+        "installMode": "quiet"
       },
       "active": true,
       "endpoints": [
@@ -54,6 +54,7 @@
         "minWidth": 800,
         "minHeight": 600,
         "center": true,
+        "contentProtected": true,
         "visible": false
       },
       {
@@ -62,6 +63,8 @@
          "decorations": false,
          "center": true,
          "transparent": true,
+         "skipTaskbar": true,
+         "alwaysOnTop": true,
          "resizable": false,
          "url": "splashscreen.html",
          "label": "splashscreen"

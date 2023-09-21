@@ -1,5 +1,4 @@
 import { createRoot } from 'react-dom/client';
-import { invoke } from '@tauri-apps/api/tauri';
 import React from 'react';
 
 // project import
@@ -15,6 +14,4 @@ root.render(<App />);
 
 reportWebVitals();
 
-document.addEventListener('DOMContentLoaded', () => {
-    invoke('dom_started');
-});
+

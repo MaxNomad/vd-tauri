@@ -19,7 +19,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'simplebar/src/simplebar.css';
 import '@assets/third-party/apex-chart.css';
 import './App.scss';
-import { AppUpdateNotification } from '@utils/TauriUpdater';
+import AppUpdateNotification from '@utils/TauriUpdater';
 
 // third-party
 
