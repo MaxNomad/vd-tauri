@@ -14,6 +14,7 @@ import RouterContext from '@contexts/RouterContext';
 import React from 'react';
 import AppUpdateNotification from '@utils/TauriUpdater';
 import { ErrorBoundary } from 'react-error-boundary';
+import AppError from '@pages/AppError';
 import 'rsuite/dist/rsuite.min.css';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
@@ -21,14 +22,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'simplebar/src/simplebar.css';
 import '@assets/third-party/apex-chart.css';
 import './App.scss';
-import AppError from '@pages/AppError';
 
-function Fallback({ error, resetErrorBoundary }) {
-    // Call resetErrorBoundary() to reset the error boundary and retry the render.
 
+const Fallback = ({ error, resetErrorBoundary }) => {
     return <AppError error={error} resetErrorBoundary={resetErrorBoundary} />;
 }
-
 const App = () => {
     return (
         <ReduxProvider store={store}>
