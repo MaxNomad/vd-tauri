@@ -12,6 +12,8 @@ import { store } from '@store';
 import NetworkCheck from '@contexts/NetworkContext';
 import RouterContext from '@contexts/RouterContext';
 import React from 'react';
+import AppUpdateNotification from '@utils/TauriUpdater';
+import { ErrorBoundary } from 'react-error-boundary';
 import 'rsuite/dist/rsuite.min.css';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
@@ -19,13 +21,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'simplebar/src/simplebar.css';
 import '@assets/third-party/apex-chart.css';
 import './App.scss';
-import AppUpdateNotification from '@utils/TauriUpdater';
+import AppError from '@pages/AppError';
 
-// third-party
+function Fallback({ error, resetErrorBoundary }) {
+    // Call resetErrorBoundary() to reset the error boundary and retry the render.
 
-// apex-chart
-
-// ==============================|| APP - THEME, ROUTER, LOCAL  ||============================== //
+    return <AppError error={error} resetErrorBoundary={resetErrorBoundary} />;
+}
 
 const App = () => {
     return (
@@ -37,10 +39,12 @@ const App = () => {
                             <AppUpdateNotification />
                             <ScrollTop>
                                 <GoogleOAuthProvider clientId="481973527971-fkk5c04av94i9p0fubn3scr97cn7l14f.apps.googleusercontent.com">
-                                    <AuthContextProvider>
-                                        <Protected />
-                                        <Routes />
-                                    </AuthContextProvider>
+                                    <ErrorBoundary FallbackComponent={Fallback} onReset={(details) => {}}>
+                                        <AuthContextProvider>
+                                            <Protected />
+                                            <Routes />
+                                        </AuthContextProvider>
+                                    </ErrorBoundary>
                                     <ToastInit />
                                 </GoogleOAuthProvider>
                             </ScrollTop>

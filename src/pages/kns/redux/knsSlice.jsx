@@ -1,9 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getToken } from '@pages/authentication/helper/token';
 import { api } from '../../../api';
 
 export const getKNS = createAsyncThunk('kns/getKns', async (id) => {
-    api.defaults.headers.Authorization = `Bearer ${getToken()}`;
     const response = await api.get(`/getSingleKNS?knsID=${id}`);
     return response.data;
 });

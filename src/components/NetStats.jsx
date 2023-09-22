@@ -1,7 +1,7 @@
 import TimeAgo from '@pages/counters/components/timeAgo';
 import NumberWithAnimation from '@pages/kns/components/NumberWithAnimation';
 import React, { useState, useEffect } from 'react';
-import { getMetrics } from '../api';
+//import { getMetrics } from '../api';
 import { Typography } from '@mui/material';
 import MainCard from './MainCard';
 
@@ -10,17 +10,15 @@ const NetworkStats = () => {
 
     useEffect(() => {
         // Function to fetch metrics data and update state
-        const fetchMetricsData = () => {
-            const metricsData = getMetrics();
-            setMetrics(metricsData);
-        };
-
+        //const fetchMetricsData = () => {
+        //    const metricsData = getMetrics();
+        //    setMetrics(metricsData);
+        //};
         // Fetch metrics on component mount and refresh every 5 seconds
-        fetchMetricsData();
-        const intervalId = setInterval(fetchMetricsData, 500);
-
+        //fetchMetricsData();
+        //const intervalId = setInterval(fetchMetricsData, 500);
         // Clear interval on component unmount
-        return () => clearInterval(intervalId);
+        //return () => clearInterval(intervalId);
     }, []);
 
     return (

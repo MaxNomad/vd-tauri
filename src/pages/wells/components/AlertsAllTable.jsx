@@ -249,7 +249,7 @@ const AlertsTableAll = ({ pumpID }) => {
                                         selected={isItemSelected}
                                     >
                                         <TableCell component="th" id={labelId} scope="row" align="left">
-                                            <TimeAgo targetTime={new Date(row?.date)} />
+                                            <TimeAgo targetTime={row?.date} />
                                         </TableCell>
                                         <TableCell align="left">{row.errName}</TableCell>
                                         <TableCell align="left">{row.object}</TableCell>

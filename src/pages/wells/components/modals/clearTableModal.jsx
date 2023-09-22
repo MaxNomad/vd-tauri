@@ -9,7 +9,6 @@ import TimeAgo from '@pages/counters/components/timeAgo';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Grid, Tooltip, Typography, useMediaQuery } from '@mui/material';
 import MainCard from '@components/MainCard';
-import { getToken } from '@pages/authentication/helper/token';
 import { api } from '../../../../api';
 import { toastError, toastWarn } from '@pages/components-overview/toasts';
 import { useSelector } from 'react-redux';
@@ -28,7 +27,6 @@ const ClearTableModal = ({ wellID, data }) => {
         setOpen(false);
     };
     const clearTable = () => {
-        api.defaults.headers.Authorization = `Bearer ${getToken()}`;
         api.delete(`/deleteClearWellTable?pumpID=${wellID}`)
             .then((response) => {
                 if (response.status === 200) {

@@ -1,9 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getToken } from '@pages/authentication/helper/token';
 import { api } from '../../../api';
 
 export const getChartData = createAsyncThunk('knsChartData', async (props) => {
-    api.defaults.headers.Authorization = `Bearer ${getToken()}`;
     const response = await api.get(`/getKnsChart?knsID=${props.knsID}&timeline=${props.timeline}`);
     return response.data;
 });

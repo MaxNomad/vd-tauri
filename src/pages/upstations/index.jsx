@@ -35,8 +35,8 @@ const UpstationsRoot = () => {
         setInterval(() => setFirstLoad(true), 400);
     }, [dispatch, timer]);
 
-    const objectsWithErrors = data.filter((obj) => obj.alarmStatus > 0);
-    const objectsWithoutErrors = data.filter((obj) => obj.alarmStatus <= 0 || obj.alarmStatus == null);
+    const objectsWithErrors = data?.filter((obj) => obj.alarmStatus > 0);
+    const objectsWithoutErrors = data?.filter((obj) => obj.alarmStatus <= 0 || obj.alarmStatus == null);
 
     const sortedArray = [...objectsWithErrors, ...objectsWithoutErrors];
     const permsArray = sortedArray.filter((obj) =>

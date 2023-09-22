@@ -35,7 +35,6 @@ import { toastAlert, toastError, toastSuccess, toastWarn } from '@pages/componen
 import { useSelector } from 'react-redux';
 import { useGoogleLogin, useGoogleOneTapLogin } from '@react-oauth/google';
 import { useTheme } from '@mui/material/styles';
-import isElectron from 'is-electron';
 import { isTauri } from '@utils/Tauri';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
@@ -45,7 +44,7 @@ const AuthLogin = () => {
     const { error, loading } = useSelector((state) => state.auth);
     const [showPassword, setShowPassword] = useState(false);
     const [status, setStatus] = useState(null);
-    const [enableForm, setEnableForm] = useState(isElectron());
+    const [enableForm, setEnableForm] = useState(isTauri);
     const theme = useTheme();
     const ref = React.useRef();
     useEffect(() => {

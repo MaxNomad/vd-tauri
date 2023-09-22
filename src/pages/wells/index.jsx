@@ -35,13 +35,13 @@ const WellsRoot = () => {
         setInterval(() => setFirstLoad(true), 400);
     }, [dispatch, timer]);
 
-    const objectsWithErrors = data.filter((obj) => obj.alarmStatus > 0);
-    const objectsWithoutErrors = data.filter((obj) => obj.alarmStatus <= 0 || obj.alarmStatus == null);
-    const objectsSortedPerms = data.filter((obj) =>
+    const objectsWithErrors = data?.filter((obj) => obj.alarmStatus > 0);
+    const objectsWithoutErrors = data?.filter((obj) => obj.alarmStatus <= 0 || obj.alarmStatus == null);
+    const objectsSortedPerms = data?.filter((obj) =>
         permsCheck(['level_10', 'level_9', 'level_8', 'dash_well_read_all', `dash_well_read_${parseID(obj?.pumpID)}`])
     );
     const sortedArray = [...objectsWithErrors, ...objectsWithoutErrors];
-    const permsArray = data.filter((obj) =>
+    const permsArray = data?.filter((obj) =>
         permsCheck(['level_10', 'level_9', 'level_8', 'dash_well_read_all', `dash_well_read_${parseID(obj?.pumpID)}`])
     );
     const renderPumps = useMemo(

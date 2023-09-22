@@ -9,7 +9,6 @@ import TimeAgo from '@pages/counters/components/timeAgo';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Chip, Divider, Grid, Tooltip, Typography, useMediaQuery } from '@mui/material';
 import MainCard from '@components/MainCard';
-import { getToken } from '@pages/authentication/helper/token';
 import { api } from '../../../../api';
 import { toastError, toastSuccess, toastWarn } from '@pages/components-overview/toasts';
 import { useSelector } from 'react-redux';
@@ -28,7 +27,6 @@ const UpdateDBModal = ({ wellID, scheme, data }) => {
         setOpen(false);
     };
     const clearTable = () => {
-        api.defaults.headers.Authorization = `Bearer ${getToken()}`;
         api.post(`/postUpdateWellTrigger`, { pumpID: wellID, schema: scheme })
             .then((response) => {
                 if (response.status === 200) {

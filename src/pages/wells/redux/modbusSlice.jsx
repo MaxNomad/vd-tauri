@@ -1,9 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getToken } from '@pages/authentication/helper/token';
 import { api } from '../../../api';
 
 export const getWellModbus = createAsyncThunk('pump/getPumpModbus', async (id) => {
-    api.defaults.headers.Authorization = `Bearer ${getToken()}`;
     const response = await api.get(`/modbusOnline?pumpID=${id}`);
     return response.data;
 });

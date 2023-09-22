@@ -16,6 +16,11 @@
       "shell": {
         "all": false,
         "open": true
+      },
+      "http": {
+        "all": true, 
+        "request": true,
+        "scope": ["https://api.vd.lutsk.ua/api/*", "http://localhost:8080/*", "https://api.vd.lutsk.ua/app/*"]
       }
     },
     "bundle": {
@@ -54,7 +59,6 @@
         "minWidth": 800,
         "minHeight": 600,
         "center": true,
-        "contentProtected": true,
         "visible": false
       },
       {

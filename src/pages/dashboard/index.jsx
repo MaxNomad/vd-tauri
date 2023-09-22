@@ -113,12 +113,12 @@ const DashboardDefault = () => {
 
                     <GitHubStats />
                 </Grid>
-                <Grid item xs={12} sm={6} md={4} lg={3} sx={{ mb: 0 }}>
+                {/* <Grid item xs={12} sm={6} md={4} lg={3} sx={{ mb: 0 }}>
                     <Typography variant="h5" sx={{ mb: 2.4 }}>
                         Мережа
                     </Typography>
                     <NetworkStats />
-                </Grid>
+                </Grid>*/}
                 <Grid item md={8} sx={{ display: { sm: 'none', md: 'block', lg: 'none' } }} />
 
                 {/* row 3 */}

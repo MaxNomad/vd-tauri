@@ -9,7 +9,6 @@ import TimeAgo from '@pages/counters/components/timeAgo';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { Alert, Chip, Divider, Grid, Tooltip, Typography, useMediaQuery } from '@mui/material';
 import MainCard from '@components/MainCard';
-import { getToken } from '@pages/authentication/helper/token';
 import { api } from '../../../../api';
 import { toastError, toastSuccess, toastWarn } from '@pages/components-overview/toasts';
 import { useSelector } from 'react-redux';
@@ -30,7 +29,6 @@ const WellDisAlrtsModal = ({ wellID, data }) => {
         setOpen(false);
     };
     const changeStatus = (method) => {
-        api.defaults.headers.Authorization = `Bearer ${getToken()}`;
         api.post(`/modbusWellController`, { pumpID: data?.pumpID, method: method })
             .then((response) => {
                 if (response.status === 200) {

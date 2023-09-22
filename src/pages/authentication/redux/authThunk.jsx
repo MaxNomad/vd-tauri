@@ -15,8 +15,6 @@ const removeData = () => {
 
 export const fetchUserData = createAsyncThunk('auth/fetchUserData', async () => {
     try {
-        const accessToken = getToken();
-        api.defaults.headers.Authorization = `Bearer ${accessToken}`;
         const res = await api.post('/user');
         setUser(JSON.stringify(res.data));
         return res.data;
@@ -41,9 +39,9 @@ export const loginGoogle = createAsyncThunk('auth/loginGoogle', async (payload) 
 
 export const login = createAsyncThunk('auth/login', async (payload) => {
     const res = await api.post('/sign-in', payload);
-    setToken(res.data.access_token);
-    setTokenRef(res.data.refresh_token);
-    setUser(JSON.stringify(jwt_decode(res.data.access_token)));
+    setToken(res?.data?.access_token);
+    setTokenRef(res?.data?.refresh_token);
+    setUser(JSON.stringify(jwt_decode(res?.data?.access_token)));
 
     if (res.status === 200) {
         toastSuccess('Successfully logged in');
@@ -53,8 +51,6 @@ export const login = createAsyncThunk('auth/login', async (payload) => {
 });
 
 export const signOut = createAsyncThunk('auth/signOut', async () => {
-    const accessToken = getToken();
-    api.defaults.headers.Authorization = `Bearer ${accessToken}`;
     const res = await api.put('/sign-out');
 
     if (res.status === 200) {

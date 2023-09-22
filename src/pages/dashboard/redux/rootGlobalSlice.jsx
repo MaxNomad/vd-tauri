@@ -1,9 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getToken } from '@pages/authentication/helper/token';
 import { api } from '../../../api';
 
 export const getRootGlobalData = createAsyncThunk('root/getGlobal', async () => {
-    api.defaults.headers.Authorization = `Bearer ${getToken()}`;
     const response = await api.get(`/getRootGlobal`);
     return response.data;
 });

@@ -10,11 +10,12 @@ import AuthFooter from '@components/cards/AuthFooter';
 
 // assets
 import AuthBackground from '@assets/images/auth/AuthBackground';
+import { isTauri } from '@utils/Tauri';
 
 // ==============================|| AUTHENTICATION - WRAPPER ||============================== //
 
 const AuthWrapper = ({ children }) => {
-    const height = !window?.electron ? '95vh' : '100vh';
+    const height = !isTauri ? '95vh' : '100vh';
     return (
         <Box className={'authContainer'}>
             <AuthBackground />

@@ -1,11 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getToken } from '@pages/authentication/helper/token';
 import { api } from '../../../api';
 
 export const getGitData = createAsyncThunk('root/getGithub', async () => {
-    api.defaults.headers.Authorization = `Bearer ${getToken()}`;
-    const response = await api.get(`/`);
-    return response.data;
+    try {
+        const response = await api.get(`/`);
+        return response.data;
+    } catch (err) {
+        console.error(err);
+    }
 });
 
 export const rootGithub = createSlice({

@@ -19,7 +19,7 @@ const NetworkCheck = ({ children }) => {
 
     useEffect(() => {
         dispatchAction();
-        const intervalId = setInterval(dispatchAction, 30000);
+        const intervalId = setInterval(dispatchAction, 60000);
         return () => clearInterval(intervalId);
     }, []);
 

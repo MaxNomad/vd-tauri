@@ -3,7 +3,6 @@ import { getToken } from '@pages/authentication/helper/token';
 import { api } from '../../../api';
 
 export const getCountersRoot = createAsyncThunk('pump/getCountersRoot', async () => {
-    api.defaults.headers.Authorization = `Bearer ${getToken()}`;
     const response = await api.get(`/getCountersGlobal`);
     return response.data;
 });
