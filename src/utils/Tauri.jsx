@@ -1,6 +1,6 @@
 import { getVersion } from '@tauri-apps/api/app';
-import { invoke } from '@tauri-apps/api/tauri';
 import { checkUpdate } from '@tauri-apps/api/updater';
+import { invoke } from '@tauri-apps/api/tauri';
 
 export const isTauri = window?.__TAURI__ ? false : false;
 
@@ -12,8 +12,7 @@ isTauri && document.addEventListener('contextmenu', (event) => event.preventDefa
     appVersion = isTauri ? `${await getVersion()}-Tauri` : 'v1.234.1-Front';
 })();
 
-if (isTauri) {
-    document.addEventListener('DOMContentLoaded', () => {
-        invoke('dom_started');
-    });
-}
+
+document.addEventListener('DOMContentLoaded', () => {
+    invoke('dom_started');
+});
