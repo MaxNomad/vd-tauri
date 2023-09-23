@@ -113,8 +113,9 @@ const Profile = () => {
                     <Typography variant="h6">{userData?.user_login}</Typography>
                     <Typography variant="body2" color="textSecondary">
                         Доступ:&nbsp;&nbsp;
-                        <Chip label={userData?.wp_user_level} size="small" />
+                        
                     </Typography>
+                    <Chip label={userData?.wp_user_level} size="small" />
                 </Stack>
             </ButtonBase>
             <Popper

@@ -28,7 +28,7 @@ const Fallback = ({ error, resetErrorBoundary }) => {
     return <AppError error={error} resetErrorBoundary={resetErrorBoundary} />;
 }
 const App = () => {
-    return (
+    return (<ErrorBoundary FallbackComponent={Fallback} onReset={(details) => { }}>
         <ReduxProvider store={store}>
             <RouterContext>
                 <ConfigProvider>
@@ -37,12 +37,10 @@ const App = () => {
                             <AppUpdateNotification />
                             <ScrollTop>
                                 <GoogleOAuthProvider clientId="481973527971-fkk5c04av94i9p0fubn3scr97cn7l14f.apps.googleusercontent.com">
-                                    <ErrorBoundary FallbackComponent={Fallback} onReset={(details) => {}}>
-                                        <AuthContextProvider>
-                                            <Protected />
-                                            <Routes />
-                                        </AuthContextProvider>
-                                    </ErrorBoundary>
+                                    <AuthContextProvider>
+                                        <Protected />
+                                        <Routes />
+                                    </AuthContextProvider>
                                     <ToastInit />
                                 </GoogleOAuthProvider>
                             </ScrollTop>
@@ -51,6 +49,7 @@ const App = () => {
                 </ConfigProvider>
             </RouterContext>
         </ReduxProvider>
+    </ErrorBoundary>
     );
 };
 export default App;

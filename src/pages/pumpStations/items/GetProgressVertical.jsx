@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Progress } from 'rsuite';
 import { useTheme } from '@mui/material/styles';
+import React from 'react';
 
 const FillProgress = ({ data }) => {
     const theme = useTheme();
@@ -41,7 +42,7 @@ const FillProgress = ({ data }) => {
 };
 
 FillProgress.propTypes = {
-    data: PropTypes.object,
+    data: PropTypes.number,
     type: PropTypes.object
 };
 

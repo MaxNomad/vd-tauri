@@ -2,7 +2,7 @@ import { Tooltip } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 
 const TimeAgo = ({ targetTime, text = '' }) => {
-    const [target, setTarget] = useState(targetTime);
+    const [target, setTarget] = useState(new Date(targetTime));
     const [difference, setIime] = useState(new Date() - target);
 
     useEffect(() => {

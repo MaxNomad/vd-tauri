@@ -14,11 +14,14 @@ const AppUpdateNotification = () => {
     const dispatch = useDispatch();
 
     const dispatchUpdate = () => {
-        checkUpdate()
+        if(isTauri){
+            checkUpdate()
             .then((data) => setUpdate(data))
             .catch((err) => {
                 console.log(err);
             });
+        }
+        
     };
     const dispatchTerminated = () => {
         const terminateDate = localStorage.getItem('terminateDate');

@@ -5,13 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import * as Sentry from "@sentry/react";
+import { appVersion } from '@utils/Tauri';
 
 Sentry.init({
+  enabled: import.meta.env.PROD,
   dsn: "https://299b1b9e3b63a15f57ac6a2bd8b96356@o4503924567572480.ingest.sentry.io/4505924038819840",
   integrations: [
     new Sentry.BrowserTracing({
+      release: appVersion,
       // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
-      tracePropagationTargets: ["localhost", /^https:\/\/api\.vd\.lutsk\.ua\/api\/v1/],
+      tracePropagationTargets: ["localhost", "https://api.vd.lutsk.ua/*"],
     }),
     new Sentry.Replay(),
   ],
@@ -27,8 +30,6 @@ const root = createRoot(container);
 root.render(<App />);
 
 reportWebVitals();
-
-
 
 
 

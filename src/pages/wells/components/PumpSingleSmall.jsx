@@ -75,7 +75,7 @@ PumpSingleSmall.propTypes = {
             voltagePers: PropTypes.number,
             workingStatus: PropTypes.bool
         }),
-        pumpID: PropTypes.number,
+        pumpID: PropTypes.string,
         waterMeter: PropTypes.number
     }),
     exist: PropTypes.bool,

@@ -56,7 +56,7 @@ const InfoItem = ({ data }) => {
                         <Divider sx={{ mt: 0, mb: 2 }} />
                     </Grid>
                     <Grid item xs={12} md={12} lg={12}>
-                        <Grid container lg={12} sx={{ mt: -1.5 }}>
+                        <Grid container sx={{ mt: -1.5 }}>
                             <Grid item lg={6} md={6} xs={6}>
                                 <Typography variant="h6" color="textSecondary" sx={{ mt: 1 }}>
                                     Режим:&nbsp;&nbsp;

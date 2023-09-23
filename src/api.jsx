@@ -1,12 +1,14 @@
 import axios from 'axios';
 import config from './config';
-import { getClient, Body, ResponseType } from '@tauri-apps/api/http';
+
 import { getToken } from '@pages/authentication/helper/token';
 import { toastError } from '@pages/components-overview/toasts';
 import { isTauri } from '@utils/Tauri';
+import { getClient, Body, ResponseType } from '@tauri-apps/api/http';
 
 let api;
 if (isTauri) {
+    
     const client = await getClient();
     api = {
         async get(url, params = {}) {
@@ -52,7 +54,7 @@ if (isTauri) {
                     headers: { Authorization: `Bearer ${getToken()}` },
                     type: ResponseType.JSON
                 });
-                return response.json();
+                return response;
             } catch (e) {
                 console.log(e);
                 toastError('Put request failed');
@@ -69,7 +71,7 @@ if (isTauri) {
                     headers: { Authorization: `Bearer ${getToken()}` },
                     type: ResponseType.JSON
                 });
-                return response.json();
+                return response;
             } catch (e) {
                 console.log(e);
                 toastError('Delete request failed');

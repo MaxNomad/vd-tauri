@@ -22,7 +22,7 @@ const AlarmStatus = ({ current }) => {
             color = 'error';
             title = 'Не визначено';
     }
-    return <Chip label={title} noWrap size="small" sx={{ maxWidth: { xs: 50, sm: 120 } }} color={color} />;
+    return <Chip label={title} size="small" sx={{ maxWidth: { xs: 50, sm: 120 } }} color={color} />;
 };
 
 AlarmStatus.propTypes = {

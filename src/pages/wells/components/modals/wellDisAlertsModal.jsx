@@ -92,7 +92,7 @@ const WellDisAlrtsModal = ({ wellID, data }) => {
                     color="textSecondary"
                     sx={{ mt: 1.5, mb: -1, display: 'flex', justifyContent: 'space-between' }}
                 >
-                    <Grid xs={9}>
+                    <Grid item xs={9}>
                         {data?.events?.resetAlerts?.date ? (
                             <>
                                 Остання дія <TimeAgo targetTime={new Date(data?.events?.resetAlerts?.date)} />
