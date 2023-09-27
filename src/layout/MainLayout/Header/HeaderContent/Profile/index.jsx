@@ -60,6 +60,8 @@ const Profile = () => {
     const navigator = useNavigate();
 
     const { userData } = useSelector((state) => state.user);
+    const authData = useSelector((state) => state.auth);
+
     useEffect(() => {
         dispatch(fetchUserData());
     }, [dispatch]);
@@ -67,6 +69,12 @@ const Profile = () => {
     const handleLogout = async () => {
         dispatch(signOut());
     };
+
+    useEffect(() => {
+        if (authData?.signOut && authData?.access_token === null && authData?.refresh_token === null) {
+            navigator('/login');
+        }
+    }, [authData?.access_token]);
 
     const anchorRef = useRef(null);
     const [open, setOpen] = useState(false);

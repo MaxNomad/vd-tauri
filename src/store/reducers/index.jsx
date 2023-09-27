@@ -24,7 +24,7 @@ import wellModbus from '@pages/wells/redux/modbusSlice';
 import pumpWellEvents from '@pages/wells/redux/pumpEventsListSlice';
 import rootGithub from '@pages/dashboard/redux/gitstatusSlice';
 import dialogSlice from '@store/reducers/dialogSlice';
-
+import snackbar from './snackbar';
 // ==============================|| COMBINE REDUCERS ||============================== //
 
 const reducers = combineReducers({
@@ -49,7 +49,8 @@ const reducers = combineReducers({
     wellModbus: wellModbus,
     pumpWellEvents: pumpWellEvents,
     rootGithub: rootGithub,
-    updateDialog: dialogSlice
+    updateDialog: dialogSlice,
+    snackbar: snackbar
 });
 
 export default reducers;

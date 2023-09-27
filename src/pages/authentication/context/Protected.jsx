@@ -4,16 +4,28 @@ import jwt_decode from 'jwt-decode';
 import { getToken, getTokenRef } from '../helper/token';
 import PropTypes from 'prop-types';
 
-const OAuthMiddleware = ({ routes }) => {
+const OAuthMiddleware = () => {
     const navigate = useNavigate();
-
+    const token = localStorage.getItem('access_token');
     useEffect(() => {
-        const handleStorage = () => {
-            console.log('change');
-        };
+        if (token) {
+            try {
+                const data = jwt_decode(token);
+                if (!getToken() && !getTokenRef() && data) {
+                    navigate('/login');
+                }
+                if (getToken() && getTokenRef() && data && window.location.pathname === '/login') {
+                    navigate('/dash');
+                }
+            } catch (error) {
+                navigate('/login');
+            }
+        } else {
+            navigate('/login');
+        }
+    }, [navigate]);
 
-        window.addEventListener('storage', handleStorage());
-    }, []);
+    return null;
 };
 
 OAuthMiddleware.propTypes = {

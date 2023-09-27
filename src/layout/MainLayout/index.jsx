@@ -14,7 +14,6 @@ import Breadcrumbs from '@components/@extended/Breadcrumbs';
 
 // types
 import { openDrawer } from '@store/reducers/menu';
-import Footer from './Footer';
 import { isTauri } from '@utils/Tauri';
 
 // ==============================|| MAIN LAYOUT ||============================== //
@@ -69,7 +68,7 @@ const MainLayout = () => {
                         p: { xs: 2, sm: 3 },
                         mt: isTauri ? 6 : 2,
                         overflow: 'auto', // Add this line to enable scrolling
-                        maxHeight: 'calc(100vh - 72px)' // You can adjust the max height as needed
+                        maxHeight: 'calc(100vh - 61px)' // You can adjust the max height as needed
                     }}
                 >
                     <Toolbar />

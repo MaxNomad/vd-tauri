@@ -14,6 +14,7 @@ import RouterContext from '@contexts/RouterContext';
 import React from 'react';
 import AppUpdateNotification from '@utils/TauriUpdater';
 import { ErrorBoundary } from 'react-error-boundary';
+import Loader from '@components/Loader';
 import AppError from '@pages/AppError';
 import 'rsuite/dist/rsuite.min.css';
 import 'react-date-range/dist/styles.css';
@@ -22,28 +23,37 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'simplebar/src/simplebar.css';
 import '@assets/third-party/apex-chart.css';
 
+
+
 const Fallback = ({ error, resetErrorBoundary }) => {
     return <AppError error={error} resetErrorBoundary={resetErrorBoundary} />;
 };
 const App = () => {
+    const [loading, setLoading] = React.useState(false);
+
+    React.useEffect(() => {
+        setLoading(true)
+  }, []);
+
     return (
         <ReduxProvider store={store}>
             <RouterContext>
                 <ConfigProvider>
                     <ThemeCustomization>
                         <ErrorBoundary FallbackComponent={Fallback} onReset={(details) => {}}>
+                          {!loading ? <Loader /> :
                             <NetworkCheck>
                                 <AppUpdateNotification />
                                 <ScrollTop>
                                     <GoogleOAuthProvider clientId="481973527971-fkk5c04av94i9p0fubn3scr97cn7l14f.apps.googleusercontent.com">
-                                        <AuthContextProvider>
-                                            <Protected />
-                                            <Routes />
-                                        </AuthContextProvider>
+                                            <AuthContextProvider>
+                                                <Protected />
+                                                <Routes />
+                                            </AuthContextProvider>
                                         <ToastInit />
                                     </GoogleOAuthProvider>
                                 </ScrollTop>
-                            </NetworkCheck>
+                            </NetworkCheck>}
                         </ErrorBoundary>
                     </ThemeCustomization>
                 </ConfigProvider>

@@ -1,16 +1,17 @@
 import PropTypes from 'prop-types';
 //material-ui
 import { styled } from '@mui/material/styles';
-
+import React from 'react';
 // third-party
 import { SnackbarProvider } from 'notistack';
 
 // project import
-import { useSelector } from 'store';
+
 import { SnackbarUtilsConfigurator } from '@utils/ToastNotistack';
 
 // assets
 import { CheckCircleOutlined, CloseCircleOutlined, InfoCircleOutlined, WarningOutlined } from '@ant-design/icons';
+import { useSelector } from 'react-redux';
 
 // custom styles
 const StyledSnackbarProvider = styled(SnackbarProvider)(({ theme }) => ({

@@ -71,7 +71,7 @@ const WellsRoot = () => {
                         {renderPumps}
                     </Grid>
                 ) : (
-                    <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" sx={{ mt: '30vh' }}>
+                    <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" sx={{ mt: '27vh' }}>
                         <Typography variant="h1" color="primary" gutterBottom>
                             404
                         </Typography>
