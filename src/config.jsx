@@ -12,8 +12,8 @@ const config = {
     defaultChartUpdateTime: 60000,
     liqChartsPreset: localStorage.liqChartsPreset ? localStorage.liqChartsPreset : true,
     themeDirection: 'ltr',
-    //apiUrl: 'http://localhost:8080/api/v1'
-    apiUrl: 'https://api.vd.lutsk.ua/api/v1'
+    apiUrl: 'http://localhost:8080/api/v1'
+    //apiUrl: 'https://api.vd.lutsk.ua/api/v1'
 };
 
 export default config;

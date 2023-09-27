@@ -35,8 +35,9 @@ const PnsSingle = ({ data, lastUpdate }) => {
         return <PumpStatus isOnline={pump?.pumpActive} key={pump?.pumpID} cols={2} current={1} />;
     });
     const renderTanks = data.levels.current.map((tank) => {
-        return tank.exist ? <TankStatus props={tank} cols={2} /> : '';
+        return tank.exist ? <TankStatus props={tank} cols={2} /> : null;
     });
+    console.log(renderTanks);
     return (
         <>
             <Grid item xs={12} sm={6} md={6} lg={6} UWHD={4}>
@@ -80,31 +81,49 @@ const PnsSingle = ({ data, lastUpdate }) => {
                                                 Загальні дані
                                             </Typography>
                                             <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
-                                                Вхідний тиск:&nbsp;&nbsp;
-                                                <Pressure num={data?.pressure_in} />
+                                                Вхідний тиск з свердловин:&nbsp;&nbsp;
+                                                <Pressure num={data?.inputPressure} />
                                                 &nbsp;
                                             </Typography>
                                             <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
                                                 Вихідний тиск на місто:&nbsp;&nbsp;
-                                                <Pressure num={data?.pressureCity} />
+                                                <Pressure num={data?.outputPressure} />
                                                 &nbsp;
                                             </Typography>
                                         </Grid>
 
-                                        <Grid item xs={12} sm={6} md={6} lg={6} sx={{ mt: -2.75 }}>
-                                            <Typography variant="h5" color="textSecondary" sx={{ mt: 1.85 }}>
+                                        <Grid item xs={12} sm={6} md={6} lg={6} sx={{ mt: -3.75 }}>
+                                            <Typography variant="h5" color="textSecondary" sx={{ mt: 1 }}>
                                                 Додатково
                                             </Typography>
                                             <Typography variant="h6" color="textSecondary" sx={{ mt: 1 }}>
-                                                Вхідний потік:&nbsp;&nbsp;
+                                                Загальний вхідний потік:&nbsp;&nbsp;
                                                 <b>
                                                     <NumberWithAnimation number={(data?.inputFlow ?? 0).toFixed(2)} one /> м³/год.{' '}
+                                                </b>
+                                            </Typography>
+                                            <Typography variant="h6" color="textSecondary" sx={{ mt: 1 }}>
+                                                Загальний вихідний потік:&nbsp;&nbsp;
+                                                <b>
+                                                    <NumberWithAnimation number={(data?.outputFlow ?? 0).toFixed(2)} one /> м³/год.{' '}
                                                 </b>
                                             </Typography>
                                             <Typography variant="h6" color="textSecondary" sx={{ mt: 1 }}>
                                                 Загальна ємність:&nbsp;&nbsp;
                                                 <b>
                                                     <NumberWithAnimation number={data?.levels?.global} rev /> м³{' '}
+                                                </b>{' '}
+                                                (
+                                                <NumberWithAnimation
+                                                    number={((data?.levels?.global / data?.levels?.max) * 100).toFixed(2)}
+                                                    rev
+                                                />{' '}
+                                                %)
+                                            </Typography>
+                                            <Typography variant="h6" color="textSecondary" sx={{ mt: 1 }}>
+                                                Максимальна ємність:&nbsp;&nbsp;
+                                                <b>
+                                                    <NumberWithAnimation number={data?.levels?.max} rev /> м³{' '}
                                                 </b>
                                             </Typography>
                                         </Grid>
@@ -121,7 +140,20 @@ const PnsSingle = ({ data, lastUpdate }) => {
                                                 <Divider />
                                             </Typography>
                                         </Grid>
-                                        {renderTanks}
+                                        {renderTanks[0] !== null ? (
+                                            renderTanks
+                                        ) : (
+                                            <Grid item xs={12} sm={12} md={12} lg={12} sx={{ mt: -2.25, mb: -2 }}>
+                                                <Box direction="column" align="center">
+                                                    <Typography variant="h5" color="textSecondary" sx={{ mt: 5 }}>
+                                                        Резервуарів не виявлено
+                                                    </Typography>
+                                                    <Typography variant="h6" color="textSecondary" sx={{ mb: 7 }}>
+                                                        Перерірте налаштування
+                                                    </Typography>
+                                                </Box>
+                                            </Grid>
+                                        )}
                                     </>
                                 ) : (
                                     <>
