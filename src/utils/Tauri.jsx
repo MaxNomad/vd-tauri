@@ -11,9 +11,9 @@ isTauri && document.addEventListener('contextmenu', (event) => event.preventDefa
 
 (async () => {
     appVersion = isTauri ? `${await getVersion()}-Tauri` : 'v1.234.1-Front';
-    tauriVersion = isTauri ? await getTauriVersion() : null
+    tauriVersion = isTauri ? await getTauriVersion() : null;
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
-    isTauri ? invoke('dom_started') : null
+    isTauri ? invoke('dom_started') : null;
 });

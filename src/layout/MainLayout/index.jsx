@@ -15,6 +15,7 @@ import Breadcrumbs from '@components/@extended/Breadcrumbs';
 // types
 import { openDrawer } from '@store/reducers/menu';
 import Footer from './Footer';
+import { isTauri } from '@utils/Tauri';
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
@@ -60,7 +61,17 @@ const MainLayout = () => {
             <Box sx={{ display: 'flex', width: '100%' }}>
                 <Header open={open} handleDrawerToggle={handleDrawerToggle} />
                 <Drawer open={open} handleDrawerToggle={handleDrawerToggle} />
-                <Box component="main" sx={{ width: '100%', flexGrow: 1, p: { xs: 2, sm: 3 } }}>
+                <Box
+                    component="main"
+                    sx={{
+                        width: '100%',
+                        flexGrow: 1,
+                        p: { xs: 2, sm: 3 },
+                        mt: isTauri ? 6 : 2,
+                        overflow: 'auto', // Add this line to enable scrolling
+                        maxHeight: 'calc(100vh - 72px)' // You can adjust the max height as needed
+                    }}
+                >
                     <Toolbar />
                     <Breadcrumbs navigation={navigation} title titleBottom card={false} divider={false} />
                     <Outlet />

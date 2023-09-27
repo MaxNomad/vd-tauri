@@ -215,7 +215,7 @@ const AlertsTableActive = ({ knsID, status }) => {
                     '& td, & th': { whiteSpace: 'nowrap' }
                 }}
             >
-                {data?.activeAlarmsList.length !== 0 ? (
+                {data?.activeAlarmsList?.length !== 0 ? (
                     <Table
                         aria-labelledby="tableTitle"
                         sx={{

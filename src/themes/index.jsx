@@ -42,7 +42,7 @@ export default function ThemeCustomization({ children }) {
             direction: themeDirection,
             mixins: {
                 toolbar: {
-                    minHeight: 60,
+                    minHeight: 0,
                     paddingTop: 8,
                     paddingBottom: 8
                 }

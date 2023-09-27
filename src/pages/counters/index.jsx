@@ -36,9 +36,11 @@ const CountersMain = () => {
         setInterval(() => setFirstLoad(true), 400);
     }, [dispatch, timer]);
 
-    const renderCounters = data.map((counter) => {
-        return <CounterItem props={counter} key={counter?.number} />;
-    });
+    const renderCounters = Array.isArray(data)
+        ? data?.map((counter) => {
+              return <CounterItem props={counter} key={counter?.number} />;
+          })
+        : null;
     const mocData = [
         {
             number: 1,

@@ -35,13 +35,15 @@ const UpstationsRoot = () => {
         setInterval(() => setFirstLoad(true), 400);
     }, [dispatch, timer]);
 
-    const objectsWithErrors = data?.filter((obj) => obj.alarmStatus > 0);
-    const objectsWithoutErrors = data?.filter((obj) => obj.alarmStatus <= 0 || obj.alarmStatus == null);
+    const objectsWithErrors = Array.isArray(data) ? data?.filter((obj) => obj.alarmStatus > 0) : [];
+    const objectsWithoutErrors = Array.isArray(data) ? data?.filter((obj) => obj.alarmStatus <= 0 || obj.alarmStatus == null) : [];
 
     const sortedArray = [...objectsWithErrors, ...objectsWithoutErrors];
-    const permsArray = sortedArray.filter((obj) =>
-        permsCheck(['level_10', 'level_9', 'level_8', 'dash_pns_read_all', `dash_pns_read_${parseID(obj?.pnsID)}`])
-    );
+    const permsArray = Array.isArray(data)
+        ? sortedArray.filter((obj) =>
+              permsCheck(['level_10', 'level_9', 'level_8', 'dash_pns_read_all', `dash_pns_read_${parseID(obj?.pnsID)}`])
+          )
+        : [];
     const renderPns = useMemo(
         () =>
             permsArray?.map((pns) => {

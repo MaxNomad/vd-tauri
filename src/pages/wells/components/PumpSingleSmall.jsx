@@ -28,7 +28,7 @@ const PumpSingleSmall = ({ data }) => {
             <Grid item xs={0.55} sm={0.55} md={0.55} lg={0.55} UWHD={0.4} sx={{ minWidth: 80 }}>
                 <Tooltip
                     title={`Свердловина №${data?.pumpID}. Статус: ${data?.pump?.workingStatus ? 'В роботі' : 'Призупинено'}  `}
-                    placement="top"
+                    placement="bottom"
                 >
                     <Link to={`/pump-single?id=${data?.pumpID}`} style={{ textDecoration: 'none' }}>
                         <MainCard contentSX={{ p: 1.25, borderColor: AlarmColor(), textAlign: 'center' }} hoverActive borderCustom>

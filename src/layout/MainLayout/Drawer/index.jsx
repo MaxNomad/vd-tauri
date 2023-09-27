@@ -10,6 +10,7 @@ import DrawerHeader from './DrawerHeader';
 import DrawerContent from './DrawerContent';
 import MiniDrawerStyled from './MiniDrawerStyled';
 import { drawerWidth } from '@config';
+import { isTauri } from '@utils/Tauri';
 
 // ==============================|| MAIN LAYOUT - DRAWER ||============================== //
 
@@ -43,6 +44,7 @@ const MainDrawer = ({ open, handleDrawerToggle, window }) => {
                         '& .MuiDrawer-paper': {
                             boxSizing: 'border-box',
                             width: drawerWidth,
+                            paddingTop: isTauri ? 6 : 2,
                             borderRight: `1px solid ${theme.palette.divider}`,
                             backgroundImage: 'none',
                             boxShadow: 'inherit'

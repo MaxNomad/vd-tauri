@@ -5,9 +5,7 @@ import { splitVendorChunkPlugin } from 'vite'
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
   plugins: [react(), splitVendorChunkPlugin()],
-  build: {
-    target: 'esnext'
-  },
+
   resolve: {
     alias: {
       '@components': fileURLToPath(new URL( './src/components', import.meta.url)),
@@ -25,9 +23,8 @@ export default defineConfig(async () => ({
       '@routes': fileURLToPath(new URL( './src/routes', import.meta.url)),
       '@config': fileURLToPath(new URL( './src/config', import.meta.url)),
       '@data': fileURLToPath(new URL( './src/data', import.meta.url)),
-      '@menuItems': fileURLToPath(new URL( './src/menu-items', import.meta.url))
-
-
+      '@menuItems': fileURLToPath(new URL( './src/menu-items', import.meta.url)),
+      '@window': fileURLToPath(new URL( './src/window', import.meta.url))
     }
   },
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
@@ -38,6 +35,15 @@ export default defineConfig(async () => ({
   server: {
     port: 1420,
     strictPort: true,
+  },
+  css: {
+    preprocessorOptions: {
+      less: {
+        math: "always",
+        relativeUrls: true,
+        javascriptEnabled: true
+      },
+    },
   },
   // 3. to make use of `TAURI_DEBUG` and other env variables
   // https://tauri.studio/v1/api/config#buildconfig.beforedevcommand

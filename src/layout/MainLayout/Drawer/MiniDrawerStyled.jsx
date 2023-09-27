@@ -4,9 +4,11 @@ import Drawer from '@mui/material/Drawer';
 
 // project import
 import { drawerWidth } from '@config';
+import { isTauri } from '@utils/Tauri';
 
 const openedMixin = (theme) => ({
     width: drawerWidth,
+    paddingTop: isTauri ? 42 : 8,
     borderRight: `1px solid ${theme.palette.divider}`,
     transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,

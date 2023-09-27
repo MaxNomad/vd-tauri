@@ -30,9 +30,11 @@ const SmallWellsList = () => {
         setUpdateTime(new Date().toLocaleString());
     }, [timer]);
 
-    const permsArray = data?.filter((obj) =>
-        permsCheck(['level_10', 'level_9', 'level_8', 'dash_well_read_all', `dash_well_read_${parseID(obj?.pumpID)}`])
-    );
+    const permsArray = Array.isArray(data)
+        ? data?.filter((obj) =>
+              permsCheck(['level_10', 'level_9', 'level_8', 'dash_well_read_all', `dash_well_read_${parseID(obj?.pumpID)}`])
+          )
+        : [];
     const renderPumps = useMemo(
         () =>
             permsArray?.map((pump) => {

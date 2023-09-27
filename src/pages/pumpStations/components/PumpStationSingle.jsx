@@ -40,7 +40,7 @@ const PnsSingle = ({ data, lastUpdate }) => {
     return (
         <>
             <Grid item xs={12} sm={6} md={6} lg={6} UWHD={4}>
-                <Tooltip title={`Переглянути інформацію про НС №${data?.nsID}`} placement="top">
+                <Tooltip title={`Переглянути інформацію про НС №${data?.nsID}`} placement="bottom">
                     <Link to={`/pumpstation-single?id=${data?.nsID}`} style={{ textDecoration: 'none' }}>
                         <MainCard contentSX={{ p: 2.25, borderColor: AlarmColor() }} borderCustom hoverActive>
                             <Grid container rowSpacing={4.5} columnSpacing={2.75}>

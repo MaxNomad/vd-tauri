@@ -57,6 +57,9 @@
         ],
         "@menuItems/*": [
           "menu-items/*"
+        ],
+        "@window/*": [
+          "window/*"
         ]
       }
     },

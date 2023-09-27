@@ -51,11 +51,8 @@ export const login = createAsyncThunk('auth/login', async (payload) => {
 });
 
 export const signOut = createAsyncThunk('auth/signOut', async () => {
-    const res = await api.put('/sign-out');
-
-    if (res.status === 200) {
+    api.put('/sign-out').then(() => {
         removeData();
         toastAlert('Successfully logged out');
-        navigate.push('/login');
-    }
+    });
 });

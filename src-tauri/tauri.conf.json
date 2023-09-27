@@ -21,6 +21,10 @@
         "all": true, 
         "request": true,
         "scope": ["https://api.vd.lutsk.ua/api/*", "http://localhost:8080/*", "https://api.vd.lutsk.ua/app/*"]
+      }, 
+      "window": {
+        "all": true,
+        "startDragging": true
       }
     },
     "bundle": {
@@ -54,12 +58,13 @@
         "fullscreen": false,
         "resizable": true,
         "title": "VD Control Alpha",
-        "width": 1240,
-        "height": 800,
-        "minWidth": 800,
-        "minHeight": 600,
+        "width": 1280,
+        "height": 720,
+        "minWidth": 1280,
+        "minHeight": 720,
         "center": true,
-        "visible": false
+        "visible": false,
+        "decorations": false
       },
       {
          "width": 450,

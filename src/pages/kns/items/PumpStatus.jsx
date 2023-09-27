@@ -43,7 +43,7 @@ const PumpStatus = ({ isOnline, setImage, current, cols = 4 }) => {
         <Grid item xs={4} sm={4} md={4} lg={cols} sx={{ mt: -2.25, mb: 0.5 }}>
             <Box direction="column" align="center">
                 {!setImage ? (
-                    <Tooltip title={`Режим роботи насосу: ${titleMode}`} placement="top">
+                    <Tooltip title={`Режим роботи насосу: ${titleMode}`} placement="bottom">
                         <Badge color={colorMode} badgeContent={titleMode} sx={{ display: 'inline-block' }} size="sm">
                             <Avatar alt="" src={pump_img} sx={{ width: 60, height: 60 }} />
                         </Badge>

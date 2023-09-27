@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import { appVersion, isTauri } from './Tauri';
 import { closeDialog, openDialog, setNeedUpdate, setUpdated } from '@store/reducers/dialogSlice';
+import { GlobalStore } from './storage';
 
 const AppUpdateNotification = () => {
     const open = useSelector((state) => state.updateDialog.open);
@@ -14,14 +15,13 @@ const AppUpdateNotification = () => {
     const dispatch = useDispatch();
 
     const dispatchUpdate = () => {
-        if(isTauri){
+        if (isTauri) {
             checkUpdate()
-            .then((data) => setUpdate(data))
-            .catch((err) => {
-                console.log(err);
-            });
+                .then((data) => setUpdate(data))
+                .catch((err) => {
+                    console.log(err);
+                });
         }
-        
     };
     const dispatchTerminated = () => {
         const terminateDate = localStorage.getItem('terminateDate');

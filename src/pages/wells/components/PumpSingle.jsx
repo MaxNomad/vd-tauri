@@ -31,7 +31,7 @@ const PumpSingle = ({ data, lastUpdate }) => {
     return (
         <>
             <Grid item xs={12} sm={6} md={6} lg={4} UWHD={3}>
-                <Tooltip title={`Переглянути інформацію про свердловину №${data?.pumpID}`} placement="top">
+                <Tooltip title={`Переглянути інформацію про свердловину №${data?.pumpID}`} placement="bottom">
                     <Link to={`/pump-single?id=${data?.pumpID}`} style={{ textDecoration: 'none' }}>
                         <MainCard contentSX={{ p: 2.25, borderColor: AlarmColor() }} hoverActive borderCustom>
                             <Grid container rowSpacing={4.5} columnSpacing={2.75}>

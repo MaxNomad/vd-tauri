@@ -34,7 +34,7 @@ const CounterItemScada = ({ props }) => {
                                 <b>
                                     {props?.counterValue ?? 'NaN'}
                                     <b> м³</b>
-                                    <Tooltip title="Зміна показника за добу в м³" placement="top-end">
+                                    <Tooltip title="Зміна показника за добу в м³" placement="bottom-end">
                                         <Chip
                                             variant="combined"
                                             color={props?.counterValueOld === 0 ? 'warning' : 'success'}

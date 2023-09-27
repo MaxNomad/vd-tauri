@@ -2,7 +2,6 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 use tauri::Manager;
 
-
 static mut GLOBAL_DOM_READY: bool = false;
 
 #[tauri::command]
@@ -12,6 +11,26 @@ fn dom_started() {
     }
 }
 
+#[tauri::command]
+fn get_current_pid() -> u32 {
+    std::process::id()
+}
+
+#[tauri::command]
+fn find_process(sys_info: Option<serde_json::Value>, sys_pid: Option<i32>) -> Option<serde_json::Value> {
+    if let (Some(sys_info), Some(sys_pid)) = (sys_info, sys_pid) {
+        if let Some(processes) = sys_info["processes"].as_array() {
+            for process in processes {
+                if let Some(pid) = process["pid"].as_i64() {
+                    if pid == sys_pid as i64 {
+                        return Some(process.clone());
+                    }
+                }
+            }
+        }
+    }
+    None
+}
 fn main() {
     tauri::Builder::default()
         .setup(|app| {
@@ -28,7 +47,9 @@ fn main() {
             });
             Ok(())
         })
-        .invoke_handler(tauri::generate_handler![dom_started])
+        .invoke_handler(tauri::generate_handler![dom_started, get_current_pid, find_process])
+        .plugin(tauri_plugin_store::Builder::default().build())
+        .plugin(tauri_plugin_system_info::init())
         .run(tauri::generate_context!())
         .expect("failed to run app");
 }

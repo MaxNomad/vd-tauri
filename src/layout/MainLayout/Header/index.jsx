@@ -10,6 +10,7 @@ import HeaderContent from './HeaderContent';
 
 // assets
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import { isTauri } from '@utils/Tauri';
 
 // ==============================|| MAIN LAYOUT - HEADER ||============================== //
 
@@ -42,8 +43,10 @@ const Header = ({ open, handleDrawerToggle }) => {
         position: 'fixed',
         color: 'inherit',
         elevation: 0,
+
         sx: {
-            borderBottom: `1px solid ${theme.palette.divider}`
+            borderBottom: `1px solid ${theme.palette.divider}`,
+            mt: isTauri ? 4 : 0
             // boxShadow: theme.customShadows.z1
         }
     };

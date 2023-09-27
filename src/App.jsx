@@ -21,35 +21,34 @@ import 'react-date-range/dist/theme/default.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'simplebar/src/simplebar.css';
 import '@assets/third-party/apex-chart.css';
-import './App.scss';
-
 
 const Fallback = ({ error, resetErrorBoundary }) => {
     return <AppError error={error} resetErrorBoundary={resetErrorBoundary} />;
-}
+};
 const App = () => {
-    return (<ErrorBoundary FallbackComponent={Fallback} onReset={(details) => { }}>
+    return (
         <ReduxProvider store={store}>
             <RouterContext>
                 <ConfigProvider>
                     <ThemeCustomization>
-                        <NetworkCheck>
-                            <AppUpdateNotification />
-                            <ScrollTop>
-                                <GoogleOAuthProvider clientId="481973527971-fkk5c04av94i9p0fubn3scr97cn7l14f.apps.googleusercontent.com">
-                                    <AuthContextProvider>
-                                        <Protected />
-                                        <Routes />
-                                    </AuthContextProvider>
-                                    <ToastInit />
-                                </GoogleOAuthProvider>
-                            </ScrollTop>
-                        </NetworkCheck>
+                        <ErrorBoundary FallbackComponent={Fallback} onReset={(details) => {}}>
+                            <NetworkCheck>
+                                <AppUpdateNotification />
+                                <ScrollTop>
+                                    <GoogleOAuthProvider clientId="481973527971-fkk5c04av94i9p0fubn3scr97cn7l14f.apps.googleusercontent.com">
+                                        <AuthContextProvider>
+                                            <Protected />
+                                            <Routes />
+                                        </AuthContextProvider>
+                                        <ToastInit />
+                                    </GoogleOAuthProvider>
+                                </ScrollTop>
+                            </NetworkCheck>
+                        </ErrorBoundary>
                     </ThemeCustomization>
                 </ConfigProvider>
             </RouterContext>
         </ReduxProvider>
-    </ErrorBoundary>
     );
 };
 export default App;

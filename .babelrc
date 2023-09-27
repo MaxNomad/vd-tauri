@@ -23,7 +23,8 @@
           "@themes": "./themes",
           "@routes": "./routes",
           "@data": "./data",
-          "@menuItems/*": "./menu-items"
+          "@menuItems/*": "./menu-items",
+          "@window/*": "./window"
         }
       }]
     ]

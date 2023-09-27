@@ -2,7 +2,7 @@ import { Tooltip } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 
 const TimeAgo = ({ targetTime, text = '' }) => {
-    const [target, setTarget] = useState(new Date(targetTime));
+    const [target, setTarget] = useState(targetTime);
     const [difference, setIime] = useState(new Date() - target);
 
     useEffect(() => {
@@ -32,7 +32,7 @@ const TimeAgo = ({ targetTime, text = '' }) => {
                 second: '2-digit'
             })}`;
             return (
-                <Tooltip title={formattedTime} placement="top">
+                <Tooltip title={formattedTime} placement="bottom">
                     <span>{`${text} вчора`}</span>
                 </Tooltip>
             );
@@ -54,7 +54,7 @@ const TimeAgo = ({ targetTime, text = '' }) => {
         })}`;
         const formattedTimeShort = `${text} ${targetTime.toLocaleString('uk-UA', { year: 'numeric', month: 'long', day: 'numeric' })}`;
         return (
-            <Tooltip title={formattedTime} placement="top">
+            <Tooltip title={formattedTime} placement="bottom">
                 <span>{formattedTimeShort}</span>
             </Tooltip>
         );

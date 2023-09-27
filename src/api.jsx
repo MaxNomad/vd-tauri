@@ -8,8 +8,7 @@ import { getClient, Body, ResponseType } from '@tauri-apps/api/http';
 
 let api;
 if (isTauri) {
-    
-    const client = await getClient();
+    const client = null;
     api = {
         async get(url, params = {}) {
             try {

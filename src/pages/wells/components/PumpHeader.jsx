@@ -10,7 +10,7 @@ import TimeAgo from '@pages/counters/components/timeAgo';
 
 const PumpHeader = ({ isOnline, Alarm, pressure, count, updateDate, address, id }) => {
     return (
-        <Tooltip title={`Загальна інформація про свердловину № ${id}`} placement="top">
+        <Tooltip title={`Загальна інформація про свердловину № ${id}`} placement="bottom">
             <MainCard contentSX={{ p: 2.25 }}>
                 <Grid container rowSpacing={4.5} columnSpacing={2.75}>
                     <Grid item xs={12} sm={6} md={6} lg={2.5}>

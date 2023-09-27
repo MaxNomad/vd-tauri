@@ -113,6 +113,7 @@
 html,
 body {
     transition: color 0.5s ease !important;
+    overflow: hidden;
 }
 
 .updateDialogText{

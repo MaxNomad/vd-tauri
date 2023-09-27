@@ -66,10 +66,6 @@ const Profile = () => {
 
     const handleLogout = async () => {
         dispatch(signOut());
-        removeToken();
-        removeTokenRef();
-        removeUser();
-        navigator('/app_window/login');
     };
 
     const anchorRef = useRef(null);
@@ -113,7 +109,6 @@ const Profile = () => {
                     <Typography variant="h6">{userData?.user_login}</Typography>
                     <Typography variant="body2" color="textSecondary">
                         Доступ:&nbsp;&nbsp;
-                        
                     </Typography>
                     <Chip label={userData?.wp_user_level} size="small" />
                 </Stack>

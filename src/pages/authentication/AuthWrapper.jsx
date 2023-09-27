@@ -15,7 +15,7 @@ import { isTauri } from '@utils/Tauri';
 // ==============================|| AUTHENTICATION - WRAPPER ||============================== //
 
 const AuthWrapper = ({ children }) => {
-    const height = !isTauri ? '95vh' : '100vh';
+    const height = isTauri ? `calc(90vh - 64px)` : '75vh';
     return (
         <Box className={'authContainer'}>
             <AuthBackground />
@@ -24,21 +24,14 @@ const AuthWrapper = ({ children }) => {
                 direction="column"
                 justifyContent="flex-end"
                 sx={{
-                    minHeight: height
+                    height: '100%'
                 }}
             >
                 <Grid item xs={12} sx={{ ml: 3, mt: 3 }}>
                     <Logo />
                 </Grid>
                 <Grid item xs={12}>
-                    <Grid
-                        item
-                        xs={12}
-                        container
-                        justifyContent="center"
-                        alignItems="center"
-                        sx={{ minHeight: { xs: `calc(${height} - 134px)`, md: `calc(${height} - 112px)` } }}
-                    >
+                    <Grid item xs={12} container justifyContent="center" alignItems="center" sx={{ minHeight: { xs: height, md: height } }}>
                         <Grid item>
                             <AuthCard>{children}</AuthCard>
                         </Grid>

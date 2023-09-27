@@ -56,7 +56,7 @@ const DashboardDefault = () => {
                         count={`${data?.alarms?.todayAlarms} аварій`}
                         percentage={data.alarms?.alarmsCountEverageYest}
                         isLoss={data?.alarms?.isLoss}
-                        color={data?.levels.color}
+                        color={data?.levels?.color}
                         extra={`${data?.alarms?.alarmsCountEverage}`}
                         extraText="Цього тижня на"
                     />
@@ -70,7 +70,7 @@ const DashboardDefault = () => {
                         count={`${data?.levels?.avarageLvl} см.`}
                         percentage={data.levels?.avarageLvlPers}
                         isLoss={data?.levels?.isLoss}
-                        color={data?.levels.color}
+                        color={data?.levels?.color}
                         extra={`${data?.levels?.avarageLvlPersLastWeek} %`}
                         extraText="Цього тижня середній рівень на"
                     />

@@ -143,7 +143,7 @@ const AlertsTableActive = ({ pumpID, status }) => {
     }, [page, rowsPerPage, timer, delCounter, reqData]);
 
     useEffect(() => {
-        if (data?.activeAlarmsListTotal !== 0 && data?.activeAlarmsList.length === 0) {
+        if (data?.activeAlarmsListTotal !== 0 && data?.activeAlarmsList?.length === 0) {
             setPage((p) => (p > 0 ? p - 1 : 0));
         }
     }, [data]);
@@ -210,7 +210,7 @@ const AlertsTableActive = ({ pumpID, status }) => {
                     '& td, & th': { whiteSpace: 'nowrap' }
                 }}
             >
-                {data?.activeAlarmsList.length !== 0 ? (
+                {data?.activeAlarmsList?.length !== 0 ? (
                     <Table
                         aria-labelledby="tableTitle"
                         sx={{

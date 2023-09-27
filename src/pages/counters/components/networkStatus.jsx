@@ -32,7 +32,7 @@ const DBMToSignalStrength = (dBm) => {
 const NetworkStatus = (props) => {
     const [signal, text] = DBMToSignalStrength(props?.props);
     return (
-        <Tooltip title={text} placement="top-start">
+        <Tooltip title={text} placement="bottom-start">
             <b>
                 <WifiStatus status={signal} width={20} />
             </b>

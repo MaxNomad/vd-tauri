@@ -23,6 +23,7 @@ import MainCard from '@components/MainCard';
 import config from '../../../../config';
 import { toastError, toastSuccess } from '@pages/components-overview/toasts';
 import useConfig from '@hooks/useConfig';
+import { GlobalStore } from '@utils/storage';
 
 // ==============================|| ACCOUNT PROFILE - SETTINGS ||============================== //
 
