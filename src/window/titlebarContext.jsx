@@ -1,7 +1,7 @@
 import { isTauri } from '@utils/Tauri';
-//import { appWindow } from '@tauri-apps/api/window';
+import { appWindow } from '@tauri-apps/api/window';
 
-const tauriWindow = isTauri ? null : null;
+const tauriWindow = isTauri ? appWindow : null;
 
 const titlebarContext = {
     exit() {
