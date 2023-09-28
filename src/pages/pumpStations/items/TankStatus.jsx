@@ -26,7 +26,11 @@ const TankStatus = ({ props, cols = 4 }) => {
                         pr: { lg: 2, md: 1, xs: 0.5 }
                     }}
                 >
-                    <Progress.Circle percent={((props?.value / props?.max) * 100).toFixed(0)} />
+                    <Progress.Circle
+                        percent={((props?.value / props?.max) * 100).toFixed(0)}
+                        trailColor={theme.palette.primary.lighter}
+                        strokeColor={theme.palette.primary.main}
+                    />
                 </Box>
                 <Chip label={`${props?.value} м³`} size="small" />
             </Box>

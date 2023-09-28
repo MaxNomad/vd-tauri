@@ -94,7 +94,7 @@ if (isTauri) {
             'Content-Type': 'application/json'
         }
     });
-    api.interceptors.request.use(function (config) {
+    api.interceptors.request.use((config) => {
         config.headers['Authorization'] = `Bearer ${getToken()}`;
         return config;
     });

@@ -37,7 +37,6 @@ const PnsSingle = ({ data, lastUpdate }) => {
     const renderTanks = data.levels.current.map((tank) => {
         return tank.exist ? <TankStatus props={tank} cols={2} /> : null;
     });
-    console.log(renderTanks);
     return (
         <>
             <Grid item xs={12} sm={6} md={6} lg={6} UWHD={4}>

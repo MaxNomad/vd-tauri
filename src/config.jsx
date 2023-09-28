@@ -1,5 +1,12 @@
 // ==============================|| THEME CONFIG  ||============================== //
 
+export const drawerWidth = 280;
+export const twitterColor = '#1DA1F2';
+export const facebookColor = '#3b5998';
+export const linkedInColor = '#0e76a8';
+
+export const inProdMode = true;
+
 const config = {
     defaultPath: '/',
     fontFamily: `'Public Sans', sans-serif`,
@@ -12,13 +19,7 @@ const config = {
     defaultChartUpdateTime: 60000,
     liqChartsPreset: localStorage.liqChartsPreset ? localStorage.liqChartsPreset : true,
     themeDirection: 'ltr',
-    apiUrl: 'http://localhost:8080/api/v1'
-    //apiUrl: 'https://api.vd.lutsk.ua/api/v1'
+    apiUrl: inProdMode ? 'https://api.vd.lutsk.ua/api/v1' : 'http://localhost:8080/api/v1'
 };
 
 export default config;
-export const drawerWidth = 280;
-
-export const twitterColor = '#1DA1F2';
-export const facebookColor = '#3b5998';
-export const linkedInColor = '#0e76a8';

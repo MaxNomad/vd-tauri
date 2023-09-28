@@ -1,11 +1,13 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { fileURLToPath, URL } from 'node:url'
-import { splitVendorChunkPlugin } from 'vite'
+
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
-  plugins: [react(), splitVendorChunkPlugin()],
-
+  plugins: [react()],
+  build: {
+    target: ['es2020', 'edge88', 'firefox78', 'chrome87', 'safari14']
+  },
   resolve: {
     alias: {
       '@components': fileURLToPath(new URL( './src/components', import.meta.url)),
@@ -36,15 +38,6 @@ export default defineConfig(async () => ({
     port: 1420,
     strictPort: true,
     host: '0.0.0.0'
-  },
-  css: {
-    preprocessorOptions: {
-      less: {
-        math: "always",
-        relativeUrls: true,
-        javascriptEnabled: true
-      },
-    },
   },
   // 3. to make use of `TAURI_DEBUG` and other env variables
   // https://tauri.studio/v1/api/config#buildconfig.beforedevcommand

@@ -11,7 +11,6 @@ const removeData = () => {
     removeToken();
     removeTokenRef();
     removeUser();
-    navigate.push('/login');
 };
 
 export const fetchUserData = createAsyncThunk('auth/fetchUserData', async () => {
