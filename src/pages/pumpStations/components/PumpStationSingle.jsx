@@ -17,6 +17,7 @@ import NumberWithAnimation from '@pages/kns/components/NumberWithAnimation';
 import PumpStatus from '@pages/kns/items/PumpStatus';
 import TankStatus from '../items/TankStatus';
 import TimeAgo from '@pages/counters/components/timeAgo';
+import BranchStatus from '../items/branchStatus';
 
 const PnsSingle = ({ data, lastUpdate }) => {
     const theme = useTheme();
@@ -31,12 +32,22 @@ const PnsSingle = ({ data, lastUpdate }) => {
         }
         return color;
     };
-    const renderPumps = data.pumps.map((pump) => {
-        return <PumpStatus isOnline={pump?.pumpActive} key={pump?.pumpID} cols={2} current={1} />;
-    });
-    const renderTanks = data.levels.current.map((tank) => {
-        return tank.exist ? <TankStatus props={tank} cols={2} /> : null;
-    });
+    const renderPumps = Array.isArray(data.pumps)
+        ? data.pumps.map((pump) => {
+              return <PumpStatus isOnline={pump?.pumpActive} key={pump?.pumpID} cols={2} current={1} />;
+          })
+        : null;
+    const renderTanks = Array.isArray(data.levels.current)
+        ? data.levels.current.map((tank) => {
+              return tank.exist ? <TankStatus props={tank} cols={2} /> : null;
+          })
+        : null;
+
+    const renderBranches = Array.isArray(data.outputBranches)
+        ? data.outputBranches.map((branch) => {
+              return branch.exist ? <BranchStatus props={branch} cols={4} /> : null;
+          })
+        : null;
     return (
         <>
             <Grid item xs={12} sm={6} md={6} lg={6} UWHD={4}>
@@ -80,34 +91,30 @@ const PnsSingle = ({ data, lastUpdate }) => {
                                                 Загальні дані
                                             </Typography>
                                             <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
-                                                Вхідний тиск з свердловин:&nbsp;&nbsp;
-                                                <Pressure num={data?.inputPressure} />
-                                                &nbsp;
-                                            </Typography>
-                                            <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
                                                 Вихідний тиск на місто:&nbsp;&nbsp;
                                                 <Pressure num={data?.outputPressure} />
                                                 &nbsp;
                                             </Typography>
-                                        </Grid>
 
-                                        <Grid item xs={12} sm={6} md={6} lg={6} sx={{ mt: -3.75 }}>
-                                            <Typography variant="h5" color="textSecondary" sx={{ mt: 1 }}>
-                                                Додатково
-                                            </Typography>
-                                            <Typography variant="h6" color="textSecondary" sx={{ mt: 1 }}>
+                                            <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
                                                 Загальний вхідний потік:&nbsp;&nbsp;
                                                 <b>
                                                     <NumberWithAnimation number={(data?.inputFlow ?? 0).toFixed(2)} one /> м³/год.{' '}
                                                 </b>
                                             </Typography>
-                                            <Typography variant="h6" color="textSecondary" sx={{ mt: 1 }}>
+                                            <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
                                                 Загальний вихідний потік:&nbsp;&nbsp;
                                                 <b>
                                                     <NumberWithAnimation number={(data?.outputFlow ?? 0).toFixed(2)} one /> м³/год.{' '}
                                                 </b>
                                             </Typography>
-                                            <Typography variant="h6" color="textSecondary" sx={{ mt: 1 }}>
+                                        </Grid>
+
+                                        <Grid item xs={12} sm={6} md={6} lg={6} sx={{ mt: -2.75 }}>
+                                            <Typography variant="h5" color="textSecondary">
+                                                Резервуар
+                                            </Typography>
+                                            <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
                                                 Загальна ємність:&nbsp;&nbsp;
                                                 <b>
                                                     <NumberWithAnimation number={data?.levels?.global} rev /> м³{' '}
@@ -126,7 +133,13 @@ const PnsSingle = ({ data, lastUpdate }) => {
                                                 </b>
                                             </Typography>
                                         </Grid>
-                                        <Grid item xs={12} sx={{ mt: -3.25 }}>
+                                        
+                                        <Grid item xs={12} sx={{ mt: -2.25 }}>
+                                        <Divider/>
+                                        </Grid>
+                                        {renderBranches}
+                                        
+                                        <Grid item xs={12} sx={{ mt: -2.25 }}>
                                             <Typography variant="h5" color="textSecondary">
                                                 Насоси
                                                 <Divider />

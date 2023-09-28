@@ -14,7 +14,7 @@ const NetworkCheck = ({ children }) => {
         dispatch(getGitData());
     };
     const dispatchUser = () => {
-        if (getToken()) dispatch(fetchUserData());
+        getToken() && dispatch(fetchUserData());
     };
 
     useEffect(() => {
