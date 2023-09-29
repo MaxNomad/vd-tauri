@@ -188,10 +188,6 @@ const AlertsTableAll = ({ pumpID }) => {
         props: PropTypes.object
     };
     const handleClose = () => {
-        setTableAlertName('');
-        setTableDate('');
-        setTableAlertID('');
-        setTableAlertPriority(0);
         setTableAlertState(false);
         setOpenModal(false);
     };

@@ -68,11 +68,11 @@ const KnsSinglePage = () => {
                                     count={data?.alarmsAmount}
                                 />
                                 <Grid container rowSpacing={4.5} columnSpacing={2.75}>
-                                    <Grid item xs={12} md={5} lg={5} sx={{ mt: 4 }}>
+                                    <Grid item xs={12} md={5} lg={7} xl={5} sx={{ mt: 4 }}>
                                         <Typography variant="h5">Резервуар</Typography>
                                         <TankItem levels={data?.levels} />
                                     </Grid>
-                                    <Grid item xs={12} md={7} lg={7} sx={{ mt: 4 }}>
+                                    <Grid item xs={12} md={7} lg={12} xl={7} sx={{ mt: {lg: 0, xl: 4} }}>
                                         <Typography variant="h5">Насоси</Typography>
                                         <MainCard sx={{ mt: 2 }}>
                                             <Grid container rowSpacing={4.5} columnSpacing={2.75}>
@@ -98,7 +98,7 @@ const KnsSinglePage = () => {
                                     <Grid item xs={12} md={12} lg={12} sx={{ mb: -2 }}>
                                         <Typography variant="h5">Статус Аварій</Typography>
                                     </Grid>
-                                    <Grid item xs={12} md={4} lg={4}>
+                                    <Grid item xs={12} md={4} lg={6} xl={4}>
                                         <Status
                                             title={'Глобальний статус КНС'}
                                             text={!data?.alarms?.globalAlarm ? 'В нормі' : 'Виявлено несправності в роботі'}
@@ -108,7 +108,7 @@ const KnsSinglePage = () => {
                                             }
                                         />
                                     </Grid>
-                                    <Grid item xs={12} md={4} lg={4}>
+                                    <Grid item xs={12} md={4} lg={6} xl={4}>
                                         <Status
                                             title={'Статус електропостачання'}
                                             text={!data?.alarms?.powerAlarm ? 'В нормі' : 'Збій електропостачання'}
@@ -120,7 +120,7 @@ const KnsSinglePage = () => {
                                             }
                                         />
                                     </Grid>
-                                    <Grid item xs={12} md={4} lg={4}>
+                                    <Grid item xs={12} md={4} lg={6} xl={4}>
                                         <Status
                                             title={'Режим роботи насосів'}
                                             text={!data?.warnings?.allManual ? 'В нормі' : 'Всі насоси в ручному режимі'}
@@ -132,7 +132,7 @@ const KnsSinglePage = () => {
                                             }
                                         />
                                     </Grid>
-                                    <Grid item xs={12} md={4} lg={4}>
+                                    <Grid item xs={12} md={4} lg={6} xl={4}>
                                         <Status
                                             title={'Рівень - Перелив'}
                                             text={
@@ -152,7 +152,7 @@ const KnsSinglePage = () => {
                                             }
                                         />
                                     </Grid>
-                                    <Grid item xs={12} md={4} lg={4}>
+                                    <Grid item xs={12} md={4} lg={6} xl={4}>
                                         <Status
                                             title={'Рівень - Сухий хід'}
                                             text={!data?.warnings?.dryRun ? 'Вище встановленого значення' : 'Нижче встановленого значення'}
@@ -168,7 +168,7 @@ const KnsSinglePage = () => {
                                             }
                                         />
                                     </Grid>
-                                    <Grid item xs={12} md={4} lg={4}>
+                                    <Grid item xs={12} md={4} lg={6} xl={4}>
                                         <Status
                                             title={'Підтоплення'}
                                             text={!data?.alarms?.floodingAlarm ? 'Рівень вологості нормі' : 'Критичний рівень вологості'}
@@ -176,7 +176,7 @@ const KnsSinglePage = () => {
                                             extraText={!data?.alarms?.floodingAlarm ? 'Проблем не виявлено' : 'Вода в робочому секторі'}
                                         />
                                     </Grid>
-                                    <Grid item xs={12} md={4} lg={4}>
+                                    <Grid item xs={12} md={4} lg={6} xl={4}>
                                         <Status
                                             title={'Статус зонду'}
                                             text={!data?.alarms?.zondAlarm ? 'В нормі' : 'Критична аварія'}
@@ -184,7 +184,7 @@ const KnsSinglePage = () => {
                                             extraText={!data?.alarms?.zondAlarm ? 'Проблем не виявлено' : 'Виявлено збої в роботі зонду'}
                                         />
                                     </Grid>
-                                    <Grid item xs={12} md={4} lg={4}>
+                                    <Grid item xs={12} md={4} lg={6} xl={4}>
                                         <Status
                                             title={'Статус поплавків'}
                                             text={!data?.alarms?.floatAlarm ? 'В нормі' : 'Критична аварія'}
@@ -194,7 +194,7 @@ const KnsSinglePage = () => {
                                             }
                                         />
                                     </Grid>
-                                    <Grid item xs={12} md={4} lg={4}>
+                                    <Grid item xs={12} md={4} lg={6} xl={4}>
                                         <Status
                                             title={'Статус дверей'}
                                             text={!data?.warnings?.doorIsOpen ? 'Закриті' : 'Відкриті'}

@@ -1,5 +1,3 @@
-import { GlobalStore } from '@utils/storage';
-
 export const getToken = () => {
     return localStorage.getItem('access_token');
 };

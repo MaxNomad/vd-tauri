@@ -14,7 +14,7 @@ const KNSHeader = ({ isOnline, Alarm, levels, count, updateDate, address, id }) 
             <MainCard contentSX={{ p: 2.25 }}>
                 <Grid container rowSpacing={4.5} columnSpacing={2.75}>
                     <Grid item xs={12} sm={6} md={6} lg={2.5}>
-                        <Typography variant="h5" color="textSecondary">
+                        <Typography variant="h5" noWrap color="textSecondary">
                             КНС № {id} - {address}
                         </Typography>
                     </Grid>

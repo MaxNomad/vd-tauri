@@ -186,10 +186,6 @@ const AlertsTableAll = ({ knsID }) => {
         state: PropTypes.number
     };
     const handleClose = () => {
-        setTableAlertName('');
-        setTableDate('');
-        setTableAlertID('');
-        setTableAlertPriority(0);
         setTableAlertState(false);
         setOpenModal(false);
     };

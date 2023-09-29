@@ -1,4 +1,22 @@
-import { Box, Typography, Grid, Button, Modal, Tooltip } from '@mui/material';
+import {
+    Box,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Typography,
+    Grid,
+    Button,
+    Chip,
+    Tooltip,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+    DialogContentText
+} from '@mui/material';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import React from 'react';
 import OrderStatus from './OrderStatus';
@@ -22,59 +40,55 @@ const ModalDelete = ({ props, disableSingleAlert, handleClose }) => {
         pb: 2
     };
     return (
-        <Modal
+        <Dialog
             open={props?.open}
             onClose={() => handleClose()}
             aria-labelledby="child-modal-title"
             aria-describedby="child-modal-description"
         >
-            <Box sx={{ ...style, width: { lg: 600, md: 520, xs: 360 } }}>
-                <Grid container>
-                    <Grid item lg={12} md={12} xs={12}>
-                        <Typography variant="h5">Деактивація аварії</Typography>
-                        <Typography variant="h6" color="secondary" sx={{ pt: 1, pb: 2 }}>
-                            <OrderStatus status={props?.tableAlertPrority} />
-                            <Box sx={{ mt: 1, mb: 1 }}>
-                                <p />
-                                <b>Назва: </b>
-                                {props?.tableAlertName}
-                                <p />
-                                <b>ID: </b>
-                                {props?.tableAlertID}
-                                <p />
-                                <b>Дата запису: </b>
-                                {new Date(props?.tableDate).toLocaleString()}
-                            </Box>
-                            <AlertStatus status={props?.tableAlertPrority} />
-                        </Typography>
-                    </Grid>
-                    <Grid item lg={6} md={6} xs={6}>
-                        <Button
-                            variant="contained"
-                            onClick={() => disableSingleAlert()}
-                            color="error"
-                            disabled={props?.tableAlertPrority === 2}
-                        >
-                            Прийняти
+            <DialogTitle>
+                <Typography variant="h5">Деактивація аварії</Typography>
+            </DialogTitle>
+            <DialogContent dividers>
+                <DialogContentText>
+                    <Typography variant="h6" color="secondary">
+                        <OrderStatus status={props?.tableAlertPrority} />
+                        <Box sx={{ mt: 1, mb: 1 }}>
+                            <p />
+                            <b>Назва: </b>
+                            {props?.tableAlertName}
+                            <p />
+                            <b>ID: </b>
+                            {props?.tableAlertID}
+                            <p />
+                            <b>Дата запису: </b>
+                            {new Date(props?.tableDate).toLocaleString()}
+                        </Box>
+                        <AlertStatus status={props?.tableAlertPrority} />
+                    </Typography>
+                </DialogContentText>
+            </DialogContent>
+            <DialogActions sx={{ display: 'flex', justifyContent: 'space-between', p: 3 }}>
+                <Button variant="contained" onClick={() => handleClose()} color="success">
+                    Скасувати
+                </Button>
+                <div>
+                    <Tooltip title="Деактивація аварій з високим пріорітетом неможлива при аварійному статусі об'єкту." placement="bottom">
+                        <Button sx={{ p: 0, minWidth: 0, mr: 2 }}>
+                            <QuestionCircleOutlined style={{ fontSize: '24px', color: 'rgb(255 212 0)' }} />
                         </Button>
-
-                        <Tooltip
-                            title="Деактивація аварій з високим пріорітетом неможлива при аварійному статусі об'єкту."
-                            placement="bottom"
-                        >
-                            <Button sx={{ p: 0, minWidth: 0, ml: 2 }}>
-                                <QuestionCircleOutlined style={{ fontSize: '24px', color: 'rgb(255 212 0)' }} />
-                            </Button>
-                        </Tooltip>
-                    </Grid>
-                    <Grid item lg={6} md={6} xs={6} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <Button variant="contained" onClick={() => handleClose()} color="success">
-                            Скасувати
-                        </Button>
-                    </Grid>
-                </Grid>
-            </Box>
-        </Modal>
+                    </Tooltip>
+                    <Button
+                        variant="contained"
+                        onClick={() => disableSingleAlert()}
+                        color="error"
+                        disabled={props?.tableAlertPrority === 2}
+                    >
+                        Прийняти
+                    </Button>
+                </div>
+            </DialogActions>
+        </Dialog>
     );
 };
 

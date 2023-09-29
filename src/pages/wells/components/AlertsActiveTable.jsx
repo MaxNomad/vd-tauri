@@ -165,10 +165,6 @@ const AlertsTableActive = ({ pumpID, status }) => {
 
     const handleClose = () => {
         setOpen(false);
-        setTableAlertName('');
-        setTableDate('');
-        setTableAlertID('');
-        setTableAlertPriority(0);
     };
 
     const disableSingleAlert = () => {

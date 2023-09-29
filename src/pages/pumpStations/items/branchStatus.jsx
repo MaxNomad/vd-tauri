@@ -8,12 +8,12 @@ import { useTheme } from '@mui/material/styles';
 import Pressure from './Pressure';
 import NumberWithAnimation from '@pages/kns/components/NumberWithAnimation';
 
-const BranchStatus = ({ props, cols = 4 }) => {
+const BranchStatus = ({ props, cols = 2 }) => {
     const theme = useTheme();
     const matchDownMD = useMediaQuery(theme.breakpoints.up('sm'));
 
     return (
-        <Grid item xs={12} sm={6} md={cols} lg={cols} sx={{ mt: -2.25, mb: 0.5 }}>
+        <Grid item xs={12} sm={6} md={6} lg={6} xl={4} sx={{ mt: -2.25, mb: 0.5 }}>
             <Box direction="column">
                 <Typography variant="h5" color="textSecondary">
                     Гілка №{props?.id}

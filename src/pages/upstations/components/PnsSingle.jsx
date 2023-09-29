@@ -57,7 +57,7 @@ const PnsSingle = ({ data, lastUpdate }) => {
     });
     return (
         <>
-            <Grid item xs={12} sm={6} md={6} lg={4} UWHD={3}>
+            <Grid item xs={12} sm={12} md={6} lg={6} xl={4} UWHD={3}>
                 {/*<Tooltip title={`Переглянути інформацію про ПНС №${data?.pnsID}`} placement="bottom">*/}
                 {/*  <Link to={`/pump-single?id=${data?.pnsID}`} style={{ textDecoration: 'none' }}> */}
                 <MainCard contentSX={{ p: 2.25, borderColor: AlarmColor() }} borderCustom>

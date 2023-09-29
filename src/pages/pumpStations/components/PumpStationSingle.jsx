@@ -50,7 +50,7 @@ const PnsSingle = ({ data, lastUpdate }) => {
         : null;
     return (
         <>
-            <Grid item xs={12} sm={6} md={6} lg={6} UWHD={4}>
+            <Grid item xs={12} sm={12} md={6} lg={6} xl={6} UWHD={3}>
                 <Tooltip title={`Переглянути інформацію про НС №${data?.nsID}`} placement="bottom">
                     <Link to={`/pumpstation-single?id=${data?.nsID}`} style={{ textDecoration: 'none' }}>
                         <MainCard contentSX={{ p: 2.25, borderColor: AlarmColor() }} borderCustom hoverActive>
@@ -99,13 +99,13 @@ const PnsSingle = ({ data, lastUpdate }) => {
                                             <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
                                                 Загальний вхідний потік:&nbsp;&nbsp;
                                                 <b>
-                                                    <NumberWithAnimation number={(data?.inputFlow ?? 0).toFixed(2)} one /> м³/год.{' '}
+                                                    <NumberWithAnimation number={(data?.inputFlow ?? 0).toFixed(0)} one /> м³/год.{' '}
                                                 </b>
                                             </Typography>
                                             <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
                                                 Загальний вихідний потік:&nbsp;&nbsp;
                                                 <b>
-                                                    <NumberWithAnimation number={(data?.outputFlow ?? 0).toFixed(2)} one /> м³/год.{' '}
+                                                    <NumberWithAnimation number={(data?.outputFlow ?? 0).toFixed(0)} one /> м³/год.{' '}
                                                 </b>
                                             </Typography>
                                         </Grid>
@@ -121,7 +121,7 @@ const PnsSingle = ({ data, lastUpdate }) => {
                                                 </b>{' '}
                                                 (
                                                 <NumberWithAnimation
-                                                    number={((data?.levels?.global / data?.levels?.max) * 100).toFixed(2)}
+                                                    number={((data?.levels?.global / data?.levels?.max) * 100).toFixed(1)}
                                                     rev
                                                 />{' '}
                                                 %)

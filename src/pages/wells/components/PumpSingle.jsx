@@ -30,7 +30,7 @@ const PumpSingle = ({ data, lastUpdate }) => {
 
     return (
         <>
-            <Grid item xs={12} sm={6} md={6} lg={4} UWHD={3}>
+            <Grid item xs={12} sm={12} md={6} lg={6} xl={4} UWHD={3}>
                 <Tooltip title={`Переглянути інформацію про свердловину №${data?.pumpID}`} placement="bottom">
                     <Link to={`/pump-single?id=${data?.pumpID}`} style={{ textDecoration: 'none' }}>
                         <MainCard contentSX={{ p: 2.25, borderColor: AlarmColor() }} hoverActive borderCustom>
@@ -109,17 +109,17 @@ const PumpSingle = ({ data, lastUpdate }) => {
                                             </Typography>
                                             <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
                                                 Тиск:&nbsp;&nbsp;
-                                                <Pressure num={data?.pressure} />
+                                                <Pressure num={data?.pressure === -1 ? "NaN" : data?.pressure } />
                                                 &nbsp;
                                             </Typography>
                                             <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
                                                 Лічильник води:&nbsp;&nbsp;
-                                                <NumberWithAnimation number={(data?.waterMeter ?? 0).toFixed(2)} one />
+                                                <NumberWithAnimation number={(data?.waterMeter ?? 0).toFixed(0)} one />
                                                 &nbsp;<b>м³</b>
                                             </Typography>
                                             <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
                                                 Миттєва втрата:&nbsp;&nbsp;
-                                                <NumberWithAnimation number={(data?.InstWconsumption ?? 0).toFixed(2)} />
+                                                <NumberWithAnimation number={(data?.InstWconsumption ?? 0).toFixed(0)} />
                                                 &nbsp;<b>м³/год</b>
                                             </Typography>
                                         </Grid>

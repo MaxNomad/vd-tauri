@@ -9,21 +9,22 @@ import { useTheme } from '@mui/material/styles';
 const TankStatus = ({ props, cols = 4 }) => {
     const theme = useTheme();
     const matchDownMD = useMediaQuery(theme.breakpoints.up('sm'));
+    const matchDownLG = useMediaQuery(theme.breakpoints.up('lg'));
     const CircleStyle = {
         width: matchDownMD ? '7.65em' : '6.65em',
         display: 'inline-block',
         marginBottom: 16
     };
     return (
-        <Grid item xs={4} sm={4} md={cols} lg={cols} sx={{ mt: -2.25, mb: 0.5 }}>
+        <Grid item xs={4} sm={4} md={cols} lg={2} xl={cols} sx={{ mt: -2.25, mb: 0.5 }}>
             <Box direction="column" align="center">
                 <Box
                     style={CircleStyle}
                     sx={{
-                        ml: { lg: 0, md: 1 },
-                        mt: { lg: 0.8, md: 1, xs: 0.5 },
-                        pl: { lg: 2, md: 1, xs: 0.5 },
-                        pr: { lg: 2, md: 1, xs: 0.5 }
+                        ml: { xl: 0, lg: -2, md: 1 },
+                        mt: { xl: 0.8, lg: 0.8, md: 1, xs: 0.5 },
+                        pl: { xl: 2, lg: 3, md: 1, xs: 0.5 },
+                        pr: { xl: 2, lg: 3, md: 1, xs: 0.5 }
                     }}
                 >
                     <Progress.Circle

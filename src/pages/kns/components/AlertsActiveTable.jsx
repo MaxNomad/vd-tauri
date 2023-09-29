@@ -168,11 +168,6 @@ const AlertsTableActive = ({ knsID, status }) => {
 
     const handleClose = () => {
         setOpen(false);
-        setTableAlertName('');
-        setTableDate('');
-        setTableAlertID('');
-        setTableAlertState(false);
-        setTableAlertPriority(0);
     };
 
     const disableSingleAlert = () => {

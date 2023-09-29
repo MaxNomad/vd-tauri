@@ -9,7 +9,7 @@ import React from 'react';
 
 const GrateItem = ({ props }) => {
     return (
-        <Grid item xs={12} sm={6} md={3} lg={2}>
+        <Grid item xs={12} sm={6} md={3} lg={3} xl={2}>
             <MainCard>
                 <Grid container rowSpacing={4.5} columnSpacing={2.75}>
                     <Grid item xs={7} sm={7} md={7} lg={7}>
