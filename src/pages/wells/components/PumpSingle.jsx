@@ -98,13 +98,13 @@ const PumpSingle = ({ data, lastUpdate }) => {
                                             </Typography>
                                             <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
                                                 Напрацьовано:&nbsp;&nbsp;
-                                                <NumberWithAnimation number={(data?.pump?.engineHours ?? 0).toFixed(2)} one />
+                                                <NumberWithAnimation number={(data?.pump?.engineHours ?? 0).toFixed(0)} one />
                                                 &nbsp;<b>Год</b>
                                             </Typography>
                                             <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
                                                 Кількість запусків:&nbsp;&nbsp;
                                                 <b>
-                                                    <NumberWithAnimation number={(data?.pump?.runTimes ?? 0).toFixed(2)} one />
+                                                    <NumberWithAnimation number={(data?.pump?.runTimes ?? 0).toFixed(0)} one />
                                                 </b>
                                             </Typography>
                                             <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
