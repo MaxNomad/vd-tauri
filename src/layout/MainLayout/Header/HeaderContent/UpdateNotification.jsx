@@ -72,7 +72,7 @@ const UpdateNotification = () => {
                     </Badge>
                 </Button>
             ) : (
-                <Tooltip title={`Встановлена остання версія`} placement="top">
+                <Tooltip title={`Встановлена остання версія`} placement="left">
                     <Badge variant="dot" color={'success'} size="xs" sx={{ mr: 1.2 }}>
                         <CloudSyncOutlined style={{ fontSize: '18px' }} />
                     </Badge>
