@@ -6,15 +6,16 @@ import PropTypes from 'prop-types';
 
 const OAuthMiddleware = () => {
     const navigate = useNavigate();
-    const token = localStorage.getItem('access_token');
+    const tokenRef = getTokenRef();
+    const token = getToken()
     useEffect(() => {
         if (token) {
             try {
                 const data = jwt_decode(token);
-                if (!getToken() && !getTokenRef() && data) {
+                if (!tokenRef && !tokenRef && data) {
                     navigate('/login');
                 }
-                if (getToken() && getTokenRef() && data && window.location.pathname === '/login') {
+                if (tokenRef && tokenRef && data && window.location.pathname === '/login') {
                     navigate('/dash');
                 }
             } catch (error) {

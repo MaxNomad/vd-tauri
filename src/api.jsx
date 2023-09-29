@@ -89,6 +89,7 @@ if (isTauri) {
     api = axios.create({
         baseURL: config.apiUrl,
         timeout: apiTimeout * 1000,
+        validateStatus: false,
         headers: {
             Authorization: `Bearer ${getToken()}`,
             'Content-Type': 'application/json'

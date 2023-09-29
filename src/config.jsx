@@ -11,7 +11,7 @@ const config = {
     defaultPath: '/',
     fontFamily: `'Public Sans', sans-serif`,
     i18n: 'uk',
-    miniDrawer: false,
+    miniDrawer: true,
     container: true,
     mode: localStorage.themeMode ? localStorage.themeMode : 'dark',
     presetColor: localStorage.presetColor ? localStorage.presetColor : 'default',
