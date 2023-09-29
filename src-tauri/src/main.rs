@@ -47,9 +47,10 @@ fn main() {
             });
             Ok(())
         })
+
         .invoke_handler(tauri::generate_handler![dom_started, get_current_pid, find_process])
         .plugin(tauri_plugin_store::Builder::default().build())
-        .plugin(tauri_plugin_system_info::init())
+        //.plugin(tauri_plugin_system_info::init())
         .run(tauri::generate_context!())
         .expect("failed to run app");
 }

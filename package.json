@@ -72,7 +72,6 @@
     "sass-loader": "^13.3.2",
     "simplebar": "^5.3.8",
     "simplebar-react": "^2.4.1",
-    "tauri-plugin-store-api": "https://github.com/tauri-apps/tauri-plugin-store#v1",
     "tauri-plugin-system-info-api": "^0.1.1",
     "web-vitals": "^3.0.2",
     "yup": "^0.32.11"

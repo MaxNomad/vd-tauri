@@ -2624,7 +2624,7 @@
   dependencies:
     defer-to-connect "^2.0.0"
 
-"@tauri-apps/api@1.4.0", "@tauri-apps/api@^1.0.0", "@tauri-apps/api@^1.4.0":
+"@tauri-apps/api@^1.0.0", "@tauri-apps/api@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@tauri-apps/api/-/api-1.4.0.tgz#b4013ca3d17b853f7df29fe14079ebb4d52dbffa"
   integrity sha512-Jd6HPoTM1PZSFIzq7FB8VmMu3qSSyo/3lSwLpoapW+lQ41CL5Dow2KryLg+gyazA/58DRWI9vu/XpEeHK4uMdw==
@@ -11623,12 +11623,6 @@ tapable@^2.0.0, tapable@^2.1.1, tapable@^2.2.0:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-2.2.1.tgz#1967a73ef4060a82f12ab96af86d52fdb76eeca0"
   integrity sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==
-
-"tauri-plugin-store-api@https://github.com/tauri-apps/tauri-plugin-store#v1":
-  version "0.0.0"
-  resolved "https://github.com/tauri-apps/tauri-plugin-store#66e06b7830037fdae0b42b5499e23334eaf4e017"
-  dependencies:
-    "@tauri-apps/api" "1.4.0"
 
 tauri-plugin-system-info-api@^0.1.1:
   version "0.1.1"
