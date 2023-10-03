@@ -68,13 +68,14 @@ const Profile = () => {
 
     const handleLogout = async () => {
         dispatch(signOut());
+        navigator('/login');
     };
 
     useEffect(() => {
         if (authData?.signOut && authData?.access_token === null && authData?.refresh_token === null) {
             navigator('/login');
         }
-    }, [authData?.access_token]);
+    }, [authData?.access_token, authData?.signOut]);
 
     const anchorRef = useRef(null);
     const [open, setOpen] = useState(false);

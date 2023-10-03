@@ -24,6 +24,7 @@ import AlertStatus from './AlertStatus';
 import { useTheme } from '@mui/material/styles';
 
 const ModalDelete = ({ props, disableSingleAlert, handleClose }) => {
+    console.log(props)
     const theme = useTheme();
     const style = {
         position: 'absolute',
@@ -82,7 +83,7 @@ const ModalDelete = ({ props, disableSingleAlert, handleClose }) => {
                         variant="contained"
                         onClick={() => disableSingleAlert()}
                         color="error"
-                        disabled={props?.tableAlertPrority === 2}
+                        // disabled={props?.tableAlertPrority === 0}
                     >
                         Прийняти
                     </Button>

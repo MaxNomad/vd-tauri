@@ -14,7 +14,7 @@ import ComponentSkeletonKns from '@pages/components-overview/ComponentSkeletonKN
 const WellsRoot = () => {
     const dispatch = useDispatch();
 
-    const { data, loading, error } = useSelector((state) => state.PumpRoot);
+    const { data, loading, error , empty} = useSelector((state) => state.PumpRoot);
     const [updateTime, setUpdateTime] = useState();
     const [timer, setTimer] = useState(Date.now());
     const [firstLoad, setFirstLoad] = useState(false);
@@ -63,7 +63,7 @@ const WellsRoot = () => {
                 <SmallWellListProps data={objectsSortedPerms} />
             </Grid>
             <ComponentSkeletonKns renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
-                {firstLoad && permsArray.length !== 0 ? (
+                {firstLoad && !empty ? (
                     <Grid container rowSpacing={4.5} columnSpacing={2.75}>
                         <Grid item xs={12} sx={{ mb: -2.25 }}>
                             <Typography variant="h5">Об`єкти</Typography>

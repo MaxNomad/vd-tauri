@@ -16,14 +16,15 @@ import AppUpdateNotification from '@utils/TauriUpdater';
 import Loader from '@components/Loader';
 import AppError from '@pages/AppError';
 import * as Sentry from '@sentry/react';
-import { appVersion } from '@utils/Tauri';
+import { appVersion, isTauri } from '@utils/Tauri';
+import { inProdMode } from './config';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import 'rsuite/dist/rsuite.min.css';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'simplebar/src/simplebar.css';
 import '@assets/third-party/apex-chart.css';
-import { inProdMode } from './config';
 
 Sentry.init({
     enabled: inProdMode,
@@ -43,12 +44,13 @@ Sentry.init({
     replaysOnErrorSampleRate: 1.0 // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
 });
 
+
 const Fallback = ({ error, componentStack, resetError }) => {
     return <AppError error={error} resetErrorBoundary={resetError} stack={componentStack} />;
 };
 const App = () => {
     const [loading, setLoading] = React.useState(false);
-
+    isTauri ? disableBodyScroll(document) : enableBodyScroll(document)
     React.useEffect(() => {
         setLoading(true);
     }, []);

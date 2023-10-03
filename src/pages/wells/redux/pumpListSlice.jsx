@@ -11,6 +11,7 @@ export const PumpRoot = createSlice({
     initialState: {
         data: [],
         loading: 'idle',
+        epmty: true,
         error: null
     },
     reducers: {},
@@ -23,6 +24,7 @@ export const PumpRoot = createSlice({
         builder.addCase(getPumpRoot.fulfilled, (state, action) => {
             if (state.loading === 'pending') {
                 state.data = action.payload;
+                state.empty = action.payload.length > 0 ? false : true;
                 state.loading = 'idle';
             }
         });

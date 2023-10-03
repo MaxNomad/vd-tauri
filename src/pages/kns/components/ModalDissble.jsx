@@ -82,7 +82,7 @@ const ModalDelete = ({ props, disableSingleAlert, handleClose }) => {
                         variant="contained"
                         onClick={() => disableSingleAlert()}
                         color="error"
-                        disabled={props?.tableAlertPrority === 2}
+                        // disabled={props?.tableAlertPrority === 2}
                     >
                         Прийняти
                     </Button>
