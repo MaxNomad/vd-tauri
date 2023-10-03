@@ -10,11 +10,12 @@ import SmallWellListProps from './components/smallWellListProps';
 import permsCheck from '@pages/authentication/context/permsCheck';
 import parseID from '@utils/getObjID';
 import ComponentSkeletonKns from '@pages/components-overview/ComponentSkeletonKNS';
+import NotFound from '@pages/notFound';
 
 const WellsRoot = () => {
     const dispatch = useDispatch();
 
-    const { data, loading, error , empty} = useSelector((state) => state.PumpRoot);
+    const { data, loading, error, empty } = useSelector((state) => state.PumpRoot);
     const [updateTime, setUpdateTime] = useState();
     const [timer, setTimer] = useState(Date.now());
     const [firstLoad, setFirstLoad] = useState(false);
@@ -58,32 +59,29 @@ const WellsRoot = () => {
 
     return (
         <>
-            {' '}
-            <Grid item xs={12} md={12} lg={12} sx={{ mt: 1, mb: 2 }}>
-                <SmallWellListProps data={objectsSortedPerms} />
-            </Grid>
-            <ComponentSkeletonKns renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
-                {firstLoad && !empty ? (
-                    <Grid container rowSpacing={4.5} columnSpacing={2.75}>
-                        <Grid item xs={12} sx={{ mb: -2.25 }}>
-                            <Typography variant="h5">Об`єкти</Typography>
-                        </Grid>
-                        {renderPumps}
+            {!empty && permsArray.length !== 0 ? (
+                <>
+                    <Grid item xs={12} md={12} lg={12} sx={{ mt: 1, mb: 2 }}>
+                        <SmallWellListProps data={objectsSortedPerms} />
                     </Grid>
-                ) : (
-                    <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" sx={{ mt: '27vh' }}>
-                        <Typography variant="h1" color="primary" gutterBottom>
-                            404
-                        </Typography>
-                        <Typography variant="h4" color="textPrimary" align="center" gutterBottom>
-                            Свердловини відсутні
-                        </Typography>
-                        <Typography variant="body1" color="textSecondary" align="center" sx={{ mb: 3 }}>
-                            Перевірте налаштування панелі
-                        </Typography>
-                    </Box>
-                )}
-            </ComponentSkeletonKns>
+                    <ComponentSkeletonKns renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
+                        {firstLoad ? (
+                            <>
+                                <Grid container rowSpacing={4.5} columnSpacing={2.75}>
+                                    <Grid item xs={12} sx={{ mb: -2.25 }}>
+                                        <Typography variant="h5">Об`єкти</Typography>
+                                    </Grid>
+                                    {renderPumps}
+                                </Grid>
+                            </>
+                        ) : (
+                            <NotFound />
+                        )}
+                    </ComponentSkeletonKns>
+                </>
+            ) : (
+                <NotFound code={400} text="Доступ заборонено" subText={'У вас немає прав на перегляд строніки'} />
+            )}
         </>
     );
 };

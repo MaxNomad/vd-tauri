@@ -10,6 +10,7 @@ import { getPnsRoot } from './redux/pnsListSlice';
 import permsCheck from '@pages/authentication/context/permsCheck';
 import parseID from '@utils/getObjID';
 import ComponentSkeletonKns from '@pages/components-overview/ComponentSkeletonKNS';
+import NotFound from '@pages/notFound';
 
 const UpstationsRoot = () => {
     const dispatch = useDispatch();
@@ -52,9 +53,10 @@ const UpstationsRoot = () => {
         [updateTime, data]
     );
     return (
-        <>
+        <>{!empty && permsArray.length !== 0 ? 
+            <>
             <ComponentSkeletonKns renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
-                {firstLoad && !empty ? (
+                {firstLoad ? (
                     <Grid container rowSpacing={4.5} columnSpacing={2.75}>
                         <Grid item xs={12} sx={{ mb: -2.25 }}>
                             <Typography variant="h5">Об`єкти</Typography>
@@ -62,21 +64,12 @@ const UpstationsRoot = () => {
                         {renderPns}
                     </Grid>
                 ) : (
-                    <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" sx={{ mt: '30vh' }}>
-                        <Typography variant="h1" color="primary" gutterBottom>
-                            404
-                        </Typography>
-                        <Typography variant="h4" color="textPrimary" align="center" gutterBottom>
-                            Об`єкти ПНС відсутні
-                        </Typography>
-                        <Typography variant="body1" color="textSecondary" align="center" sx={{ mb: 3 }}>
-                            Перевірте налаштування панелі
-                        </Typography>
-                    </Box>
+                    <NotFound/>
                 )}
             </ComponentSkeletonKns>
         </>
-    );
+        : <NotFound code={400} text="Доступ заборонено" subText={'У вас немає прав на перегляд строніки'} />}
+    </>);
 };
 
 export default UpstationsRoot;

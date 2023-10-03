@@ -9,6 +9,7 @@ import config from '../../config';
 import { getRootPumpStation } from './redux/PumpStationListSlice';
 import permsCheck from '@pages/authentication/context/permsCheck';
 import parseID from '@utils/getObjID';
+import NotFound from '@pages/notFound';
 
 const PumpStationsRoot = () => {
     const dispatch = useDispatch();
@@ -52,28 +53,24 @@ const PumpStationsRoot = () => {
     );
     return (
         <>
-            <ComponentSkeleton renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
-                {firstLoad && !empty? (
-                    <Grid container rowSpacing={4.5} columnSpacing={2.75}>
-                        <Grid item xs={12} sx={{ mb: -2.25 }}>
-                            <Typography variant="h5">Об`єкти</Typography>
-                        </Grid>
-                        {renderPns}
-                    </Grid>
-                ) : (
-                    <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" sx={{ mt: '30vh' }}>
-                        <Typography variant="h1" color="primary" gutterBottom>
-                            404
-                        </Typography>
-                        <Typography variant="h4" color="textPrimary" align="center" gutterBottom>
-                            Об`єкти НС відсутні
-                        </Typography>
-                        <Typography variant="body1" color="textSecondary" align="center" sx={{ mb: 3 }}>
-                            Перевірте налаштування панелі
-                        </Typography>
-                    </Box>
-                )}
-            </ComponentSkeleton>
+            {!empty && permsArray.length !== 0 ? (
+                <>
+                    <ComponentSkeleton renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
+                        {firstLoad ? (
+                            <Grid container rowSpacing={4.5} columnSpacing={2.75}>
+                                <Grid item xs={12} sx={{ mb: -2.25 }}>
+                                    <Typography variant="h5">Об`єкти</Typography>
+                                </Grid>
+                                {renderPns}
+                            </Grid>
+                        ) : (
+                            <NotFound />
+                        )}
+                    </ComponentSkeleton>
+                </>
+            ) : (
+                <NotFound code={400} text="Доступ заборонено" subText={'У вас немає прав на перегляд строніки'} />
+            )}
         </>
     );
 };
