@@ -57,7 +57,7 @@ const AnalyticEcommerce = ({ color = 'primary', title, count, percentage, isLoss
 AnalyticEcommerce.propTypes = {
     title: PropTypes.string,
     count: PropTypes.string,
-    percentage: PropTypes.string,
+    percentage: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     isLoss: PropTypes.bool,
     color: PropTypes.string,
     extra: PropTypes.string

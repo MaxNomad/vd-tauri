@@ -25,6 +25,7 @@ import 'react-date-range/dist/theme/default.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'simplebar/src/simplebar.css';
 import '@assets/third-party/apex-chart.css';
+import AppConsole from '@utils/appConsole';
 
 Sentry.init({
     enabled: inProdMode,
@@ -44,13 +45,12 @@ Sentry.init({
     replaysOnErrorSampleRate: 1.0 // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
 });
 
-
 const Fallback = ({ error, componentStack, resetError }) => {
     return <AppError error={error} resetErrorBoundary={resetError} stack={componentStack} />;
 };
 const App = () => {
     const [loading, setLoading] = React.useState(false);
-    isTauri ? disableBodyScroll(document) : enableBodyScroll(document)
+    isTauri ? disableBodyScroll(document) : enableBodyScroll(document);
     React.useEffect(() => {
         setLoading(true);
     }, []);
@@ -60,6 +60,7 @@ const App = () => {
             <RouterContext>
                 <ConfigProvider>
                     <ThemeCustomization>
+                        <AppConsole />
                         <Sentry.ErrorBoundary fallback={Fallback} showDialog>
                             {!loading ? (
                                 <Loader />

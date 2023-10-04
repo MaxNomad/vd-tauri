@@ -27,7 +27,7 @@ export const loginGoogle = createAsyncThunk('auth/loginGoogle', async (payload) 
         setUser(JSON.stringify(jwt_decode(res.data.access_token)));
         toastSuccess('Successfully logged in');
         navigate.push('/dash');
-    }else {
+    } else {
         toastError(res.data.message);
         removeData();
     }
@@ -42,7 +42,7 @@ export const login = createAsyncThunk('auth/login', async (payload) => {
         setUser(JSON.stringify(jwt_decode(res?.data?.access_token)));
         toastSuccess('Successfully logged in');
         navigate.push('/dash');
-    }else {
+    } else {
         toastError(res.data.message);
         removeData();
     }

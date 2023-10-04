@@ -63,24 +63,26 @@ const KnsMain = () => {
         );
     });
     return (
-        <>{!empty && permsArray.length !== 0 ? (
-            <ComponentSkeletonKns renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
-                {firstLoad ? (
-                    <Grid container rowSpacing={4.5} columnSpacing={2.75}>
-                        <Grid item xs={12} sx={{ mb: -2.25 }}>
-                            <Typography variant="h5">Об`єкти</Typography>
-                        </Grid>
+        <ComponentSkeletonKns renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
+            {' '}
+            {!empty && permsArray.length !== 0 ? (
+                <>
+                    {firstLoad ? (
+                        <Grid container rowSpacing={4.5} columnSpacing={2.75}>
+                            <Grid item xs={12} sx={{ mb: -2.25 }}>
+                                <Typography variant="h5">Об`єкти</Typography>
+                            </Grid>
 
-                        {renderKns}
-                    </Grid>
-                ) : (
-                    <NotFound/>
-                )}
-            </ComponentSkeletonKns>
+                            {renderKns}
+                        </Grid>
+                    ) : (
+                        <NotFound />
+                    )}
+                </>
             ) : (
                 <NotFound code={400} text="Доступ заборонено" subText={'У вас немає прав на перегляд строніки'} />
             )}
-        </>
+        </ComponentSkeletonKns>
     );
-}
+};
 export default KnsMain;

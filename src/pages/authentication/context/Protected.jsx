@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 const OAuthMiddleware = () => {
     const navigate = useNavigate();
     const tokenRef = getTokenRef();
-    const token = getToken()
+    const token = getToken();
     useEffect(() => {
         if (token) {
             try {

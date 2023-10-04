@@ -33,7 +33,7 @@ const PnsPump = ({ props }) => {
                 Кількість запусків: {props?.runtimes}
             </Typography>
             <Typography variant="h6" color="textSecondary" sx={{ mt: 1 }}>
-                Напрацьовано: {(props?.runhours)} год.
+                Напрацьовано: {props?.runhours} год.
             </Typography>
         </>
     );

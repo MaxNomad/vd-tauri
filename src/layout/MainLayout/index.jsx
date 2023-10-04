@@ -57,7 +57,14 @@ const MainLayout = () => {
 
     return (
         <>
-            <Box sx={{ display: 'flex', maxWidth: '100wh', maxHeight: isTauri ? 'calc(100vh - 44px)!important' : 'calc(100vh)!important', overflow: 'hidden'}}>
+            <Box
+                sx={{
+                    display: 'flex',
+                    maxWidth: '100wh',
+                    maxHeight: isTauri ? 'calc(100vh - 44px)!important' : 'calc(100vh)!important',
+                    overflow: 'hidden'
+                }}
+            >
                 <Header open={open} handleDrawerToggle={handleDrawerToggle} />
                 <Drawer open={open} handleDrawerToggle={handleDrawerToggle} />
                 <Box
@@ -67,8 +74,8 @@ const MainLayout = () => {
                         flexGrow: 1,
                         p: { xs: 2, sm: 3 },
                         mt: isTauri ? 6 : 2,
-                        overflow: "hidden",
-                        overflowY: "scroll",
+                        overflow: 'hidden',
+                        overflowY: 'scroll',
                         height: isTauri ? 'calc(100vh - 94px)!important' : 'calc(100vh - 61px)!important' // You can adjust the max height as needed
                     }}
                 >

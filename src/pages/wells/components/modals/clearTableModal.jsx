@@ -33,7 +33,7 @@ const ClearTableModal = ({ wellID, data }) => {
                     toastWarn('Таблицю очищено');
                     handleClose();
                 } else {
-                    toastError('Помилка при очищені данних');
+                    toastError(response?.data?.message);
                     handleClose();
                 }
             })

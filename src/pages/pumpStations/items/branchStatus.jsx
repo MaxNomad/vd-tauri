@@ -25,8 +25,7 @@ const BranchStatus = ({ props, cols = 2 }) => {
                 </Typography>
                 <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
                     Вихідний потік:&nbsp;&nbsp;
-                    <NumberWithAnimation number={(props?.flow ?? 0).toFixed(2)} one /> м³/год.{' '}
-                    &nbsp;
+                    <NumberWithAnimation number={(props?.flow ?? 0).toFixed(2)} one /> м³/год. &nbsp;
                 </Typography>
             </Box>
         </Grid>

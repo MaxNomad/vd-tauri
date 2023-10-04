@@ -135,7 +135,7 @@ MainCard.propTypes = {
     hoverActive: PropTypes.bool,
     elevation: PropTypes.number,
     secondary: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.object]),
-    shadow: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+    shadow: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.forwardRef]),
     sx: PropTypes.object,
     title: PropTypes.oneOfType([PropTypes.node, PropTypes.string, PropTypes.object]),
     modal: PropTypes.bool,

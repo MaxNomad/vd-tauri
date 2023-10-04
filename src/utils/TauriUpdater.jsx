@@ -104,21 +104,15 @@ const AppUpdateNotification = () => {
                 </DialogContent>
                 <DialogActions sx={{ display: 'flex', justifyContent: 'space-between', p: 3 }}>
                     <Button variant="contained" color="success" size="medium" onClick={handleUpdate}>
-                        <Typography variant="h6">
-                            Оновити та перезапустити
-                        </Typography>
+                        <Typography variant="h6">Оновити та перезапустити</Typography>
                     </Button>
                     {!terminated ? (
                         <Button variant="contained" color="warning" size="medium" onClick={handleTerminate}>
-                            <Typography variant="h6">
-                                Нагадати пізніше
-                            </Typography>
+                            <Typography variant="h6">Нагадати пізніше</Typography>
                         </Button>
                     ) : (
                         <Button variant="contained" color="primary" size="medium" onClick={handleClose}>
-                            <Typography variant="h6" >
-                                закрити
-                            </Typography>
+                            <Typography variant="h6">закрити</Typography>
                         </Button>
                     )}
                 </DialogActions>

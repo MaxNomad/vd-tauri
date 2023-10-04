@@ -11,7 +11,7 @@ const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(
-    <WindowFrame title="VD Control Alpha" platform={isSafari ? "mac" : "windows"}>
+    <WindowFrame title="VD Control Alpha" platform={isSafari ? 'mac' : 'windows'}>
         <App />
     </WindowFrame>
 );

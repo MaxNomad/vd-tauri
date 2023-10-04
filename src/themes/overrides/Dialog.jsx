@@ -11,14 +11,12 @@ export default function Dialog(theme) {
                 root: {
                     '& .MuiBackdrop-root': {
                         backgroundColor: alpha('#000', 0.7),
-                        backgroundImage: 'linear-gradient(rgb(255 255 255 / 0%), rgb(255 255 255 / 0%))',
-                        
+                        backgroundImage: 'linear-gradient(rgb(255 255 255 / 0%), rgb(255 255 255 / 0%))'
                     },
                     '& .MuiDialog-paper': {
                         backgroundColor: theme.palette.grey[100],
                         backgroundImage: 'linear-gradient(rgb(255 255 255 / 0%), rgb(255 255 255 / 0%))',
-                        top: isTauri ? 20 : 0,
-                        
+                        top: isTauri ? 20 : 0
                     }
                 }
             }

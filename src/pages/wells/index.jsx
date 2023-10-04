@@ -59,12 +59,13 @@ const WellsRoot = () => {
 
     return (
         <>
-            {!empty && permsArray.length !== 0 ? (
-                <>
-                    <Grid item xs={12} md={12} lg={12} sx={{ mt: 1, mb: 2 }}>
-                        <SmallWellListProps data={objectsSortedPerms} />
-                    </Grid>
-                    <ComponentSkeletonKns renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
+            <ComponentSkeletonKns renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
+                {!empty && permsArray.length !== 0 ? (
+                    <>
+                        <Grid item xs={12} md={12} lg={12} sx={{ mt: 1, mb: 2 }}>
+                            <SmallWellListProps data={objectsSortedPerms} />
+                        </Grid>
+
                         {firstLoad ? (
                             <>
                                 <Grid container rowSpacing={4.5} columnSpacing={2.75}>
@@ -77,11 +78,11 @@ const WellsRoot = () => {
                         ) : (
                             <NotFound />
                         )}
-                    </ComponentSkeletonKns>
-                </>
-            ) : (
-                <NotFound code={400} text="Доступ заборонено" subText={'У вас немає прав на перегляд строніки'} />
-            )}
+                    </>
+                ) : (
+                    <NotFound code={400} text="Доступ заборонено" subText={'У вас немає прав на перегляд строніки'} />
+                )}
+            </ComponentSkeletonKns>
         </>
     );
 };

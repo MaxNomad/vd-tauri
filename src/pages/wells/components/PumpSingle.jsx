@@ -109,7 +109,7 @@ const PumpSingle = ({ data, lastUpdate }) => {
                                             </Typography>
                                             <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
                                                 Тиск:&nbsp;&nbsp;
-                                                <Pressure num={data?.pressure === -1 ? "NaN" : data?.pressure } />
+                                                <Pressure num={data?.pressure === -1 ? 'NaN' : data?.pressure} />
                                                 &nbsp;
                                             </Typography>
                                             <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>

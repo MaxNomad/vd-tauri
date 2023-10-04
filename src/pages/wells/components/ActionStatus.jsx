@@ -9,21 +9,21 @@ const ActionStatus = ({ status }) => {
     let color;
 
     switch (status) {
-        case "TurnOn":
+        case 'TurnOn':
             color = 'success';
             break;
-        case "TurnOff":
+        case 'TurnOff':
             color = 'primary';
             break;
-        case "AlarmReset":
-        case "UpdateDbTriggers":
+        case 'AlarmReset':
+        case 'UpdateDbTriggers':
             color = 'warning';
             break;
-        case "ClearTable":
+        case 'ClearTable':
             color = 'error';
             break;
-        case "AlarmReset1":
-        case "UpdateDbTriggers1":
+        case 'AlarmReset1':
+        case 'UpdateDbTriggers1':
             color = 'secondary';
             break;
         default:
@@ -38,7 +38,7 @@ const ActionStatus = ({ status }) => {
     );
 };
 
-ActionStatus .propTypes = {
+ActionStatus.propTypes = {
     status: PropTypes.string
 };
 

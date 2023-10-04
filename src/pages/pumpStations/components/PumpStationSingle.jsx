@@ -50,7 +50,7 @@ const PnsSingle = ({ data, lastUpdate }) => {
         : null;
     return (
         <>
-            <Grid item xs={12} sm={12} md={6} lg={6} xl={6} UWHD={3}>
+            <Grid item xs={12} sm={12} md={6} lg={6} xl={6} UWHD={4}>
                 <Tooltip title={`Переглянути інформацію про НС №${data?.nsID}`} placement="bottom">
                     <Link to={`/pumpstation-single?id=${data?.nsID}`} style={{ textDecoration: 'none' }}>
                         <MainCard contentSX={{ p: 2.25, borderColor: AlarmColor() }} borderCustom hoverActive>
@@ -133,12 +133,12 @@ const PnsSingle = ({ data, lastUpdate }) => {
                                                 </b>
                                             </Typography>
                                         </Grid>
-                                        
+
                                         <Grid item xs={12} sx={{ mt: -2.25 }}>
-                                        <Divider/>
+                                            <Divider />
                                         </Grid>
                                         {renderBranches}
-                                        
+
                                         <Grid item xs={12} sx={{ mt: -2.25 }}>
                                             <Typography variant="h5" color="textSecondary">
                                                 Насоси

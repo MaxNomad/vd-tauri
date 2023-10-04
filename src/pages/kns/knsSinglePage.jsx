@@ -53,9 +53,9 @@ const KnsSinglePage = () => {
     });
     return (
         <>
-            {pageAccess ? (
-                <>
-                    <ComponentSkeleton renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
+            <ComponentSkeleton renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
+                {pageAccess ? (
+                    <>
                         {data?.exist ?? firstLoad ? (
                             <>
                                 <KNSHeader
@@ -72,7 +72,7 @@ const KnsSinglePage = () => {
                                         <Typography variant="h5">Резервуар</Typography>
                                         <TankItem levels={data?.levels} />
                                     </Grid>
-                                    <Grid item xs={12} md={7} lg={12} xl={7} sx={{ mt: {lg: 0, xl: 4} }}>
+                                    <Grid item xs={12} md={7} lg={12} xl={7} sx={{ mt: { lg: 0, xl: 4 } }}>
                                         <Typography variant="h5">Насоси</Typography>
                                         <MainCard sx={{ mt: 2 }}>
                                             <Grid container rowSpacing={4.5} columnSpacing={2.75}>
@@ -293,11 +293,11 @@ const KnsSinglePage = () => {
                         ) : (
                             <NotFound text={'Об`єкт не знайдено.'} subText={'Перевірте налаштування панелі'} />
                         )}
-                    </ComponentSkeleton>
-                </>
-            ) : (
-                <NotFound text={'Доступ заборонено'} subText={'Ви не маєте доступу до даної сторінки'} code="400" />
-            )}{' '}
+                    </>
+                ) : (
+                    <NotFound text={'Доступ заборонено'} subText={'Ви не маєте доступу до даної сторінки'} code="400" />
+                )}{' '}
+            </ComponentSkeleton>
         </>
     );
 };

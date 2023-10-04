@@ -195,7 +195,7 @@ const EventsAllTable = ({ pumpID, update }) => {
                                             {row.Object}
                                         </TableCell>
                                         <TableCell component="th" align="left" scope="row">
-                                        <ActionStatus status={row.Event}/>
+                                            <ActionStatus status={row.Event} />
                                         </TableCell>
                                         <TableCell component="th" align="right" scope="row">
                                             {row.EventMes}

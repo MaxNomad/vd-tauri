@@ -11,7 +11,7 @@ export const WindowContext = React.createContext({
 const WindowFrame = (props) => {
     const itsRef = useRef(null);
     const [useLight, setUseLight] = useState(false);
-    const theme = useTheme()
+    const theme = useTheme();
     useEffect(() => {
         const { parentElement } = itsRef.current;
         parentElement.classList.add('has-electron-window');
@@ -21,29 +21,27 @@ const WindowFrame = (props) => {
         if (props.borderColor) {
             parentElement.style.borderColor = props.borderColor;
         }
-        
-       
     }, []);
     useEffect(() => {
         // Function to check if the 'dark-mode' class is present on document.body
         const checkDarkMode = () => {
-          setUseLight(!document.body.classList.contains('dark-mode'));
+            setUseLight(!document.body.classList.contains('dark-mode'));
         };
-    
+
         // Initial check when the component is mounted
         checkDarkMode();
-    
+
         // Create a MutationObserver to watch for changes in document.body
         const observer = new MutationObserver(checkDarkMode);
-    
+
         // Start observing changes to attributes and child list of document.body
         observer.observe(document.body, { attributes: true, childList: true });
-    
+
         // Cleanup the observer when the component unmounts
         return () => {
-          observer.disconnect();
+            observer.disconnect();
         };
-      }, []);
+    }, []);
 
     return (
         <WindowContext.Provider value={{ platform: props.platform }}>

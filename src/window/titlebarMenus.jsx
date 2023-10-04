@@ -45,7 +45,7 @@ const titlebarMenus = [
         ]
     },
     {
-        name: 'View',
+        name: 'App',
         items: [
             {
                 name: 'Reload',
@@ -58,7 +58,7 @@ const titlebarMenus = [
                 shortcut: 'Ctrl+Shift+R'
             },
             {
-                name: 'Toogle Developer Tools',
+                name: 'Open console',
                 action: 'toggle_devtools',
                 shortcut: 'Ctrl+Shift+I'
             },
@@ -66,27 +66,14 @@ const titlebarMenus = [
                 name: '__'
             },
             {
-                name: 'Actual Size',
-                action: 'actual_size',
-                shortcut: 'Ctrl+0'
+                name: 'Clear webwiev cache',
+                action: 'clear_cache',
+                shortcut: 'Ctrl+Shift+C'
             },
             {
-                name: 'Zoom In',
-                action: 'zoom_in',
-                shortcut: 'Ctrl++'
-            },
-            {
-                name: 'Zoom Out',
-                action: 'zoom_out',
-                shortcut: 'Ctrl+-'
-            },
-            {
-                name: '__'
-            },
-            {
-                name: 'Toggle Fullscreen',
-                action: 'toggle_fullscreen',
-                shortcut: 'F11'
+                name: 'Force delete data',
+                action: 'force_clear_cache',
+                shortcut: 'Ctrl+Shift+D'
             }
         ]
     },
@@ -102,6 +89,14 @@ const titlebarMenus = [
                 name: 'Close',
                 action: 'exit',
                 shortcut: 'Ctrl+W'
+            },
+            {
+                name: '__'
+            },
+            {
+                name: 'Toggle Fullscreen',
+                action: 'toggle_fullscreen',
+                shortcut: 'F11'
             }
         ]
     }

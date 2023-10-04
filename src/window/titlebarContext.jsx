@@ -22,12 +22,8 @@ const titlebarContext = {
     },
     toggle_devtools() {},
     actual_size() {},
-    zoom_in() {
-        tauriWindow.setZoomLevel(tauriWindow.getZoomLevel() + 1);
-    },
-    zoom_out() {
-        tauriWindow.setZoomLevel(tauriWindow.getZoomLevel() + 1);
-    },
+    zoom_in() {},
+    zoom_out() {},
     toggle_fullscreen() {
         tauriWindow.isFullscreen().then((data) => {
             tauriWindow.setFullscreen(!data);
@@ -39,7 +35,16 @@ const titlebarContext = {
     toggle_maximize() {
         tauriWindow.isMaximized().then((data) => (data ? tauriWindow.unmaximize() : tauriWindow.maximize()));
     },
-    open_url(url) {}
+    open_url(url) {},
+    force_clear_cache() {
+        caches.keys().then((list) => list.map((key) => caches.delete(key)));
+        localStorage.clear();
+        window.location.reload(true);
+    },
+    clear_cache() {
+        localStorage.clear();
+        window.location.reload(true);
+    }
 };
 
 export default titlebarContext;

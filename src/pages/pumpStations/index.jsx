@@ -53,9 +53,9 @@ const PumpStationsRoot = () => {
     );
     return (
         <>
-            {!empty && permsArray.length !== 0 ? (
-                <>
-                    <ComponentSkeleton renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
+            <ComponentSkeleton renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
+                {!empty && permsArray.length !== 0 ? (
+                    <>
                         {firstLoad ? (
                             <Grid container rowSpacing={4.5} columnSpacing={2.75}>
                                 <Grid item xs={12} sx={{ mb: -2.25 }}>
@@ -66,11 +66,11 @@ const PumpStationsRoot = () => {
                         ) : (
                             <NotFound />
                         )}
-                    </ComponentSkeleton>
-                </>
-            ) : (
-                <NotFound code={400} text="Доступ заборонено" subText={'У вас немає прав на перегляд строніки'} />
-            )}
+                    </>
+                ) : (
+                    <NotFound code={400} text="Доступ заборонено" subText={'У вас немає прав на перегляд строніки'} />
+                )}
+            </ComponentSkeleton>
         </>
     );
 };

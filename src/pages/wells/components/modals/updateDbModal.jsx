@@ -33,7 +33,7 @@ const UpdateDBModal = ({ wellID, scheme, data }) => {
                     toastSuccess('Схему оновлено');
                     handleClose();
                 } else {
-                    toastError('Помилка при оновленні');
+                    toastError(response?.data?.message);
                     handleClose();
                 }
             })

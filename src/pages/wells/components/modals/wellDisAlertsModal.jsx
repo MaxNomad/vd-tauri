@@ -35,7 +35,7 @@ const WellDisAlrtsModal = ({ wellID, data }) => {
                     toastSuccess(`Аварії деактивовано`);
                     handleClose();
                 } else {
-                    toastError('Error: ' + response.status);
+                    toastError(response?.data?.message);
                     handleClose();
                 }
             })
