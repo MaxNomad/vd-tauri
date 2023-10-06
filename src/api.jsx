@@ -14,8 +14,8 @@ if (isTauri) {
     getClient().then((client) => {
         api = {
             async get(url, params = {}) {
-                try {
-                    const response = client.request({
+             
+                    const response = await client.request({
                         method: 'GET',
                         url: config.apiUrl + url,
                         options: { ...params },
@@ -23,11 +23,8 @@ if (isTauri) {
                         type: ResponseType.JSON,
                         timeout: apiTimeout
                     });
-                    return response;
-                } catch (e) {
-                    console.log(e);
-                    toastError('Get request failed');
-                }
+                    
+                    throw {response: response}
             },
 
             async post(url, payload = {}, params = {}) {
@@ -89,7 +86,6 @@ if (isTauri) {
     api = axios.create({
         baseURL: config.apiUrl,
         timeout: apiTimeout * 1000,
-        validateStatus: false,
         headers: {
             Authorization: `Bearer ${getToken()}`,
             'Content-Type': 'application/json'

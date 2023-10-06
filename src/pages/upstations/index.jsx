@@ -14,9 +14,7 @@ import NotFound from '@pages/notFound';
 
 const UpstationsRoot = () => {
     const dispatch = useDispatch();
-
-    const { data, loading, error, empty } = useSelector((state) => state.PnsRoot);
-    const [updateTime, setUpdateTime] = useState();
+    const { data, loading, error } = useSelector((state) => state.PnsRoot);
     const [timer, setTimer] = useState(Date.now());
     const [firstLoad, setFirstLoad] = useState(false);
 
@@ -31,48 +29,38 @@ const UpstationsRoot = () => {
     }, []);
 
     useEffect(() => {
-        dispatch(getPnsRoot());
-        setUpdateTime(new Date().toLocaleString());
-        setInterval(() => setFirstLoad(true), 400);
-    }, [dispatch, timer]);
+        dispatch(getPnsRoot()).then(() => setInterval(() => setFirstLoad(true), 400))
+    }, [timer]);
 
-    const objectsWithErrors = Array.isArray(data) ? data?.filter((obj) => obj.alarmStatus > 0) : [];
-    const objectsWithoutErrors = Array.isArray(data) ? data?.filter((obj) => obj.alarmStatus <= 0 || obj.alarmStatus == null) : [];
 
-    const sortedArray = [...objectsWithErrors, ...objectsWithoutErrors];
-    const permsArray = Array.isArray(data)
-        ? sortedArray.filter((obj) =>
-              permsCheck(['level_10', 'level_9', 'level_8', 'dash_pns_read_all', `dash_pns_read_${parseID(obj?.pnsID)}`])
-          )
-        : [];
     const renderPns = useMemo(
         () =>
-            permsArray?.map((pns) => {
+            data?.map((pns) => {
                 return pns?.visible ? <PnsSingle data={pns} lastUpdate={new Date(pns.timeStamp)} key={pns.pnsID} /> : '';
             }),
-        [updateTime, data]
+        [data]
     );
     return (
-        <>
             <ComponentSkeletonKns renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
-                {!empty && permsArray.length !== 0 ? (
+                {firstLoad && !error ? (
                     <>
-                        {firstLoad ? (
-                            <Grid container rowSpacing={4.5} columnSpacing={2.75}>
-                                <Grid item xs={12} sx={{ mb: -2.25 }}>
-                                    <Typography variant="h5">Об`єкти</Typography>
+                        {firstLoad && data.length > 0 && !error ? (
+                            <>
+                                <Grid container rowSpacing={4.5} columnSpacing={2.75}>
+                                    <Grid item xs={12} sx={{ mb: -2.25 }}>
+                                        <Typography variant="h5">Об`єкти</Typography>
+                                    </Grid>
+                                    {renderPns}
                                 </Grid>
-                                {renderPns}
-                            </Grid>
+                            </>
                         ) : (
                             <NotFound />
                         )}
                     </>
                 ) : (
-                    <NotFound code={400} text="Доступ заборонено" subText={'У вас немає прав на перегляд строніки'} />
+                    <NotFound code={''} text={error?.name} subText={error?.message} />
                 )}
             </ComponentSkeletonKns>
-        </>
     );
 };
 

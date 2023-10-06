@@ -1,4 +1,3 @@
-import ComponentSkeleton from '@pages/components-overview/ComponentSkeleton';
 import { Grid, Typography, Box } from '@mui/material';
 import Status from '../../components/cards/statistics/StatusMain';
 
@@ -10,12 +9,11 @@ import { getRootPumpStation } from './redux/PumpStationListSlice';
 import permsCheck from '@pages/authentication/context/permsCheck';
 import parseID from '@utils/getObjID';
 import NotFound from '@pages/notFound';
+import ComponentSkeleton from '@pages/components-overview/ComponentSkeleton';
 
 const PumpStationsRoot = () => {
     const dispatch = useDispatch();
-
-    const { data, loading, error, empty } = useSelector((state) => state.RootPumpStation);
-    const [updateTime, setUpdateTime] = useState();
+    const { data, loading, error} = useSelector((state) => state.RootPumpStation);
     const [timer, setTimer] = useState(Date.now());
     const [firstLoad, setFirstLoad] = useState(false);
 
@@ -30,45 +28,37 @@ const PumpStationsRoot = () => {
     }, []);
 
     useEffect(() => {
-        dispatch(getRootPumpStation());
-        setUpdateTime(new Date().toLocaleString());
-        setInterval(() => setFirstLoad(true), 400);
-    }, [dispatch, timer]);
-    const objectsWithErrors = Array.isArray(data) ? data?.filter((obj) => obj.alarmStatus > 0) : [];
-    const objectsWithoutErrors = Array.isArray(data) ? data?.filter((obj) => obj.alarmStatus <= 0 || obj.alarmStatus == null) : [];
+        dispatch(getRootPumpStation()).then(() => setInterval(() => setFirstLoad(true), 400))
+    }, [timer]);
 
-    const sortedArray = [...objectsWithErrors, ...objectsWithoutErrors];
-    const permsArray = Array.isArray(data)
-        ? sortedArray.filter((obj) =>
-              permsCheck(['level_10', 'level_9', 'level_8', 'dash_ns_read_all', `dash_ns_read_${parseID(obj?.nsID)}`])
-          )
-        : [];
 
-    const renderPns = useMemo(
+    const renderNs = useMemo(
         () =>
-            permsArray.map((ns) => {
+            data.map((ns) => {
                 return ns?.visible ? <PumpStationSingle data={ns} lastUpdate={ns?.timeStamp} key={ns?.nsID} /> : '';
             }),
-        [updateTime, data]
+        [data]
     );
     return (
         <>
-            <ComponentSkeleton renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
-                {!empty && permsArray.length !== 0 ? (
+             <ComponentSkeleton renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
+                {firstLoad && !error ? (
                     <>
-                        {firstLoad ? (
-                            <Grid container rowSpacing={4.5} columnSpacing={2.75}>
-                                <Grid item xs={12} sx={{ mb: -2.25 }}>
-                                    <Typography variant="h5">Об`єкти</Typography>
+                        {firstLoad && data.length > 0 && !error ? (
+                            <>
+                                <Grid container rowSpacing={4.5} columnSpacing={2.75}>
+                                    <Grid item xs={12} sx={{ mb: -2.25 }}>
+                                        <Typography variant="h5">Об`єкти</Typography>
+                                    </Grid>
+                                    {renderNs}
                                 </Grid>
-                                {renderPns}
-                            </Grid>
+                            </>
                         ) : (
                             <NotFound />
                         )}
                     </>
                 ) : (
-                    <NotFound code={400} text="Доступ заборонено" subText={'У вас немає прав на перегляд строніки'} />
+                    <NotFound code={''} text={error?.name} subText={error?.message} />
                 )}
             </ComponentSkeleton>
         </>

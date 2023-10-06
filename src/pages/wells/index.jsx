@@ -11,12 +11,12 @@ import permsCheck from '@pages/authentication/context/permsCheck';
 import parseID from '@utils/getObjID';
 import ComponentSkeletonKns from '@pages/components-overview/ComponentSkeletonKNS';
 import NotFound from '@pages/notFound';
+import { ErrorBoundary } from 'react-error-boundary';
 
 const WellsRoot = () => {
     const dispatch = useDispatch();
 
-    const { data, loading, error, empty } = useSelector((state) => state.PumpRoot);
-    const [updateTime, setUpdateTime] = useState();
+    const { data, loading, error } = useSelector((state) => state.PumpRoot);
     const [timer, setTimer] = useState(Date.now());
     const [firstLoad, setFirstLoad] = useState(false);
 
@@ -31,42 +31,27 @@ const WellsRoot = () => {
     }, []);
 
     useEffect(() => {
-        dispatch(getPumpRoot());
-        setUpdateTime(new Date().toLocaleString());
-        setInterval(() => setFirstLoad(true), 400);
-    }, [dispatch, timer]);
+        dispatch(getPumpRoot()).then(() => setInterval(() => setFirstLoad(true), 400))
+        
+    }, [timer]);
 
-    const objectsWithErrors = Array.isArray(data) ? data?.filter((obj) => obj.alarmStatus > 0) : [];
-    const objectsWithoutErrors = Array.isArray(data) ? data?.filter((obj) => obj.alarmStatus <= 0 || obj.alarmStatus == null) : [];
-    const objectsSortedPerms = Array.isArray(data)
-        ? data?.filter((obj) =>
-              permsCheck(['level_10', 'level_9', 'level_8', 'dash_well_read_all', `dash_well_read_${parseID(obj?.pumpID)}`])
-          )
-        : [];
-    const sortedArray = [...objectsWithErrors, ...objectsWithoutErrors];
-    const permsArray = Array.isArray(data)
-        ? data?.filter((obj) =>
-              permsCheck(['level_10', 'level_9', 'level_8', 'dash_well_read_all', `dash_well_read_${parseID(obj?.pumpID)}`])
-          )
-        : [];
     const renderPumps = useMemo(
         () =>
-            permsArray?.map((pump) => {
+            data?.map((pump) => {
                 return pump?.visible ? <PumpSingle data={pump} lastUpdate={pump?.timeStamp} key={pump.pumpID} /> : '';
             }),
-        [updateTime, data]
+        [data]
     );
-
     return (
         <>
             <ComponentSkeletonKns renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
-                {!empty && permsArray.length !== 0 ? (
+                {firstLoad && !error ? (
                     <>
                         <Grid item xs={12} md={12} lg={12} sx={{ mt: 1, mb: 2 }}>
-                            <SmallWellListProps data={objectsSortedPerms} />
+                            <SmallWellListProps data={data} />
                         </Grid>
 
-                        {firstLoad ? (
+                        {firstLoad && data.length > 0 && !error ? (
                             <>
                                 <Grid container rowSpacing={4.5} columnSpacing={2.75}>
                                     <Grid item xs={12} sx={{ mb: -2.25 }}>
@@ -80,7 +65,7 @@ const WellsRoot = () => {
                         )}
                     </>
                 ) : (
-                    <NotFound code={400} text="Доступ заборонено" subText={'У вас немає прав на перегляд строніки'} />
+                    <NotFound code={''} text={error?.name} subText={error?.message} />
                 )}
             </ComponentSkeletonKns>
         </>
