@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState, useMemo } from 'react';
 import config from '../../config';
 import { getPnsRoot } from './redux/pnsListSlice';
-import permsCheck from '@pages/authentication/context/permsCheck';
 import parseID from '@utils/getObjID';
 import ComponentSkeletonKns from '@pages/components-overview/ComponentSkeletonKNS';
 import NotFound from '@pages/notFound';
@@ -29,9 +28,8 @@ const UpstationsRoot = () => {
     }, []);
 
     useEffect(() => {
-        dispatch(getPnsRoot()).then(() => setInterval(() => setFirstLoad(true), 400))
+        dispatch(getPnsRoot()).then(() => setInterval(() => setFirstLoad(true), config.delay));
     }, [timer]);
-
 
     const renderPns = useMemo(
         () =>
@@ -41,26 +39,26 @@ const UpstationsRoot = () => {
         [data]
     );
     return (
-            <ComponentSkeletonKns renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
-                {firstLoad && !error ? (
-                    <>
-                        {firstLoad && data.length > 0 && !error ? (
-                            <>
-                                <Grid container rowSpacing={4.5} columnSpacing={2.75}>
-                                    <Grid item xs={12} sx={{ mb: -2.25 }}>
-                                        <Typography variant="h5">Об`єкти</Typography>
-                                    </Grid>
-                                    {renderPns}
+        <ComponentSkeletonKns renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
+            {firstLoad && !error ? (
+                <>
+                    {firstLoad && data.length > 0 && !error ? (
+                        <>
+                            <Grid container rowSpacing={4.5} columnSpacing={2.75}>
+                                <Grid item xs={12} sx={{ mb: -2.25 }}>
+                                    <Typography variant="h5">Об`єкти</Typography>
                                 </Grid>
-                            </>
-                        ) : (
-                            <NotFound />
-                        )}
-                    </>
-                ) : (
-                    <NotFound code={''} text={error?.name} subText={error?.message} />
-                )}
-            </ComponentSkeletonKns>
+                                {renderPns}
+                            </Grid>
+                        </>
+                    ) : (
+                        <NotFound />
+                    )}
+                </>
+            ) : (
+                <NotFound code={''} text={error?.name} subText={error?.message} />
+            )}
+        </ComponentSkeletonKns>
     );
 };
 

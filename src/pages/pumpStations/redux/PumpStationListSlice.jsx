@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../../../api';
 
 export const getRootPumpStation = createAsyncThunk('PumpStation/getRootPumpStation', async () => {
-    try{
+    try {
         const response = await api.get(`/getRootPumpStation`);
         return response.data;
     } catch (e) {

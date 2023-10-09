@@ -7,7 +7,6 @@ import config from '../../config';
 import { getPumpRoot } from './redux/pumpListSlice';
 import React from 'react';
 import SmallWellListProps from './components/smallWellListProps';
-import permsCheck from '@pages/authentication/context/permsCheck';
 import parseID from '@utils/getObjID';
 import ComponentSkeletonKns from '@pages/components-overview/ComponentSkeletonKNS';
 import NotFound from '@pages/notFound';
@@ -31,8 +30,7 @@ const WellsRoot = () => {
     }, []);
 
     useEffect(() => {
-        dispatch(getPumpRoot()).then(() => setInterval(() => setFirstLoad(true), 400))
-        
+        dispatch(getPumpRoot()).then(() => setInterval(() => setFirstLoad(true), config.delay));
     }, [timer]);
 
     const renderPumps = useMemo(

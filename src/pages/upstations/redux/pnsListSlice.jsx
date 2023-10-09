@@ -3,8 +3,8 @@ import { api } from '../../../api';
 
 export const getPnsRoot = createAsyncThunk('Pns/getPnsList', async () => {
     try {
-    const response = await api.get(`/getRootPNS`);
-    return response.data;
+        const response = await api.get(`/getRootPNS`);
+        return response.data;
     } catch (e) {
         throw e.response.data;
     }

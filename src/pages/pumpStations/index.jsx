@@ -6,14 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState, useMemo } from 'react';
 import config from '../../config';
 import { getRootPumpStation } from './redux/PumpStationListSlice';
-import permsCheck from '@pages/authentication/context/permsCheck';
 import parseID from '@utils/getObjID';
 import NotFound from '@pages/notFound';
 import ComponentSkeleton from '@pages/components-overview/ComponentSkeleton';
 
 const PumpStationsRoot = () => {
     const dispatch = useDispatch();
-    const { data, loading, error} = useSelector((state) => state.RootPumpStation);
+    const { data, loading, error } = useSelector((state) => state.RootPumpStation);
     const [timer, setTimer] = useState(Date.now());
     const [firstLoad, setFirstLoad] = useState(false);
 
@@ -28,9 +27,8 @@ const PumpStationsRoot = () => {
     }, []);
 
     useEffect(() => {
-        dispatch(getRootPumpStation()).then(() => setInterval(() => setFirstLoad(true), 400))
+        dispatch(getRootPumpStation()).then(() => setInterval(() => setFirstLoad(true), config.delay));
     }, [timer]);
-
 
     const renderNs = useMemo(
         () =>
@@ -41,7 +39,7 @@ const PumpStationsRoot = () => {
     );
     return (
         <>
-             <ComponentSkeleton renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
+            <ComponentSkeleton renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
                 {firstLoad && !error ? (
                     <>
                         {firstLoad && data.length > 0 && !error ? (

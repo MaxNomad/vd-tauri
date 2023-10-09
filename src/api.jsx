@@ -14,71 +14,66 @@ if (isTauri) {
     getClient().then((client) => {
         api = {
             async get(url, params = {}) {
-             
-                    const response = await client.request({
-                        method: 'GET',
-                        url: config.apiUrl + url,
-                        options: { ...params },
-                        headers: { Authorization: `Bearer ${getToken()}` },
-                        type: ResponseType.JSON,
-                        timeout: apiTimeout
-                    });
-                    
-                    throw {response: response}
+                const response = await client.request({
+                    method: 'GET',
+                    url: config.apiUrl + url,
+                    options: { ...params },
+                    headers: { Authorization: `Bearer ${getToken()}` },
+                    type: ResponseType.JSON,
+                    timeout: apiTimeout
+                });
+                if (response.status < 400) {
+                    return response;
+                }
+                throw { response: response };
             },
 
             async post(url, payload = {}, params = {}) {
-                try {
-                    const response = await client.request({
-                        method: 'POST',
-                        url: config.apiUrl + url,
-                        body: Body.json(payload),
-                        options: { ...params },
-                        headers: { Authorization: `Bearer ${getToken()}` },
-                        type: ResponseType.JSON,
-                        timeout: apiTimeout
-                    });
+                const response = await client.request({
+                    method: 'POST',
+                    url: config.apiUrl + url,
+                    body: Body.json(payload),
+                    options: { ...params },
+                    headers: { Authorization: `Bearer ${getToken()}` },
+                    type: ResponseType.JSON,
+                    timeout: apiTimeout
+                });
+                if (response.status < 400) {
                     return response;
-                } catch (e) {
-                    console.log(e);
-                    toastError('Post request failed');
                 }
+                throw { response: response };
             },
 
             async put(url, payload = {}, params = {}) {
-                try {
-                    const response = await client.request({
-                        method: 'PUT',
-                        url: config.apiUrl + url,
-                        body: Body.json(payload),
-                        options: { ...params },
-                        headers: { Authorization: `Bearer ${getToken()}` },
-                        type: ResponseType.JSON,
-                        timeout: apiTimeout
-                    });
+                const response = await client.request({
+                    method: 'PUT',
+                    url: config.apiUrl + url,
+                    body: Body.json(payload),
+                    options: { ...params },
+                    headers: { Authorization: `Bearer ${getToken()}` },
+                    type: ResponseType.JSON,
+                    timeout: apiTimeout
+                });
+                if (response.status < 400) {
                     return response;
-                } catch (e) {
-                    console.log(e);
-                    toastError('Put request failed');
                 }
+                throw { response: response };
             },
 
             async delete(url, payload = {}, params = {}) {
-                try {
-                    const response = await client.request({
-                        method: 'DELETE',
-                        url: config.apiUrl + url,
-                        body: Body.json(payload),
-                        options: { ...params },
-                        headers: { Authorization: `Bearer ${getToken()}` },
-                        type: ResponseType.JSON,
-                        timeout: apiTimeout
-                    });
+                const response = await client.request({
+                    method: 'DELETE',
+                    url: config.apiUrl + url,
+                    body: Body.json(payload),
+                    options: { ...params },
+                    headers: { Authorization: `Bearer ${getToken()}` },
+                    type: ResponseType.JSON,
+                    timeout: apiTimeout
+                });
+                if (response.status < 400) {
                     return response;
-                } catch (e) {
-                    console.log(e);
-                    toastError('Delete request failed');
                 }
+                throw { response: response };
             }
         };
     });

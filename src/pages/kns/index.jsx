@@ -8,7 +8,6 @@ import config from '../../config';
 import ComponentSkeletonKns from '@pages/components-overview/ComponentSkeletonKNS';
 import Search from '@layout/MainLayout/Header/HeaderContent/Search';
 import parseID from '@utils/getObjID';
-import permsCheck from '@pages/authentication/context/permsCheck';
 import NotFound from '@pages/notFound';
 
 const KnsMain = () => {
@@ -29,10 +28,8 @@ const KnsMain = () => {
     }, []);
 
     useEffect(() => {
-        dispatch(getKNSRoot()).then(() => setInterval(() => setFirstLoad(true), 400))
+        dispatch(getKNSRoot()).then(() => setInterval(() => setFirstLoad(true), config.delay));
     }, [dispatch, timer]);
-
-
 
     const renderKns = data.map((kns) => {
         return kns?.visible ? (
@@ -55,24 +52,24 @@ const KnsMain = () => {
     });
     return (
         <ComponentSkeletonKns renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
-        {firstLoad && !error ? (
-            <>
-                {firstLoad && data.length > 0 && !error ? (
-                    <>
-                        <Grid container rowSpacing={4.5} columnSpacing={2.75}>
-                            <Grid item xs={12} sx={{ mb: -2.25 }}>
-                                <Typography variant="h5">Об`єкти</Typography>
+            {firstLoad && !error ? (
+                <>
+                    {firstLoad && data.length > 0 && !error ? (
+                        <>
+                            <Grid container rowSpacing={4.5} columnSpacing={2.75}>
+                                <Grid item xs={12} sx={{ mb: -2.25 }}>
+                                    <Typography variant="h5">Об`єкти</Typography>
+                                </Grid>
+                                {renderKns}
                             </Grid>
-                            {renderKns}
-                        </Grid>
-                    </>
-                ) : (
-                    <NotFound />
-                )}
-            </>
-        ) : (
-            <NotFound code={''} text={error?.name} subText={error?.message} />
-        )}
+                        </>
+                    ) : (
+                        <NotFound />
+                    )}
+                </>
+            ) : (
+                <NotFound code={''} text={error?.name} subText={error?.message} />
+            )}
         </ComponentSkeletonKns>
     );
 };

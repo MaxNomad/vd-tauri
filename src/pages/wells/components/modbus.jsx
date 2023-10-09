@@ -23,8 +23,7 @@ const Modbus = ({ data }) => {
         };
     }, []);
     useEffect(() => {
-        dispatch(getWellModbus(data?.pumpID));
-        setInterval(() => setFirstLoad(true), 400);
+        dispatch(getWellModbus(data?.pumpID)).then(() => setInterval(() => setFirstLoad(true), config.delay));
     }, [timer]);
 
     return (

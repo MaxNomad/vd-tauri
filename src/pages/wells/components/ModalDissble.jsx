@@ -24,7 +24,6 @@ import AlertStatus from './AlertStatus';
 import { useTheme } from '@mui/material/styles';
 
 const ModalDelete = ({ props, disableSingleAlert, handleClose }) => {
-    console.log(props);
     const theme = useTheme();
     const style = {
         position: 'absolute',

@@ -3,8 +3,8 @@ import { api } from '../../../api';
 
 export const getKNSRoot = createAsyncThunk('kns/getKnsList', async () => {
     try {
-    const response = await api.get(`/getRootKNS`);
-    return response.data;
+        const response = await api.get(`/getRootKNS`);
+        return response.data;
     } catch (e) {
         throw e.response.data;
     }

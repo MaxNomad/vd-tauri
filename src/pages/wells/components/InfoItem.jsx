@@ -24,7 +24,7 @@ const InfoItem = ({ data }) => {
                     <Grid item xs={12} md={12} lg={6}>
                         <Typography variant="h6" color="textSecondary">
                             Тиск:&nbsp;&nbsp;
-                            <Pressure num={data?.pressure} />
+                            <Pressure num={data?.pressure === -1 ? 'NaN' : data?.pressure} />
                         </Typography>
                         <Typography
                             variant="h6"
