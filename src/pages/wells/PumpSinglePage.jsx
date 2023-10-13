@@ -212,7 +212,21 @@ const PumpSinglePage = () => {
                                                 />
                                             </Grid>
                                         ) : null}
-
+                                        {data?.alarms?.nullAlarm_NULL_BIT_805 != null ? (
+                                            <Grid item xs={12} md={6} lg={6}>
+                                                <Status
+                                                    title={'Рівень - Сухий хід'}
+                                                    newDesign={!userAccess}
+                                                    text={
+                                                        data?.alarms?.nullAlarm_NULL_BIT_805
+                                                            ? 'Вище встановленого значення'
+                                                            : 'Нижче встановленого значення'
+                                                    }
+                                                    status={data?.alarms?.nullAlarm_NULL_BIT_805}
+                                                    extraText={data?.alarms?.nullAlarm_NULL_BIT_805 ? "Нормальний рівень для запуску" : "Запуск неможливий"}
+                                                />
+                                            </Grid>
+                                        ) : null}
                                         {data?.alarms?.sensorPressureAlarm != null ? (
                                             <Grid item xs={12} md={6} lg={6}>
                                                 <Status
@@ -226,17 +240,6 @@ const PumpSinglePage = () => {
                                                 />
                                             </Grid>
                                         ) : null}
-                                        {data?.alarms?.nullAlarm_NULL_BIT_803 != null ? (
-                                            <Grid item xs={12} md={6} lg={6}>
-                                                <Status
-                                                    title={'NULL_BIT_803'}
-                                                    newDesign={!userAccess}
-                                                    text={new String(data?.alarms?.nullAlarm_NULL_BIT_803)}
-                                                    status={data?.alarms?.nullAlarm_NULL_BIT_803}
-                                                    extraText={'Невідомий біт'}
-                                                />
-                                            </Grid>
-                                        ) : null}
                                         {data?.alarms?.nullAlarm_NULL_BIT_804 != null ? (
                                             <Grid item xs={12} md={6} lg={6}>
                                                 <Status
@@ -244,17 +247,6 @@ const PumpSinglePage = () => {
                                                     newDesign={!userAccess}
                                                     text={new String(data?.alarms?.nullAlarm_NULL_BIT_804)}
                                                     status={data?.alarms?.nullAlarm_NULL_BIT_804}
-                                                    extraText={'Невідомий біт'}
-                                                />
-                                            </Grid>
-                                        ) : null}
-                                        {data?.alarms?.nullAlarm_NULL_BIT_805 != null ? (
-                                            <Grid item xs={12} md={6} lg={6}>
-                                                <Status
-                                                    title={'NULL_BIT_805'}
-                                                    newDesign={!userAccess}
-                                                    text={new String(data?.alarms?.nullAlarm_NULL_BIT_805)}
-                                                    status={data?.alarms?.nullAlarm_NULL_BIT_805}
                                                     extraText={'Невідомий біт'}
                                                 />
                                             </Grid>

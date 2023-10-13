@@ -19,7 +19,7 @@ const config = {
     defaultChartUpdateTime: 60000,
     liqChartsPreset: localStorage.liqChartsPreset ? localStorage.liqChartsPreset : true,
     themeDirection: 'ltr',
-    delay: inProdMode ? 200 : 500,
+    delay: inProdMode ? 0 : 500,
     apiUrl: inProdMode ? 'https://api.vd.lutsk.ua/api/v1' : 'http://localhost:8080/api/v1'
 };
 

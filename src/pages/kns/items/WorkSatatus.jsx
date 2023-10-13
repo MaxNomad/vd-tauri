@@ -17,6 +17,10 @@ const WorkStatus = ({ current }) => {
             color = 'error';
             title = 'Вимкнено';
             break;
+        case 3:
+            color = 'primary';
+            title = 'Дистанційний';
+            break;
         default:
             color = 'error';
             title = 'Не визначено';

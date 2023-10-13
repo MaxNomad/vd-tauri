@@ -1,5 +1,6 @@
 import { Grid, Typography } from '@mui/material';
 import Pressure from './Pressure';
+import React from 'react';
 
 const PressureList = () => {
     const padding = {

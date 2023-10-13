@@ -6,11 +6,13 @@ import { getPumpRoot } from '../redux/pumpListSlice';
 import React from 'react';
 import PumpSingleSmall from './PumpSingleSmall';
 import parseID from '@utils/getObjID';
+import { getRootPumpStation } from '@pages/pumpStations/redux/PumpStationListSlice';
+import PumpStationSingleSmall from './PumpStationSingleSmall';
 
-const SmallWellsList = () => {
+const SmallPumpStationsList = () => {
     const dispatch = useDispatch();
 
-    const { data, loading, error } = useSelector((state) => state.PumpRoot);
+    const { data, loading, error } = useSelector((state) => state.RootPumpStation);
     const [timer, setTimer] = useState(Date.now());
 
     useEffect(() => {
@@ -24,24 +26,21 @@ const SmallWellsList = () => {
     }, []);
 
     useEffect(() => {
-        dispatch(getPumpRoot());
+        dispatch(getRootPumpStation());
     }, [timer]);
 
     const renderPumps = useMemo(
         () =>
             data?.map((pump) => {
-                return pump?.visible ? <PumpSingleSmall data={pump} lastUpdate={pump?.timeStamp} key={pump.pumpID} /> : '';
+                console.log(pump)
+                return pump?.visible ? <PumpStationSingleSmall data={pump} lastUpdate={pump?.timeStamp} key={pump.nsID} /> : '';
             }),
         [data]
     );
     return (
         <>
-            <Box sx={{ pb: 2, mb: { md: -1, sm: 2 }, mt: -5 }}>
-                <Grid container rowSpacing={2.75} columnSpacing={2.75}>
-                    {renderPumps}
-                </Grid>
-            </Box>
+            {renderPumps}
         </>
     );
 };
-export default React.memo(SmallWellsList);
+export default React.memo(SmallPumpStationsList);

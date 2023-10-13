@@ -89,7 +89,7 @@ const SmallWellController = ({ wellID, data }) => {
                     <Button
 
                         variant="contained"
-                        color="error"
+                        color="warning"
                         size="small"
                         onClick={handleClickOpenAlert}
                         disabled={
@@ -286,7 +286,7 @@ const SmallWellController = ({ wellID, data }) => {
                         Скасувати
                     </Button>
                     {wellData?.data?.status ? (
-                        <Button variant="contained" color={'primary'} size="medium" onClick={changeStatusWellAlert}>
+                        <Button variant="contained" color={'warning'} size="medium" onClick={changeStatusWellAlert}>
                             Скинути аварії
                         </Button>
                     ) : null}

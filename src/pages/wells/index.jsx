@@ -11,6 +11,7 @@ import parseID from '@utils/getObjID';
 import ComponentSkeletonKns from '@pages/components-overview/ComponentSkeletonKNS';
 import NotFound from '@pages/notFound';
 import { ErrorBoundary } from 'react-error-boundary';
+import SmallPumpStationsList from './components/smallPumpStationsList';
 
 const WellsRoot = () => {
     const dispatch = useDispatch();
@@ -52,6 +53,10 @@ const WellsRoot = () => {
                         {firstLoad && data.length > 0 && !error ? (
                             <>
                                 <Grid container rowSpacing={4.5} columnSpacing={2.75}>
+                                <Grid item xs={12} sx={{ mb: -2.25 }}>
+                                        <Typography variant="h5">Насосні станції</Typography>
+                                    </Grid>
+                                    <SmallPumpStationsList/>
                                     <Grid item xs={12} sx={{ mb: -2.25 }}>
                                         <Typography variant="h5">Об`єкти</Typography>
                                     </Grid>

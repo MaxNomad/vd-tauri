@@ -13,8 +13,8 @@ const SmallWellsList = ({ data = [] }) => {
     );
     return (
         <>
-            <Box sx={{ width: '100%', overflowX: 'auto', pb: 2, mb: { md: -1, sm: 2 }, mt: -1 }}>
-                <Grid container rowSpacing={4.5} columnSpacing={2.75} sx={{ display: 'inline-flex!important', width: 80 * data.length }}>
+            <Box sx={{  pb: 2, mb: { md: -1, sm: 2 }, mt: -5 }}>
+                <Grid container rowSpacing={2.75} columnSpacing={2.75} >
                     {renderPumps}
                 </Grid>
             </Box>
