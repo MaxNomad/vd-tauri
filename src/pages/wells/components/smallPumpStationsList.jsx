@@ -32,7 +32,6 @@ const SmallPumpStationsList = () => {
     const renderPumps = useMemo(
         () =>
             data?.map((pump) => {
-                console.log(pump)
                 return pump?.visible ? <PumpStationSingleSmall data={pump} lastUpdate={pump?.timeStamp} key={pump.nsID} /> : '';
             }),
         [data]

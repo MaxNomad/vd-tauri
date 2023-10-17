@@ -71,6 +71,11 @@ const titlebarMenus = [
                 shortcut: 'Ctrl+Shift+C'
             },
             {
+                name: 'Run garbage collector',
+                action: 'clear_gc',
+                shortcut: 'Ctrl+Shift+G'
+            },
+            {
                 name: 'Force delete data',
                 action: 'force_clear_cache',
                 shortcut: 'Ctrl+Shift+D'

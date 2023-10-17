@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import React from 'react';
 import PumpSingleSmall from './PumpSingleSmall';
 
-const SmallWellsList = ({ data = [] }) => {
+const SmallWellsList = ({ data }) => {
     const renderPumps = useMemo(
         () =>
             data?.map((pump) => {

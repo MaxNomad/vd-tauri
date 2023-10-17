@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import WindowFrame from '@window/components/WindowFrame';
 import './App.scss';
+
 const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
 // ==============================|| MAIN - REACT DOM RENDER  ||============================== //

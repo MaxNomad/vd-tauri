@@ -32,6 +32,8 @@ fn main() {
                 main_window.show().unwrap();
                 set_shadow(main_window, true).unwrap();
             });
+            #[cfg(desktop)]
+            app.handle().plugin(tauri_plugin_system_info::init())?;
             Ok(())
         })
         

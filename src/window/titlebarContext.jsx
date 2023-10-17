@@ -38,12 +38,17 @@ const titlebarContext = {
     open_url(url) {},
     force_clear_cache() {
         caches.keys().then((list) => list.map((key) => caches.delete(key)));
+        window.gc()
         localStorage.clear();
         window.location.reload(true);
     },
     clear_cache() {
         localStorage.clear();
+        window.gc()
         window.location.reload(true);
+    },
+    clear_gc() {
+        window.gc()
     }
 };
 

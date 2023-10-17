@@ -14,6 +14,7 @@ import { allSysInfo, AllSystemInfo, refreshAll } from 'tauri-plugin-system-info-
 import { invoke } from '@tauri-apps/api/tauri';
 import TimeAgo from '@pages/counters/components/timeAgo';
 import NumberWithAnimation from '@pages/kns/components/NumberWithAnimation';
+import config from '@config';
 
 const DrawerHeader = ({ open }) => {
     const theme = useTheme();
@@ -21,15 +22,19 @@ const DrawerHeader = ({ open }) => {
     const [sysInfo, setSysInfo] = React.useState({});
     const [sysPID, setSysPID] = React.useState(0);
     const [appData, setAppData] = React.useState({});
+    const [memoryInfo, setMemoryInfo] = React.useState(performance.memory);
 
+    const totalMemoryMB = memoryInfo.jsHeapSizeLimit / (1024 * 1024);
+    const usedMemoryMB = memoryInfo.usedJSHeapSize / (1024 * 1024);
+    const memoryUsagePercentage = (usedMemoryMB / totalMemoryMB) * 100;
     useEffect(() => {
         const fetchData = async () => {
             if (isTauri && openDialog) {
                 try {
                     refreshAll();
                     const data = await allSysInfo();
-                    setSysInfo(AllSystemInfo.parse(data));
-
+                    setSysInfo(data);
+                    setMemoryInfo(performance.memory)
                     const pidData = await invoke('get_current_pid');
                     setSysPID(pidData);
                 } catch (error) {
@@ -42,7 +47,7 @@ const DrawerHeader = ({ open }) => {
         fetchData();
 
         // Fetch data every second
-        const intervalId = setInterval(fetchData, 1000);
+        const intervalId = setInterval(fetchData, localStorage.apiUpdateTime ? localStorage.apiUpdateTime : config.defaultUpdateTime);
 
         // Cleanup interval on unmount
         return () => clearInterval(intervalId);
@@ -151,9 +156,15 @@ const DrawerHeader = ({ open }) => {
                         </Grid>
                         <Grid item xs={12}>
                             <Typography variant="h6" color="textSecondary" sx={{ mb: 1.5 }}>
-                                Споживання пам`яті <NumberWithAnimation number={Math.round(appData?.memory / 1024 ** 2)} rev /> Mb
+                            Використання пам`яті  <NumberWithAnimation number={(Math.round(appData?.memory / 1024 ** 2) + usedMemoryMB).toFixed(2)} one /> Mb
                             </Typography>
                         </Grid>
+                        <Grid item xs={12}>
+                            <Typography variant="h6" color="textSecondary" sx={{ mb: 1.5 }}>
+                                JavaScript Heap <NumberWithAnimation number={(usedMemoryMB).toFixed(2)} rev /> Mb / {totalMemoryMB} Mb (<NumberWithAnimation number={(memoryUsagePercentage).toFixed(2)} rev /> %)
+                            </Typography>
+                        </Grid>
+                        
                     </Grid>
                 </Grid>
             </>
@@ -210,7 +221,7 @@ const DrawerHeader = ({ open }) => {
                             <Typography variant="h6" color="textSecondary" sx={{ mb: 1.4 }}>
                                 Http engine &nbsp;&nbsp;{' '}
                                 <Chip
-                                    label={isTauri ? 'Hyperium' : 'Axios'} // Додано версію React
+                                    label={isTauri ? 'Hyper' : 'Axios'} // Додано версію React
                                     size="small"
                                     color="secondary"
                                 />

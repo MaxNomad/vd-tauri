@@ -33,7 +33,7 @@ const PumpStationsRoot = () => {
     const renderNs = useMemo(
         () =>
             data.map((ns) => {
-                return ns?.visible ? <PumpStationSingle data={ns} lastUpdate={ns?.timeStamp} key={ns?.nsID} /> : '';
+                return ns?.visible ? <PumpStationSingle data={ns} lastUpdate={ns?.timeStamp} key={ns?.nsID} /> : null;
             }),
         [data]
     );
