@@ -54,7 +54,18 @@ const RebootDeviceModal = ({ wellID, scheme, data }) => {
                             variant="contained"
                             color="error"
                             size="small"
-                            disabled={!permsCheck(['level_10'])}
+                            disabled={
+                                !permsCheck([
+                                    'level_10',
+                                    'level_9',
+                                    'level_8',
+                                    'dash_well_write_all',
+                                    'dash_well_control_all',
+                                    'dash_well_reboot_all',
+                                    `dash_well_reboot_${intID}`,
+                                    `dash_well_write_${intID}`,
+                                    `dash_well_control_${intID}`
+                                ])}
                             onClick={handleClickOpen}
                         >
                             Reboot
