@@ -19,16 +19,17 @@ import * as Sentry from '@sentry/react';
 import { appVersion, isTauri } from '@utils/Tauri';
 import { inProdMode } from './config';
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import AppConsole from '@utils/appConsole';
 import 'rsuite/dist/rsuite.min.css';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'simplebar/src/simplebar.css';
 import '@assets/third-party/apex-chart.css';
-import AppConsole from '@utils/appConsole';
+
 
 Sentry.init({
-    enabled: !inProdMode,
+    enabled: inProdMode,
     dsn: 'https://299b1b9e3b63a15f57ac6a2bd8b96356@o4503924567572480.ingest.sentry.io/4505924038819840',
     integrations: [
         new Sentry.BrowserTracing({

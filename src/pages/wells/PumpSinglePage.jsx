@@ -25,6 +25,7 @@ import SmallWellList from './components/smallWellList';
 import NotFound from '@pages/notFound';
 import permsCheck from '@pages/authentication/context/permsCheck';
 import parseID from '@utils/getObjID';
+import RebootDevice from './components/modals/rebootDevice';
 
 const PumpSinglePage = () => {
     const dispatch = useDispatch();
@@ -243,11 +244,11 @@ const PumpSinglePage = () => {
                                         {data?.alarms?.nullAlarm_NULL_BIT_804 != null ? (
                                             <Grid item xs={12} md={6} lg={6}>
                                                 <Status
-                                                    title={'NULL_BIT_804'}
+                                                    title={'Аварійний стоп'}
                                                     newDesign={!userAccess}
-                                                    text={new String(data?.alarms?.nullAlarm_NULL_BIT_804)}
+                                                    text={data?.alarms?.nullAlarm_NULL_BIT_804 ? "В нормі" : "Увімкнено"}
                                                     status={data?.alarms?.nullAlarm_NULL_BIT_804}
-                                                    extraText={'Невідомий біт'}
+                                                    extraText={data?.alarms?.nullAlarm_NULL_BIT_804 ? "Свердловина готова до запуску" : "Запуск неможливий"}
                                                 />
                                             </Grid>
                                         ) : null}
@@ -273,17 +274,20 @@ const PumpSinglePage = () => {
                                     <Grid item />
                                 </Grid>
                                 <Grid container rowSpacing={4.5} columnSpacing={2.75}>
-                                    <Grid item xs={12} md={6} xl={3} sm={6} lg={6}>
+                                    <Grid item xs={12} md={6} xl={3} sm={6} lg={6} UWHD={2.4}>
                                         <WellDisAlertsModal wellID={glID} data={data} />
                                     </Grid>
-                                    <Grid item xs={12} md={6} xl={3} sm={6} lg={6}>
+                                    <Grid item xs={12} md={6} xl={3} sm={6} lg={6} UWHD={2.4}>
                                         <WellControllModal wellID={glID} data={data} />
                                     </Grid>
-                                    <Grid item xs={12} md={6} xl={3} sm={6} lg={6}>
+                                    <Grid item xs={12} md={6} xl={3} sm={6} lg={6} UWHD={2.4}>
                                         <UpdateDbModal wellID={glID} scheme={data?.scheme} data={data} />
                                     </Grid>
-                                    <Grid item xs={12} md={6} xl={3} sm={6} lg={6}>
+                                    <Grid item xs={12} md={6} xl={3} sm={6} lg={6} UWHD={2.4}>
                                         <ClearTableModal wellID={glID} data={data} />
+                                    </Grid>
+                                    <Grid item xs={12} md={6} xl={3} sm={6} lg={6} UWHD={2.4}>
+                                        <RebootDevice wellID={glID} data={data} scheme={data?.scheme}/>
                                     </Grid>
                                 </Grid>
                             </Grid>

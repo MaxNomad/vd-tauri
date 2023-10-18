@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 import permsCheck from '@pages/authentication/context/permsCheck';
 import parseID from '@utils/getObjID';
 
-const UpdateDBModal = ({ wellID, scheme, data }) => {
+const RebootDeviceModal = ({ wellID, scheme, data }) => {
     const matchDownSM = useMediaQuery((theme) => theme.breakpoints.down('md'));
     const [open, setOpen] = React.useState(false);
 
@@ -27,10 +27,10 @@ const UpdateDBModal = ({ wellID, scheme, data }) => {
         setOpen(false);
     };
     const clearTable = () => {
-        api.post(`/postUpdateWellTrigger`, { pumpID: wellID, schema: scheme })
+        api.post(`/rebootDevice`, { pumpID: wellID, schema: scheme })
             .then((response) => {
                 if (response.status === 200) {
-                    toastSuccess('Схему оновлено');
+                    toastSuccess('Дію виконано');
                     handleClose();
                 } else {
                     toastError(response?.data?.message);
@@ -43,20 +43,21 @@ const UpdateDBModal = ({ wellID, scheme, data }) => {
     };
     const intID = parseID(wellID);
     const { userData } = useSelector((state) => state.user);
+    console.log(data)
     return (
         <>
             <MainCard sx={{ mt: 2 }}>
                 <Typography variant="h6" color="secondary" sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    Обновити схеми БД
+                    Перезавантаження контроллеру
                     <Grid sx={{ mt: -0.5 }}>
                         <Button
                             variant="contained"
-                            color="warning"
+                            color="error"
                             size="small"
                             disabled={!permsCheck(['level_10'])}
                             onClick={handleClickOpen}
                         >
-                            Оновити
+                            Reboot
                         </Button>
                         <Tooltip title="" placement="bottom">
                             <Button sx={{ p: 0, minWidth: 0, ml: 2 }}>
@@ -74,34 +75,27 @@ const UpdateDBModal = ({ wellID, scheme, data }) => {
                     <Grid xs={9}>
                         {data?.events?.updateSchem?.date ? (
                             <>
-                                Остання дія <TimeAgo targetTime={new Date(data?.events?.updateSchem?.date)} />
+                                Остання дія <TimeAgo targetTime={new Date(data?.events?.rebootDevice?.date)} />
                             </>
                         ) : (
                             'Дії відсутні'
                         )}
                     </Grid>
-                    <Grid>{data?.events?.updateSchem?.user ? `By ${data?.events?.updateSchem?.user}` : null}</Grid>
+                    <Grid>{data?.events?.updateSchem?.user ? `By ${data?.events?.rebootDevice?.user}` : null}</Grid>
                 </Typography>
             </MainCard>
             <Dialog open={open} onClose={handleClose} maxWidth="sm" fullScreen={matchDownSM}>
                 <DialogTitle>
-                    Оновлення схеми тригерів бази даних <b>WELL{intID}</b>
+                    Перезавантаження контроллера <b>WELL{intID}</b>
                 </DialogTitle>
                 <DialogContent dividers>
                     <DialogContentText>
                         <Typography variant="h6" color="error" sx={{ mt: -0.5 }}>
-                            Ви плануєте внести зміни в схему тригерів бази даних. Будь ласка, ретельно перевірте та підтвердьте ці зміни
+                            Ви плануєте перезавантажити контроллер. Будь ласка, ретельно перевірте та підтвердьте ці зміни
                             перед їх виконанням.
                         </Typography>
-                        <br />
+                      
                         <Typography variant="h6" color="secondary" sx={{ mt: -1.5 }}>
-                            Список тригерів, які будуть оновлені:
-                            <Typography variant="h6" color="warning" sx={{ mt: -1.5 }}>
-                                <br />
-                                1. <b>trg_CheckDuplicateKeys_WELL{intID}</b> (Основний трігер для обробки данних)
-                                <br />
-                                2. <b>trg_CheckDuplicateKeys_ALARMSWELL{intID}</b> (Основний трігер для обробки аварій)
-                            </Typography>
                             <br />
                             <Typography variant="h6" color="secondary">
                                 Версія схеми&nbsp;&nbsp;
@@ -111,12 +105,8 @@ const UpdateDBModal = ({ wellID, scheme, data }) => {
                         <br />
                         <Divider sx={{ mt: -1.5 }} />
                         <Typography variant="h6" color="textSecondary" sx={{ mt: 1.5 }}>
-                            Переконайтесь, що ви розумієте призначення цих тригерів та наслідки їх оновлення. Будь ласка, також зверніть
-                            увагу на те, що внесені зміни можуть вплинути на роботу бази даних та додатків, які її використовують.
-                            <br />
-                            <br />
-                            Після перевірки і підтвердження, ви можете натиснути кнопку <b>{"'Оновити схему'"}</b>, щоб продовжити. Якщо у
-                            вас є сумніви або питання, будь ласка, зверніться до адміністратора бази даних або інженера з баз даних для
+                            Після перевірки і підтвердження, ви можете натиснути кнопку <b>{"'Reboot'"}</b>, щоб продовжити. Якщо у
+                            вас є сумніви або питання, будь ласка, зверніться до адміністратора або інженера для
                             отримання додаткової інформації та підтримки.
                         </Typography>
                     </DialogContentText>
@@ -125,12 +115,12 @@ const UpdateDBModal = ({ wellID, scheme, data }) => {
                     <Button variant="contained" color="success" size="medium" onClick={handleClose}>
                         Скасувати
                     </Button>
-                    <Button variant="contained" color="warning" size="medium" onClick={clearTable}>
-                        Оновити схему
+                    <Button variant="contained" color="error" size="medium" onClick={clearTable}>
+                        Reboot
                     </Button>
                 </DialogActions>
             </Dialog>
         </>
     );
 };
-export default React.memo(UpdateDBModal);
+export default React.memo(RebootDeviceModal);

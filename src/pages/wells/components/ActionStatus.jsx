@@ -20,6 +20,7 @@ const ActionStatus = ({ status }) => {
             color = 'warning';
             break;
         case 'ClearTable':
+        case 'RebootDevice':
             color = 'error';
             break;
         case 'AlarmReset1':
