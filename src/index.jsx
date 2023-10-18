@@ -11,7 +11,7 @@ import WindowFrame from '@window/components/WindowFrame';
 import './App.scss';
 
 Sentry.init({
-    enabled: false,
+    enabled: import.meta.env.PROD,
     dsn: 'https://299b1b9e3b63a15f57ac6a2bd8b96356@o4503924567572480.ingest.sentry.io/4505924038819840',
     integrations: [
         new Sentry.BrowserTracing({

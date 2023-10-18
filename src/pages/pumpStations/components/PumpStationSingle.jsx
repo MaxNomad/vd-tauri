@@ -148,7 +148,7 @@ const PnsSingle = ({ data, lastUpdate }) => {
                                                     <Typography variant="h5" color="textSecondary" sx={{ mt: 5 }}>
                                                         Резервуарів не виявлено
                                                     </Typography>
-                                                    <Typography variant="h6" color="textSecondary" sx={{ mb: 7 }}>
+                                                    <Typography variant="h6" color="textSecondary" sx={{ mb: 6.9 }}>
                                                         Перерірте налаштування
                                                     </Typography>
                                                 </Box>

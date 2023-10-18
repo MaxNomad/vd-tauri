@@ -68,7 +68,7 @@ const MainLayout = () => {
                         p: { xs: 2, sm: 3 },
                         mt: isTauri ? 6 : 2,
                         overflow: 'auto', // Add this line to enable scrolling
-                        maxHeight: 'calc(100vh - 61px)' // You can adjust the max height as needed
+                        maxHeight: isTauri ? 'calc(100vh - 93px)' : 'calc(100vh - 61px)' // You can adjust the max height as needed
                     }}
                 >
                     <Toolbar />
