@@ -18,7 +18,12 @@ const AppError = ({ error, resetErrorBoundary }) => {
                     {error.message}
                 </Typography>
                 <Typography variant="body1" color="textSecondary" align="center" sx={{ mb: 3 }}></Typography>
-                <Button onClick={resetErrorBoundary}>Перезавантажити сторінку</Button>
+
+                <Button onClick={() => window.location.reload()}>Перезавантажити сторінку</Button>
+
+                <Button onClick={resetErrorBoundary} sx={{ mt: 2 }}>
+                    Скинути помилки
+                </Button>
             </Box>
         </>
     );

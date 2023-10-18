@@ -2,8 +2,12 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../../../api';
 
 export const getPumpRoot = createAsyncThunk('pump/getPumpList', async () => {
-    const response = await api.get(`/getRootPumps`);
-    return response.data;
+    try {
+        const response = await api.get(`/getRootPumps`);
+        return response.data;
+    } catch (e) {
+        throw e.response.data;
+    }
 });
 
 export const PumpRoot = createSlice({
@@ -24,12 +28,14 @@ export const PumpRoot = createSlice({
             if (state.loading === 'pending') {
                 state.data = action.payload;
                 state.loading = 'idle';
+                state.error = null;
             }
         });
         builder.addCase(getPumpRoot.rejected, (state, action) => {
             if (state.loading === 'pending') {
                 state.loading = 'idle';
-                state.error = 'Error occured';
+                state.data = [];
+                state.error = action.error;
             }
         });
     }

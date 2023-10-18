@@ -33,7 +33,7 @@ const ClearTableModal = ({ wellID, data }) => {
                     toastWarn('Таблицю очищено');
                     handleClose();
                 } else {
-                    toastError('Помилка при очищені данних');
+                    toastError(response?.data?.message);
                     handleClose();
                 }
             })
@@ -94,7 +94,7 @@ const ClearTableModal = ({ wellID, data }) => {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions sx={{ display: 'flex', justifyContent: 'space-between', p: 3 }}>
-                    <Button variant="contained" color="primary" size="medium" onClick={handleClose}>
+                    <Button variant="contained" color="success" size="medium" onClick={handleClose}>
                         Скасувати
                     </Button>
                     <Button variant="contained" color="error" size="medium" onClick={clearTable}>

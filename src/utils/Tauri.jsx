@@ -1,5 +1,4 @@
 import { getVersion, getTauriVersion } from '@tauri-apps/api/app';
-import { checkUpdate } from '@tauri-apps/api/updater';
 import { invoke } from '@tauri-apps/api/tauri';
 
 export const isTauri = window?.__TAURI__ ? true : false;

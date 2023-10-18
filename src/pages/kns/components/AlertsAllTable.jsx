@@ -186,10 +186,6 @@ const AlertsTableAll = ({ knsID }) => {
         state: PropTypes.number
     };
     const handleClose = () => {
-        setTableAlertName('');
-        setTableDate('');
-        setTableAlertID('');
-        setTableAlertPriority(0);
         setTableAlertState(false);
         setOpenModal(false);
     };
@@ -248,7 +244,7 @@ const AlertsTableAll = ({ knsID }) => {
                                         selected={isItemSelected}
                                     >
                                         <TableCell component="th" id={labelId} scope="row" align="left">
-                                            <TimeAgo targetTime={row?.date} />
+                                            <TimeAgo targetTime={new Date(row?.date)} />
                                         </TableCell>
                                         <TableCell align="left">{row.errName}</TableCell>
                                         <TableCell align="left">{row.object}</TableCell>

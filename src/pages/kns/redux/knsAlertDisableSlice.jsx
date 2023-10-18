@@ -1,8 +1,14 @@
+import { toastAlert, toastError, toastSuccess } from '@pages/components-overview/toasts';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../../../api';
 
 export const deleteKNSAlert = createAsyncThunk('kns/deleteKNSAlert', async (props) => {
-    const response = await api.delete(`/deleteDissableActiveAlert`, { data: { tag: props.tag, date: props.date } });
+    const response = await api.delete(`/deleteDissableActiveAlert`, { tag: props.tag, date: props.date });
+    if (response.status === 201) {
+        toastSuccess(response.data.message);
+    } else {
+        toastError(response.data.message);
+    }
     return response.data;
 });
 

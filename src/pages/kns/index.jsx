@@ -8,13 +8,12 @@ import config from '../../config';
 import ComponentSkeletonKns from '@pages/components-overview/ComponentSkeletonKNS';
 import Search from '@layout/MainLayout/Header/HeaderContent/Search';
 import parseID from '@utils/getObjID';
-import permsCheck from '@pages/authentication/context/permsCheck';
+import NotFound from '@pages/notFound';
 
 const KnsMain = () => {
     const dispatch = useDispatch();
 
-    const { data, loading, error } = useSelector((state) => state.knsRoot);
-    const [updateTime, setUpdateTime] = useState();
+    const { data, loading, error, empty } = useSelector((state) => state.knsRoot);
     const [timer, setTimer] = useState(Date.now());
     const [firstLoad, setFirstLoad] = useState(false);
 
@@ -29,20 +28,10 @@ const KnsMain = () => {
     }, []);
 
     useEffect(() => {
-        dispatch(getKNSRoot());
-        setUpdateTime(new Date());
-        setInterval(() => setFirstLoad(true), 400);
+        dispatch(getKNSRoot()).then(() => setInterval(() => setFirstLoad(true), config.delay));
     }, [dispatch, timer]);
 
-    const objectsWithErrors = Array.isArray(data) ? data?.filter((obj) => obj.alarmStatus > 0) : [];
-    const objectsWithoutErrors = Array.isArray(data) ? data?.filter((obj) => obj.alarmStatus <= 0 || obj.alarmStatus == null) : [];
-
-    const sortedArray = [...objectsWithErrors, ...objectsWithoutErrors];
-    const permsArray = sortedArray.filter((obj) =>
-        permsCheck(['level_10', 'level_9', 'level_8', 'dash_kns_read_all', `dash_kns_read_${parseID(obj?.knsID)}`])
-    );
-
-    const renderKns = permsArray.map((kns) => {
+    const renderKns = data.map((kns) => {
         return kns?.visible ? (
             <KnsSingle
                 isOnline={kns?.online}
@@ -62,32 +51,26 @@ const KnsMain = () => {
         );
     });
     return (
-        <>
-            <ComponentSkeletonKns renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
-                {firstLoad && permsArray.length !== 0 ? (
-                    <Grid container rowSpacing={4.5} columnSpacing={2.75}>
-                        <Grid item xs={12} sx={{ mb: -2.25 }}>
-                            <Typography variant="h5">Об`єкти</Typography>
-                        </Grid>
-
-                        {renderKns}
-                    </Grid>
-                ) : (
-                    <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" sx={{ mt: '30vh' }}>
-                        <Typography variant="h1" color="primary" gutterBottom>
-                            404
-                        </Typography>
-                        <Typography variant="h4" color="textPrimary" align="center" gutterBottom>
-                            Об`єкти КНС відсутні
-                        </Typography>
-                        <Typography variant="body1" color="textSecondary" align="center" sx={{ mb: 3 }}>
-                            Перевірте налаштування панелі
-                        </Typography>
-                    </Box>
-                )}
-            </ComponentSkeletonKns>
-        </>
+        <ComponentSkeletonKns renderContent={firstLoad || (loading === 'idle' && firstLoad)}>
+            {firstLoad && !error ? (
+                <>
+                    {firstLoad && data.length > 0 && !error ? (
+                        <>
+                            <Grid container rowSpacing={4.5} columnSpacing={2.75}>
+                                <Grid item xs={12} sx={{ mb: -2.25 }}>
+                                    <Typography variant="h5">Об`єкти</Typography>
+                                </Grid>
+                                {renderKns}
+                            </Grid>
+                        </>
+                    ) : (
+                        <NotFound />
+                    )}
+                </>
+            ) : (
+                <NotFound code={''} text={error?.name} subText={error?.message} />
+            )}
+        </ComponentSkeletonKns>
     );
 };
-
 export default KnsMain;

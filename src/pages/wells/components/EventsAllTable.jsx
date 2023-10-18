@@ -11,6 +11,7 @@ import ActiveStatus from './ActiveStatus';
 import OrderStatus from './OrderStatus';
 import { getPumpEventsList } from '../redux/pumpEventsListSlice';
 import TimeAgo from '@pages/counters/components/timeAgo';
+import ActionStatus from './ActionStatus';
 
 // ==============================|| ORDER TABLE - HEADER CELL ||============================== //
 
@@ -194,7 +195,7 @@ const EventsAllTable = ({ pumpID, update }) => {
                                             {row.Object}
                                         </TableCell>
                                         <TableCell component="th" align="left" scope="row">
-                                            {row.Event}
+                                            <ActionStatus status={row.Event} />
                                         </TableCell>
                                         <TableCell component="th" align="right" scope="row">
                                             {row.EventMes}

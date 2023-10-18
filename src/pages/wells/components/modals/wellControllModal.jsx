@@ -40,7 +40,7 @@ const WellControllModal = ({ wellID, data }) => {
                         handleClose();
                     }
                 } else {
-                    toastError('Error: ' + response.status);
+                    toastError(response?.data?.message);
                     handleClose();
                 }
             })

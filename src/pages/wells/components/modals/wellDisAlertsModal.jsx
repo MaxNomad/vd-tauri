@@ -35,7 +35,7 @@ const WellDisAlrtsModal = ({ wellID, data }) => {
                     toastSuccess(`Аварії деактивовано`);
                     handleClose();
                 } else {
-                    toastError('Error: ' + response.status);
+                    toastError(response?.data?.message);
                     handleClose();
                 }
             })
@@ -56,7 +56,7 @@ const WellDisAlrtsModal = ({ wellID, data }) => {
                     <Grid sx={{ mt: -0.5 }}>
                         <Button
                             variant="contained"
-                            color="error"
+                            color="warning"
                             size="small"
                             onClick={handleClickOpen}
                             disabled={
@@ -164,7 +164,7 @@ const WellDisAlrtsModal = ({ wellID, data }) => {
                         Скасувати
                     </Button>
                     {wellData?.data?.status ? (
-                        <Button variant="contained" color={'primary'} size="medium" onClick={changeStatusWell}>
+                        <Button variant="contained" color={'warning'} size="medium" onClick={changeStatusWell}>
                             Скинути аварії
                         </Button>
                     ) : null}

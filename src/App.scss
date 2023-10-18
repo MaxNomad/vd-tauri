@@ -114,6 +114,11 @@ html,
 body {
     transition: color 0.5s ease !important;
 }
+.linkDisabled {
+    pointer-events: none!important;
+    cursor: default!important;
+    z-index: 1000!important;
+  }
 
 .updateDialogText{
     h1 {

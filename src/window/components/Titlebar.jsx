@@ -7,7 +7,7 @@ import WindowControls from './WindowControls';
 import context from '../titlebarContext';
 import { WindowContext } from './WindowFrame';
 import { isTauri } from '@utils/Tauri';
-import './Titlebar.less';
+import './Titlebar.scss';
 
 const Titlebar = (props) => {
     const activeMenuIndex = useRef(null);

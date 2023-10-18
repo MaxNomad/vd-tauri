@@ -1,6 +1,7 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 use tauri::Manager;
+use window_shadows::set_shadow;
 
 static mut GLOBAL_DOM_READY: bool = false;
 
@@ -16,21 +17,6 @@ fn get_current_pid() -> u32 {
     std::process::id()
 }
 
-#[tauri::command]
-fn find_process(sys_info: Option<serde_json::Value>, sys_pid: Option<i32>) -> Option<serde_json::Value> {
-    if let (Some(sys_info), Some(sys_pid)) = (sys_info, sys_pid) {
-        if let Some(processes) = sys_info["processes"].as_array() {
-            for process in processes {
-                if let Some(pid) = process["pid"].as_i64() {
-                    if pid == sys_pid as i64 {
-                        return Some(process.clone());
-                    }
-                }
-            }
-        }
-    }
-    None
-}
 fn main() {
     tauri::Builder::default()
         .setup(|app| {
@@ -44,12 +30,19 @@ fn main() {
                 }
                 splashscreen_window.close().unwrap();
                 main_window.show().unwrap();
+                set_shadow(main_window, true).unwrap();
             });
+            #[cfg(desktop)]
+            app.handle().plugin(tauri_plugin_system_info::init())?;
             Ok(())
         })
-        .invoke_handler(tauri::generate_handler![dom_started, get_current_pid, find_process])
+        
+        .invoke_handler(tauri::generate_handler![
+            dom_started,
+            get_current_pid
+        ])
         .plugin(tauri_plugin_store::Builder::default().build())
-        .plugin(tauri_plugin_system_info::init())
+        //.plugin(tauri_plugin_system_info::init())
         .run(tauri::generate_context!())
         .expect("failed to run app");
 }

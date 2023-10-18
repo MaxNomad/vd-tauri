@@ -42,6 +42,7 @@ import { isTauri } from '@utils/Tauri';
 const AuthLogin = () => {
     const [checked, setChecked] = useState(false);
     const { error, loading } = useSelector((state) => state.auth);
+    const data = useSelector((state) => state.auth);
     const [showPassword, setShowPassword] = useState(false);
     const [status, setStatus] = useState(null);
     const [enableForm, setEnableForm] = useState(isTauri);
@@ -67,9 +68,6 @@ const AuthLogin = () => {
     const loginSubmit = async (values) => {
         await loginContext(values);
     };
-    if (error?.message && !loading) {
-        toastError('Invalid credentials');
-    }
 
     const googleHandler = useGoogleLogin({
         onSuccess: (tokenResponse) => loginContextGoogle({ token: tokenResponse.access_token }),

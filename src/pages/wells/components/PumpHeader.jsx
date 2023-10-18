@@ -66,7 +66,7 @@ const PumpHeader = ({ isOnline, Alarm, pressure, count, updateDate, address, id 
                     >
                         <Typography variant="h6" color="textSecondary">
                             Тиск:&nbsp;&nbsp;
-                            <Pressure num={pressure} />
+                            <Pressure num={pressure === -1 ? 'NaN' : pressure} />
                             &nbsp;
                         </Typography>
                     </Grid>

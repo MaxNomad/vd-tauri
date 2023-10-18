@@ -9,9 +9,7 @@ const MapRoot = () => {
         <>
             <ComponentSkeleton renderContent>
                 <MainCard title="Карта об`єктів">
-                    <Typography variant="body2">
-                        <GoogleMapComponent />
-                    </Typography>
+                    <GoogleMapComponent />
                 </MainCard>
             </ComponentSkeleton>
         </>

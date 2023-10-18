@@ -5,14 +5,12 @@ import config from '../../../config';
 import { getPumpRoot } from '../redux/pumpListSlice';
 import React from 'react';
 import PumpSingleSmall from './PumpSingleSmall';
-import permsCheck from '@pages/authentication/context/permsCheck';
 import parseID from '@utils/getObjID';
 
 const SmallWellsList = () => {
     const dispatch = useDispatch();
 
     const { data, loading, error } = useSelector((state) => state.PumpRoot);
-    const [updateTime, setUpdateTime] = useState();
     const [timer, setTimer] = useState(Date.now());
 
     useEffect(() => {
@@ -27,25 +25,19 @@ const SmallWellsList = () => {
 
     useEffect(() => {
         dispatch(getPumpRoot());
-        setUpdateTime(new Date().toLocaleString());
     }, [timer]);
 
-    const permsArray = Array.isArray(data)
-        ? data?.filter((obj) =>
-              permsCheck(['level_10', 'level_9', 'level_8', 'dash_well_read_all', `dash_well_read_${parseID(obj?.pumpID)}`])
-          )
-        : [];
     const renderPumps = useMemo(
         () =>
-            permsArray?.map((pump) => {
+            data?.map((pump) => {
                 return pump?.visible ? <PumpSingleSmall data={pump} lastUpdate={pump?.timeStamp} key={pump.pumpID} /> : '';
             }),
-        [updateTime, data]
+        [data]
     );
     return (
         <>
-            <Box sx={{ width: '100%', overflowX: 'auto', pb: 2, mb: { md: -1, sm: 2 }, mt: -1 }}>
-                <Grid container rowSpacing={4.5} columnSpacing={2.75} sx={{ display: 'inline-flex!important', width: 80 * data.length }}>
+            <Box sx={{ pb: 2, mb: { md: -1, sm: 2 }, mt: -5 }}>
+                <Grid container rowSpacing={2.75} columnSpacing={2.75}>
                     {renderPumps}
                 </Grid>
             </Box>

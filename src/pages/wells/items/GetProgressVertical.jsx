@@ -36,7 +36,7 @@ const FillProgress = ({ data, active }) => {
         <Progress.Line
             trailColor={tail}
             status={active ? 'active' : null}
-            percent={data ? Number(((data / 8) * 100).toFixed(2)) : 0}
+            percent={data >= 0? Number(((data / 8) * 100).toFixed(2)) : -100}
             strokeColor={color ? color : '#1890ff'}
         />
     );

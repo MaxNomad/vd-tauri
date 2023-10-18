@@ -2,8 +2,12 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../../../api';
 
 export const getKNS = createAsyncThunk('kns/getKns', async (id) => {
-    const response = await api.get(`/getSingleKNS?knsID=${id}`);
-    return response.data;
+    try {
+        const response = await api.get(`/getSingleKNS?knsID=${id}`);
+        return response.data;
+    } catch (e) {
+        throw e.response.data;
+    }
 });
 
 export const kns = createSlice({
@@ -29,12 +33,19 @@ export const kns = createSlice({
             if (state.loading === 'pending') {
                 state.data = action.payload;
                 state.loading = 'idle';
+                state.error = null;
             }
         });
         builder.addCase(getKNS.rejected, (state, action) => {
             if (state.loading === 'pending') {
                 state.loading = 'idle';
-                state.error = 'Error occured';
+                state.data = {
+                    pumps: [],
+                    grids: [],
+                    alarmsList: [],
+                    alarmsActive: []
+                };
+                state.error = action.error;
             }
         });
     }

@@ -33,7 +33,7 @@ const PumpSingleSmall = ({ data }) => {
                     <Link to={`/pump-single?id=${data?.pumpID}`} style={{ textDecoration: 'none' }}>
                         <MainCard contentSX={{ p: 1.25, borderColor: AlarmColor(), textAlign: 'center' }} hoverActive borderCustom>
                             <Badge
-                                color={data?.pump?.workingStatus ? 'success' : 'error'}
+                                color={data?.pump?.workingStatus ? 'success' : 'primary'}
                                 invisible={!data?.online}
                                 variant="dot"
                                 sx={{ display: 'inline-block', mb: -2, mt: -0.5 }}

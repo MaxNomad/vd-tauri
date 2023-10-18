@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
       "baseUrl": "./src",
-      "module": "ESNext",
-      "target": "es2022",
-      "lib": ["DOM", "ESNext", "es2022"],
+      "module": "es2020",
+      "target": "es2020",
+      "lib": ["DOM", "es2020"],
       "moduleResolution": "node",
       "strict": true,
       "esModuleInterop": true,

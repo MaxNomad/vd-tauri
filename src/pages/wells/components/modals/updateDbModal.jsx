@@ -33,7 +33,7 @@ const UpdateDBModal = ({ wellID, scheme, data }) => {
                     toastSuccess('Схему оновлено');
                     handleClose();
                 } else {
-                    toastError('Помилка при оновленні');
+                    toastError(response?.data?.message);
                     handleClose();
                 }
             })
@@ -51,7 +51,7 @@ const UpdateDBModal = ({ wellID, scheme, data }) => {
                     <Grid sx={{ mt: -0.5 }}>
                         <Button
                             variant="contained"
-                            color="error"
+                            color="primary"
                             size="small"
                             disabled={!permsCheck(['level_10'])}
                             onClick={handleClickOpen}
@@ -122,10 +122,10 @@ const UpdateDBModal = ({ wellID, scheme, data }) => {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions sx={{ display: 'flex', justifyContent: 'space-between', p: 3 }}>
-                    <Button variant="contained" color="primary" size="medium" onClick={handleClose}>
+                    <Button variant="contained" color="success" size="medium" onClick={handleClose}>
                         Скасувати
                     </Button>
-                    <Button variant="contained" color="error" size="medium" onClick={clearTable}>
+                    <Button variant="contained" color="primary" size="medium" onClick={clearTable}>
                         Оновити схему
                     </Button>
                 </DialogActions>

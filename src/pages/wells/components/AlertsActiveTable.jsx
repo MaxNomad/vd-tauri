@@ -165,10 +165,6 @@ const AlertsTableActive = ({ pumpID, status }) => {
 
     const handleClose = () => {
         setOpen(false);
-        setTableAlertName('');
-        setTableDate('');
-        setTableAlertID('');
-        setTableAlertPriority(0);
     };
 
     const disableSingleAlert = () => {
@@ -239,7 +235,7 @@ const AlertsTableActive = ({ pumpID, status }) => {
                                         selected={isItemSelected}
                                     >
                                         <TableCell component="th" id={labelId} scope="row" align="left">
-                                            <TimeAgo targetTime={row?.date} />
+                                            <TimeAgo targetTime={new Date(row?.date)} />
                                         </TableCell>
                                         <TableCell align="left">{row?.errName}</TableCell>
                                         <TableCell align="left">{row?.object}</TableCell>

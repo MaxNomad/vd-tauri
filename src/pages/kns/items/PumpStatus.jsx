@@ -35,6 +35,10 @@ const PumpStatus = ({ isOnline, setImage, current, cols = 4 }) => {
             colorMode = 'error';
             titleMode = 'Вимкнено';
             break;
+        case 3:
+            colorMode = 'primary';
+            titleMode = 'Дистанційний';
+            break;
         default:
             colorMode = 'error';
             titleMode = 'Не визначено';

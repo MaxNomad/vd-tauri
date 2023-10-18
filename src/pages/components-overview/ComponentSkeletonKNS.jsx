@@ -20,7 +20,7 @@ const ComponentSkeletonKns = ({ children, renderContent }) => {
         </MainCard>
     );
     const knsItem = (
-        <Grid item xs={12} sm={6} md={6} lg={4} UWHD={3}>
+        <Grid item xs={12} sm={12} md={6} lg={6} xl={4} UWHD={3}>
             <MainCard contentSX={{ p: 2.25 }}>
                 <Grid container rowSpacing={4.5} columnSpacing={2.75}>
                     <Grid item xs={9} sm={6} md={6} lg={6}>
