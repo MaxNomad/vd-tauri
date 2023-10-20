@@ -10763,13 +10763,6 @@ sass-loader@^12.3.0:
     klona "^2.0.4"
     neo-async "^2.6.2"
 
-sass-loader@^13.3.2:
-  version "13.3.2"
-  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-13.3.2.tgz#460022de27aec772480f03de17f5ba88fa7e18c6"
-  integrity sha512-CQbKl57kdEv+KDLquhC+gE3pXt74LEAzm+tzywcA0/aHZuub8wTErbjAoNI57rPUWRYRNC5WUnNl8eGJNbDdwg==
-  dependencies:
-    neo-async "^2.6.2"
-
 sass@^1.69.4:
   version "1.69.4"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.69.4.tgz#10c735f55e3ea0b7742c6efa940bce30e07fbca2"
