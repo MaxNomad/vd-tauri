@@ -31,7 +31,7 @@ const PumpStationSingleSmall = ({ data }) => {
 
     return (
         <>
-            <Grid item xs={12} sm={6} md={4} lg={3} xl={2.5}UWHD={2.5}>
+            <Grid item xs={12} sm={6} md={4} lg={4} xl={2.5} UWHD={2.5}>
                 <Link to={`/pumpstation-single?id=${data?.nsID}`} style={{ textDecoration: 'none' }}>
                     <MainCard contentSX={{ p: 1.25, borderColor: AlarmColor() }} hoverActive borderCustom>
                         <Grid container rowSpacing={4.5} columnSpacing={2.75}>

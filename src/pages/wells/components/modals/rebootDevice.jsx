@@ -59,13 +59,9 @@ const RebootDeviceModal = ({ wellID, scheme, data }) => {
                                     'level_10',
                                     'level_9',
                                     'level_8',
-                                    'dash_well_write_all',
-                                    'dash_well_control_all',
                                     'dash_well_reboot_all',
                                     `dash_well_reboot_${intID}`,
-                                    `dash_well_write_${intID}`,
-                                    `dash_well_control_${intID}`
-                                ])}
+                                ]) || data?.scheme === "wellV1"}
                             onClick={handleClickOpen}
                         >
                             Reboot

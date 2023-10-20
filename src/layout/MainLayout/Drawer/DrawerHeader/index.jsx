@@ -24,8 +24,8 @@ const DrawerHeader = ({ open }) => {
     const [appData, setAppData] = React.useState({});
     const [memoryInfo, setMemoryInfo] = React.useState(performance.memory);
 
-    const totalMemoryMB = memoryInfo.jsHeapSizeLimit / (1024 * 1024);
-    const usedMemoryMB = memoryInfo.usedJSHeapSize / (1024 * 1024);
+    const totalMemoryMB = memoryInfo?.jsHeapSizeLimit / (1024 * 1024) || 0;
+    const usedMemoryMB = memoryInfo?.usedJSHeapSize / (1024 * 1024) || 0;
     const memoryUsagePercentage = (usedMemoryMB / totalMemoryMB) * 100;
     useEffect(() => {
         const fetchData = async () => {

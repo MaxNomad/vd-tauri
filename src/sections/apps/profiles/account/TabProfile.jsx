@@ -11,7 +11,8 @@ import {
     ListItemIcon,
     ListItemSecondaryAction,
     Stack,
-    Typography
+    Typography,
+    Alert
 } from '@mui/material';
 
 // third-party
@@ -31,6 +32,16 @@ const TabProfile = () => {
     const matchDownMD = useMediaQuery((theme) => theme.breakpoints.down('md'));
     const theme = useTheme();
     const { userData } = useSelector((state) => state.user);
+    console.log(userData);
+    const permsList = userData?.permissions;
+
+    const renderPerms = Object.keys(permsList).map((permission) => (
+        <Grid item key={permission} xs={12} sm={12} md={6} xl={4}>
+            <Alert severity={permsList[permission] ? 'success' : 'error'} sx={{ mt: 0, mb: -1.4 }}>
+                {permission}: {permsList[permission] ? 'Allow' : 'Deny'}
+            </Alert>
+        </Grid>
+    ));
     return (
         <Grid container spacing={3}>
             <Grid item xs={12} sm={5} md={4} xl={3}>
@@ -132,69 +143,9 @@ const TabProfile = () => {
             </Grid>
             <Grid item xs={12} sm={7} md={8} xl={9}>
                 <Grid container spacing={3}>
-                    <Grid item xs={12}>
-                        <MainCard title="Personal Details">
-                            <List sx={{ py: 0 }}>
-                                <ListItem divider={!matchDownMD}>
-                                    <Grid container spacing={3}>
-                                        <Grid item xs={12} md={6}>
-                                            <Stack spacing={0.5}>
-                                                <Typography color="secondary">Full Name</Typography>
-                                                <Typography>{`${userData?.first_name} ${userData?.last_name}`}</Typography>
-                                            </Stack>
-                                        </Grid>
-                                        <Grid item xs={12} md={6}>
-                                            <Stack spacing={0.5}>
-                                                <Typography color="secondary">NickName</Typography>
-                                                <Typography>{userData?.user_login}</Typography>
-                                            </Stack>
-                                        </Grid>
-                                    </Grid>
-                                </ListItem>
-                                <ListItem divider={!matchDownMD}>
-                                    <Grid container spacing={3}>
-                                        <Grid item xs={12} md={6}>
-                                            <Stack spacing={0.5}>
-                                                <Typography color="secondary">Email</Typography>
-                                                <Typography>{userData?.user_email}</Typography>
-                                            </Stack>
-                                        </Grid>
-                                        <Grid item xs={12} md={6}>
-                                            <Stack spacing={0.5}>
-                                                <Typography color="secondary">Phone</Typography>
-                                                <Typography>
-                                                    (+1-876){' '}
-                                                    <NumberFormat value={8654239581} displayType="text" type="text" format="#### ### ###" />
-                                                </Typography>
-                                            </Stack>
-                                        </Grid>
-                                    </Grid>
-                                </ListItem>
-                                <ListItem divider={!matchDownMD}>
-                                    <Grid container spacing={3}>
-                                        <Grid item xs={12} md={6}>
-                                            <Stack spacing={0.5}>
-                                                <Typography color="secondary">Country</Typography>
-                                                <Typography>New York</Typography>
-                                            </Stack>
-                                        </Grid>
-                                        <Grid item xs={12} md={6}>
-                                            <Stack spacing={0.5}>
-                                                <Typography color="secondary">Zip Code</Typography>
-                                                <Typography>956 754</Typography>
-                                            </Stack>
-                                        </Grid>
-                                    </Grid>
-                                </ListItem>
-                                <ListItem>
-                                    <Stack spacing={0.5}>
-                                        <Typography color="secondary">Address</Typography>
-                                        <Typography>Street 110-B Kalians Bag, Dewan, M.P. New York</Typography>
-                                    </Stack>
-                                </ListItem>
-                            </List>
-                        </MainCard>
-                    </Grid>
+                    
+                        {renderPerms}
+                    
                 </Grid>
             </Grid>
         </Grid>
