@@ -71,7 +71,7 @@
     "react-window": "^1.8.7",
     "redux": "^4.2.0",
     "rsuite": "^5.31.0",
-    "sass": "^1.63.4",
+    "sass": "^1.69.4",
     "sass-loader": "^13.3.2",
     "simplebar": "^5.3.8",
     "simplebar-react": "^2.4.1",

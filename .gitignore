@@ -13,7 +13,6 @@ build
 dist-ssr
 *.local
 .env
-yarn.lock
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
