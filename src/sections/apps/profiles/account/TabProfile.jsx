@@ -32,7 +32,6 @@ const TabProfile = () => {
     const matchDownMD = useMediaQuery((theme) => theme.breakpoints.down('md'));
     const theme = useTheme();
     const { userData } = useSelector((state) => state.user);
-    console.log(userData);
     const permsList = userData?.permissions;
 
     const renderPerms = Object.keys(permsList).map((permission) => (

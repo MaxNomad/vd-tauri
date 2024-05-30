@@ -11,7 +11,8 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const userData = JSON.parse(getUser());
+    const data = getUser()
+    const userData = data ?? JSON.parse(data);
     const { error, loading, access_token, refresh_token } = useSelector((state) => state.auth);
     const user = getToken() && getTokenRef() && userData ? userData : null;
 

@@ -20,7 +20,7 @@ const config = {
     liqChartsPreset: localStorage.liqChartsPreset ? localStorage.liqChartsPreset : true,
     themeDirection: 'ltr',
     delay: inProdMode ? 0 : 500,
-    apiUrl: inProdMode ? 'https://api.vd.lutsk.ua/api/v1' : 'http://localhost:8080/api/v1'
+    apiUrl: inProdMode ? 'https://api.vd.lutsk.ua/api/v1' : 'http://localhost:8080/v1'
 };
 
 export default config;

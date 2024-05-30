@@ -136,12 +136,12 @@ const PumpSinglePage = () => {
                                         {data?.alarms?.smoothStartAlarm != null ? (
                                             <Grid item xs={12} md={6} lg={6}>
                                                 <Status
-                                                    title={'Тиск при старті'}
+                                                    title={'Плавний пуск'}
                                                     newDesign={!userAccess}
-                                                    text={!data?.alarms?.smoothStartAlarm ? 'В нормі' : 'Низький тиск'}
+                                                    text={!data?.alarms?.smoothStartAlarm ? 'В нормі' : 'Аварія плавного пуску'}
                                                     status={!data?.alarms?.smoothStartAlarm}
                                                     extraText={
-                                                        !data?.alarms?.smoothStartAlarm ? 'Тиск системи в нормі' : 'Нізький тиск в системі'
+                                                        !data?.alarms?.smoothStartAlarm ? 'В штатному режимі' : 'Збій запуску ПП'
                                                     }
                                                 />
                                             </Grid>

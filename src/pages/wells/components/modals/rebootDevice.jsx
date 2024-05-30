@@ -43,7 +43,6 @@ const RebootDeviceModal = ({ wellID, scheme, data }) => {
     };
     const intID = parseID(wellID);
     const { userData } = useSelector((state) => state.user);
-    console.log(data)
     return (
         <>
             <MainCard sx={{ mt: 2 }}>
