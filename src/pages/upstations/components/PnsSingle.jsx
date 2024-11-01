@@ -204,7 +204,7 @@ const PnsSingle = ({ data, lastUpdate }) => {
                                     <Typography variant="h5" color="textSecondary" sx={{ mt: 1 }}>
                                         Показник:&nbsp;&nbsp;
                                         <b>
-                                            <NumberWithAnimation number={data?.scadaCounter ?? 0} />
+                                            <NumberWithAnimation number={data?.scadaCounter ?? 0} short/>
                                             <b> м³</b>
                                             
                                         </b>
@@ -222,7 +222,7 @@ const PnsSingle = ({ data, lastUpdate }) => {
                                     <Typography variant="h5" color="textSecondary" sx={{ mt: 1 }}>
                                         Показник:&nbsp;&nbsp;
                                         <b>
-                                            <NumberWithAnimation number={data?.counterValue ?? 0} />
+                                            <NumberWithAnimation number={data?.counterValue ?? 0} short/>
                                             <b> м³</b>
                                             <Tooltip title="Зміна показника за добу в м³" placement="top-end">
                                                 <Chip

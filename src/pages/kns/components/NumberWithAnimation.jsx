@@ -4,7 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 import Tooltip from '@mui/material/Tooltip'; // Add this import
 import './NumberWithAnimation.scss';
 
-const NumberChangeAnimation = ({ number, rev, one }) => {
+const NumberChangeAnimation = ({ number, rev, one, short }) => {
     const theme = useTheme();
     const [prevNumber, setPrevNumber] = useState(number);
     const [color, setColor] = useState('inherit');
@@ -41,7 +41,7 @@ const NumberChangeAnimation = ({ number, rev, one }) => {
             <CSSTransition in={true} appear={true} classNames="number-change" timeout={500}>
                 <Tooltip title={`${number} м³`}>
                     <div className="number" style={{ color: color }}>
-                    {getTooltipTitle(number)}
+                    {short ? getTooltipTitle(number): number}
                     </div>
                 </Tooltip>
             </CSSTransition>

@@ -31,7 +31,7 @@ const PumpStationSingleSmall = ({ data }) => {
 
     return (
         <>
-            <Grid item xs={12} sm={6} md={4} lg={4} xl={2.5} UWHD={2.5}>
+            <Grid item xs={12} sm={6} md={4} lg={4} xl={4} UWHD={3}>
                 <Link to={`/pumpstation-single?id=${data?.nsID}`} style={{ textDecoration: 'none' }}>
                     <MainCard contentSX={{ p: 1.25, borderColor: AlarmColor() }} hoverActive borderCustom>
                         <Grid container rowSpacing={4.5} columnSpacing={2.75}>
@@ -55,10 +55,10 @@ const PumpStationSingleSmall = ({ data }) => {
                                 </>
                             ) : data?.online ? (
                                 <>
-                                    <Grid item  xs={4} sm={12} md={4} lg={4.5} sx={{ mt: -2.25 }}>
+                                    <Grid item  xs={4} sm={12} md={4} lg={4} sx={{ mt: -2.25, ml: 2 }}>
                                         <FillCircleWell data={data}/>
                                     </Grid>
-                                    <Grid item  xs={8} sm={12} md={8} lg={6.5} sx={{ mt: -2.25 }}>
+                                    <Grid item  xs={7} sm={12} md={7} lg={7} sx={{ mt: -2.25 }}>
                                     <Typography variant="h6" color="textSecondary" sx={{ mt: -0.4 }}>
                                                 Загальна ємність:&nbsp;&nbsp;
                                                 <b>
@@ -75,6 +75,18 @@ const PumpStationSingleSmall = ({ data }) => {
                                                 Максимальна ємність:&nbsp;&nbsp;
                                                 <b>
                                                     <NumberWithAnimation number={data?.levels?.max} rev /> м³{' '}
+                                                </b>
+                                            </Typography>
+                                            <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
+                                                Загальний вхідний потік:&nbsp;&nbsp;
+                                                <b>
+                                                    <NumberWithAnimation number={(data?.inputFlow ?? 0).toFixed(0)} one /> м³/год.{' '}
+                                                </b>
+                                            </Typography>
+                                            <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
+                                                Загальний вихідний потік:&nbsp;&nbsp;
+                                                <b>
+                                                    <NumberWithAnimation number={(data?.outputFlow ?? 0).toFixed(0)} one /> м³/год.{' '}
                                                 </b>
                                             </Typography>
                                     </Grid>

@@ -25,7 +25,7 @@ const PumpSingleSmall = ({ data }) => {
 
     return (
         <>
-            <Grid item xs={0.55} sm={0.55} md={0.55} lg={0.55} UWHD={0.4} sx={{ minWidth: 80 }}>
+            <Grid item xs={0.48} sm={0.48} md={0.48} lg={0.48} UWHD={0.48} sx={{ minWidth: 80 }}>
                 <Tooltip
                     title={`Свердловина №${data?.pumpID}. Статус: ${data?.pump?.workingStatus ? 'В роботі' : 'Призупинено'}  `}
                     placement="bottom"

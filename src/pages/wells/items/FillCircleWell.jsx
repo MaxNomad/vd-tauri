@@ -15,7 +15,7 @@ const FillCircleWell = ({ data }) => {
         return str ? +str : '00';
     };
     const CircleStyle = {
-        width: matchDownMD ? 100 : 100,
+        width: matchDownMD ? 130 : 120,
         padding: 5
     };
     const color = theme.palette.primary.main;
