@@ -10,16 +10,16 @@ const DBMToSignalStrength = (dBm) => {
     const num = Number.isFinite(dBm) ? dBm : Number(dBm);
 
     const mult = 1;
-    if (num >= -100 * mult) {
+    if (num >= -60 * mult) {
         return [WifiStatusType.Excellent, `Signal: Excellent (${num} dBm)`];
     }
-    if (num >= -110 * mult) {
+    if (num >= -70 * mult) {
         return [WifiStatusType.Good, `Signal: Good (${num} dBm)`];
     }
-    if (num >= -120 * mult) {
+    if (num >= -90 * mult) {
         return [WifiStatusType.Fair, `Signal: Medium (${num} dBm)`];
     }
-    if (num >= -130 * mult) {
+    if (num >= -110 * mult) {
         return [WifiStatusType.Poor, `Signal: Bad (${num} dBm)`];
     }
     if (num >= -135 * mult) {

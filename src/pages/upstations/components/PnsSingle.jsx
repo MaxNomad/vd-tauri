@@ -17,6 +17,7 @@ import NumberWithAnimation from '@pages/kns/components/NumberWithAnimation';
 import CheckSettings from '@components/third-party/checkSettings';
 import TimeAgo from '@pages/counters/components/timeAgo';
 import AlertsCount from '@pages/kns/items/AlertsCount';
+import NetworkStatus from '@pages/counters/components/networkStatus';
 
 const PnsPump = ({ props }) => {
     return (
@@ -67,7 +68,8 @@ const PnsSingle = ({ data, lastUpdate }) => {
                                 ПНС №{data?.pnsID} - {data?.address}
                             </Typography>
                         </Grid>
-                        <Grid item xs={3} sm={3} md={3} lg={4} display="flex" justifyContent="flex-end">
+                        <Grid item xs={3} sm={3} md={3} lg={4} display="flex" justifyContent="flex-end" gap={0.3}>
+                        <NetworkStatus props={data?.signal} />&nbsp;
                             <CheckSettings ok={data?.settingsStatus} /> <CheckOnline isOnline={data?.online} />
                         </Grid>
                         {data?.maintenance ? (
@@ -115,13 +117,15 @@ const PnsSingle = ({ data, lastUpdate }) => {
                                         Загальні дані
                                     </Typography>
                                     <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
-                                        Вхідний тиск:&nbsp;&nbsp;
-                                        <Pressure num={data?.pressure_in} levelsInput={data?.levels?.input} />
+                                        Вхід. тиск:&nbsp;&nbsp;
+                                        <Pressure num={data?.pressure_in} levelsInput={data?.levels?.input} />&nbsp;&nbsp;
+                                        {data?.pressure_in_2 ? <Pressure num={data?.pressure_in_2} levelsInput={data?.levels?.input} /> : null}
                                         &nbsp;
                                     </Typography>
                                     <Typography variant="h6" color="textSecondary" sx={{ mt: 1.4 }}>
-                                        Вихідний тиск:&nbsp;&nbsp;
-                                        <Pressure num={data?.pressure_out} levelsOutput={data?.levels?.output} />
+                                        Вихид. тиск:&nbsp;&nbsp;
+                                        <Pressure num={data?.pressure_out} levelsOutput={data?.levels?.output} />&nbsp;&nbsp;
+                                        {data?.pressure_out_2 ? <Pressure num={data?.pressure_out_2} levelsOutput={data?.levels?.output} /> : null}
                                         &nbsp;
                                     </Typography>
                                     <Typography variant="h5" color="textSecondary" sx={{ mt: 1.85 }}>
@@ -193,7 +197,26 @@ const PnsSingle = ({ data, lastUpdate }) => {
                         <Grid item xs={12} sm={12} md={12} lg={12} sx={{ mt: -3 }}>
                             <Divider />
                         </Grid>
-                        {data?.deviceId != 'ID not specified' ? (
+
+                        {data?.scadaCounter ? <>
+                      
+                                <Grid item xs={12} sm={12} md={12} lg={12} sx={{ mt: -4.25 }}>
+                                    <Typography variant="h5" color="textSecondary" sx={{ mt: 1 }}>
+                                        Показник:&nbsp;&nbsp;
+                                        <b>
+                                            <NumberWithAnimation number={data?.scadaCounter ?? 0} />
+                                            <b> м³</b>
+                                            
+                                        </b>
+                                    </Typography>
+                                    <p>
+                                        <Typography variant="h6" color="textSecondary" sx={{ mt: 1.8 }}>
+                                            Показник з контроллера
+                                        </Typography>
+                                    </p>
+                                </Grid>
+                        </> : <>
+                         {data?.deviceId != 'ID not specified' ? (
                             <>
                                 <Grid item xs={12} sm={12} md={6.5} lg={6.5} sx={{ mt: -4.25 }}>
                                     <Typography variant="h5" color="textSecondary" sx={{ mt: 1 }}>
@@ -269,7 +292,9 @@ const PnsSingle = ({ data, lastUpdate }) => {
                                     </Typography>
                                 </Typography>
                             </Grid>
-                        )}
+                        )}</>
+                        }
+                       
                     </Grid>
                 </MainCard>
                 {/* </Link> */}
