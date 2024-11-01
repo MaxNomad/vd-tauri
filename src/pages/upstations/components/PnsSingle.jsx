@@ -63,14 +63,14 @@ const PnsSingle = ({ data, lastUpdate }) => {
                 {/*  <Link to={`/pump-single?id=${data?.pnsID}`} style={{ textDecoration: 'none' }}> */}
                 <MainCard contentSX={{ p: 2.25, borderColor: AlarmColor() }} borderCustom>
                     <Grid container rowSpacing={4.5} columnSpacing={2.75}>
-                        <Grid item xs={9} sm={9} md={9} lg={8}>
+                        <Grid item xs={8.2} sm={9} md={9} lg={8}>
                             <Typography noWrap variant="h5" color="textSecondary">
                                 ПНС №{data?.pnsID} - {data?.address}
                             </Typography>
                         </Grid>
-                        <Grid item xs={3} sm={3} md={3} lg={4} display="flex" justifyContent="flex-end" gap={0.3}>
-                        <NetworkStatus props={data?.signal} />&nbsp;
-                            <CheckSettings ok={data?.settingsStatus} /> <CheckOnline isOnline={data?.online} />
+                        <Grid item xs={3.8} sm={3} md={3} lg={4} display="flex" justifyContent="flex-end" gap={0.3}>
+                        
+                        <NetworkStatus props={data?.signal} />&nbsp; <CheckSettings ok={data?.settingsStatus} /> <CheckOnline isOnline={data?.online} />
                         </Grid>
                         {data?.maintenance ? (
                             <>
