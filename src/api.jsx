@@ -8,7 +8,7 @@ import { getClient, Body, ResponseType } from '@tauri-apps/api/http';
 
 let api;
 // Timeout in seconds
-const apiTimeout = 5;
+const apiTimeout = 10;
 
 if (isTauri) {
     getClient().then((client) => {
