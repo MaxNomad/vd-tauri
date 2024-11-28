@@ -146,6 +146,17 @@
 .rdrMonthAndYearPickers select {
     color: #dfdfdf;
 }
+
+.rdrDayDisabled {
+    background-color: rgb(30 30 30);
+}
+.rdrMonthPicker, .rdrYearPicker {
+    select {
+        option{
+            background-color: #242424;
+        }
+    }
+}
 body:not(.dark-mode) {
     // Application
     --app-accent-color: #202020;
