@@ -25,6 +25,7 @@ import pumpWellEvents from '@pages/wells/redux/pumpEventsListSlice';
 import rootGithub from '@pages/dashboard/redux/gitstatusSlice';
 import dialogSlice from '@store/reducers/dialogSlice';
 import snackbar from './snackbar';
+import report from '@pages/reports/redux/reportSlice';
 // ==============================|| COMBINE REDUCERS ||============================== //
 
 const reducers = combineReducers({
@@ -50,6 +51,7 @@ const reducers = combineReducers({
     pumpWellEvents: pumpWellEvents,
     rootGithub: rootGithub,
     updateDialog: dialogSlice,
+    report: report,
     snackbar: snackbar
 });
 

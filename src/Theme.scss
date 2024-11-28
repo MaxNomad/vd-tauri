@@ -73,6 +73,79 @@
  * Light theme for ERWT application.
  */
 
+.rdrDefinedRangesWrapper {
+    font-size: 12px;
+    width: 226px;
+    border-right: solid 1px #eff2f7;
+    background: #1e1e1e;
+}
+.rdrCalendarWrapper {
+    background: #1e1e1e;
+    color: white;
+}
+.rdrStaticRange {
+    border: 0;
+    cursor: pointer;
+    display: block;
+    outline: 0;
+    border-bottom: 1px solid #eff2f7;
+    padding: 0;
+    background: #1e1e1e;
+}
+
+.rdrStaticRange span:hover {
+    background: #424242;
+    color: #000000;
+}
+.rdrDateDisplayItem {
+    border-radius: 4px;
+    background-color: rgb(71 71 71);
+    box-shadow: 0 1px 2px 0 rgba(35, 57, 66, 0.21);
+    border: 1px solid transparent;
+}
+.rdrDateDisplayItemActive input {
+    color: #ffffff;
+}
+.rdrDateDisplayItem input {
+    color: #ffffff;
+}
+.rdrDayNumber span {
+    color: #909090;
+}
+.rdrInputRangeInput {
+    width: 70px;
+}
+.rdrDateDisplayWrapper {
+    background-color: rgb(30 30 30);
+}
+
+.rdrNextPrevButton {
+    background: rgb(71 71 71);
+}
+
+.rdrNextNextButton {
+    background: rgb(71 71 71);
+}
+
+.rdrNextPrevButton:hover {
+    background: rgb(106, 106, 106);
+}
+
+.rdrNextNextButton:hover {
+    background: rgb(106, 106, 106);
+}
+.rdrNextButton i {
+    border-color: transparent transparent transparent rgb(242, 242, 242);
+
+}
+.rdrPprevButton i {
+    border-color: transparent rgb(242, 242, 242) transparent transparent;
+
+}
+
+.rdrMonthAndYearPickers select {
+    color: #dfdfdf;
+}
 body:not(.dark-mode) {
     // Application
     --app-accent-color: #202020;

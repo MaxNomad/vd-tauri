@@ -1,80 +1,200 @@
-import ComponentSkeleton from '@pages/components-overview/ComponentSkeleton';
-import { DateRangePicker, DateRange } from 'react-date-range';
-import * as locales from 'react-date-range/dist/locale';
-import { addDays, subDays, subYears } from 'date-fns';
-import React, { useState } from 'react';
-import { isMobile, isTablet } from 'react-device-detect';
-import { Grid, Typography, Box, MenuItem, Select, InputLabel, FormHelperText, FormControl, Button } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { subDays, addDays, startOfWeek, endOfWeek } from 'date-fns';
+import uk from 'date-fns/locale/uk'; // Import Ukrainian locale
+import {
+    Grid,
+    Typography,
+    Button,
+    TableHead,
+    TableRow,
+    TableCell,
+    TableContainer,
+    Table,
+    TableBody
+} from '@mui/material';
+import { DateRangePicker } from 'react-date-range';
 import MainCard from '@components/MainCard';
+import ComponentSkeleton from '@pages/components-overview/ComponentSkeleton';
+import { useDispatch, useSelector } from 'react-redux';
+import { getReport } from './redux/reportSlice';
+
+// ==============================|| ORDER TABLE - HEADER CELL ||============================== //
+
+const headCells = [
+    {
+        id: 'num',
+        align: 'left',
+        disablePadding: false,
+        label: '№'
+    },
+    {
+        id: 'name',
+        align: 'left',
+        disablePadding: true,
+        label: 'Назва'
+    },
+    {
+        id: 'minValue',
+        align: 'left',
+        disablePadding: false,
+        label: 'Мін. значення'
+    },
+    {
+        id: 'maxValue',
+        align: 'left',
+        disablePadding: false,
+        label: 'Макс. значення'
+    },
+    {
+        id: 'diff',
+        align: 'left',
+        disablePadding: false,
+        label: 'Показник'
+    }
+];
+
+// ==============================|| ORDER TABLE - HEADER ||============================== //
+
+function OrderTableHead({ order, orderBy }) {
+    return (
+        <TableHead>
+            <TableRow>
+                {headCells.map((headCell) => (
+                    <TableCell
+                        key={headCell.id}
+                        align={headCell.align}
+                        padding={headCell.disablePadding ? 'none' : 'normal'}
+                        sortDirection={orderBy === headCell.id ? order : false}
+                    >
+                        {headCell.label}
+                    </TableCell>
+                ))}
+            </TableRow>
+        </TableHead>
+    );
+}
 
 const ReportsRoot = () => {
+    const today = new Date();
     const [state, setState] = useState([
         {
-            startDate: subDays(new Date(), 0),
-            endDate: addDays(new Date(), 0),
+            startDate: startOfWeek(today, { weekStartsOn: 1 }),
+            endDate: endOfWeek(today, { weekStartsOn: 1 }),
             key: 'selection'
         }
     ]);
-    const [typeReport, setTypeReport] = useState(1);
-    const [nameObject, setNameObject] = useState(1);
-    const [numObject, setNumObject] = useState(1);
+    const { data } = useSelector((state) => state.report);
+    const [order] = useState('asc');
+    const [orderBy] = useState('active');
+    const [selected] = useState([]);
+    const isSelected = (active) => selected.indexOf(active) !== -1;
+    const dispatch = useDispatch();
 
-    const handleChangeType = (event) => {
-        setTypeReport(event.target.value);
-    };
-    const handleChangeName = (event) => {
-        setNameObject(event.target.value);
-    };
-    const handleChangeNum = (event) => {
-        setNumObject(event.target.value);
-    };
+    useEffect(() => {
+        dispatch(getReport());
+    }, [dispatch]);
+
     const handleOnChange = (ranges) => {
         const { selection } = ranges;
-        //onChange(selection);
         setState([selection]);
     };
+
+    const handleGenerateReport = () => {
+        const params = {
+            PNSNumber: null, // Replace with the actual value or add an input
+            StartDate: state[0].startDate.toISOString().split('T')[0],
+            EndDate: state[0].endDate.toISOString().split('T')[0],
+            IgnoreZeroReading: 1 // Or add an option for the user
+        };
+        dispatch(getReport(params));
+    };
+
+    const handleClearDate = () => {
+        const today = new Date();
+        const start = startOfWeek(today, { weekStartsOn: 1 }); // Monday as the first day of the week
+        const end = endOfWeek(today, { weekStartsOn: 1 });
+        setState([
+            {
+                startDate: start,
+                endDate: end,
+                key: 'selection'
+            }
+        ]);
+    };
+
     return (
         <ComponentSkeleton renderContent>
             <Grid container rowSpacing={4.5} columnSpacing={2.75}>
                 <Grid item xs={12} sx={{ mb: -2.25 }}>
-                    <Typography variant="h5">Генерація звітів</Typography>
+                    <Typography variant="h5">Генерація звітів ПНС</Typography>
                 </Grid>
-                <Grid item lg={7}>
+                <Grid item lg={6}>
                     <MainCard>
-                        <Typography variant="h6" sx={{ m: -2.5 }}>
-                            {!isMobile || !isTablet ? (
-                                <DateRangePicker
-                                    onChange={handleOnChange}
-                                    showSelectionPreview={true}
-                                    moveRangeOnFirstSelection={false}
-                                    months={2}
-                                    fixedHeight
-                                    locale={locales[{ uk: 'Ukrainian' }]}
-                                    ranges={state}
-                                    direction="horizontal"
-                                    maxDate={new Date()}
-                                    startDatePlaceholder="Early"
-                                    minDate={subYears(new Date(), 1)}
-                                />
+                        <TableContainer
+                            sx={{
+                                width: '100%',
+                                overflowX: 'auto',
+                                position: 'relative',
+                                display: 'block',
+                                maxWidth: '100%',
+                                '& td, & th': { whiteSpace: 'nowrap' }
+                            }}
+                        >
+                            {data.length !== 0 ? (
+                                <Table
+                                    aria-labelledby="tableTitle"
+                                    sx={{
+                                        '& .MuiTableCell-root:first-child': {
+                                            pl: 2
+                                        },
+                                        '& .MuiTableCell-root:last-child': {
+                                            pr: 3
+                                        }
+                                    }}
+                                >
+                                    <OrderTableHead order={order} orderBy={orderBy} />
+                                    <TableBody>
+                                        {data.map((row, index) => {
+                                            const isItemSelected = isSelected(row.active);
+                                            const labelId = `enhanced-table-checkbox-${index}`;
+
+                                            return (
+                                                <TableRow
+                                                    hover
+                                                    role="checkbox"
+                                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                                    aria-checked={isItemSelected}
+                                                    tabIndex={-1}
+                                                    key={row?.date + row?.code + row?.priority}
+                                                    selected={isItemSelected}
+                                                >
+                                                    <TableCell component="th" id={labelId} scope="row" align="left">
+                                                        {row.PNSNumber}
+                                                    </TableCell>
+                                                    <TableCell align="left">{row.PNSName}</TableCell>
+                                                    <TableCell align="left">{row.MinReading}</TableCell>
+                                                    <TableCell align="left">{row.MaxReading}</TableCell>
+                                                    <TableCell align="left">{row.Difference}</TableCell>
+                                                </TableRow>
+                                            );
+                                        })}
+                                    </TableBody>
+                                </Table>
                             ) : (
-                                <DateRange
-                                    onChange={handleOnChange}
-                                    showSelectionPreview={true}
-                                    moveRangeOnFirstSelection={false}
-                                    months={1}
-                                    fixedHeight
-                                    locale={locales[{ uk: 'Ukrainian' }]}
-                                    ranges={state}
-                                    direction="horizontal"
-                                    maxDate={new Date()}
-                                    startDatePlaceholder="Early"
-                                    minDate={subYears(new Date(), 1)}
-                                />
+                                <Grid item lg={12}>
+                                    <Typography
+                                        variant="h5"
+                                        color="textSecondary"
+                                        sx={{ textAlign: 'center', fontWeight: 300, mt: 2, mb: 2 }}
+                                    >
+                                        Період не внесено
+                                    </Typography>
+                                </Grid>
                             )}
-                        </Typography>
+                        </TableContainer>
                     </MainCard>
                 </Grid>
-                <Grid item lg={5}>
+                <Grid item lg={6}>
                     <MainCard>
                         <Grid container rowSpacing={4.5} columnSpacing={2.75}>
                             <Grid item lg={12}>
@@ -82,82 +202,40 @@ const ReportsRoot = () => {
                                     Налаштування та експорт
                                 </Typography>
                             </Grid>
-                            <Grid item lg={6}>
+                            <Grid item lg={3}>
                                 <Typography variant="h6" color="textSecondary" sx={{ mt: -1.5 }}>
-                                    Проміжок часу: {Math.round((state[0].endDate - state[0].startDate) / (1000 * 3600 * 24) + 1)} днів
+                                    Проміжок часу:{' '}
+                                    {Math.round((state[0].endDate - state[0].startDate) / (1000 * 3600 * 24))} днів
                                 </Typography>
                                 <Typography variant="h6" color="textSecondary" sx={{ mt: 1.5 }}>
-                                    Початок: {state[0].startDate.toLocaleString().slice(0, -10)}
+                                    Початок: {state[0].startDate.toLocaleDateString()}
                                 </Typography>
                                 <Typography variant="h6" color="textSecondary" sx={{ mt: 1.5 }}>
-                                    Кінець: {state[0].endDate.toLocaleString().slice(0, -10)}
-                                </Typography>
-                                <Typography variant="h6" color="textSecondary" sx={{ mt: 1.5 }}>
-                                    Бібліотека: 321 звіти
+                                    Кінець: {state[0].endDate.toLocaleDateString()}
                                 </Typography>
                             </Grid>
-                            <Grid item lg={6}>
-                                <Typography variant="h6" color="textSecondary" sx={{ mt: -1.5 }}>
-                                    Тип звіту:&nbsp;&nbsp;
-                                    <FormControl sx={{ minWidth: 140, mt: -1 }} size="small">
-                                        <Select
-                                            value={typeReport}
-                                            onChange={handleChangeType}
-                                            displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }}
-                                        >
-                                            <MenuItem value={1}>Глобальний</MenuItem>
-                                            <MenuItem value={2}>Комбінований</MenuItem>
-                                            <MenuItem value={3}>Базовний</MenuItem>
-                                            <MenuItem value={4}>Короткий</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                </Typography>
-                                <Typography variant="h6" color="textSecondary" sx={{ mt: 3 }}>
-                                    Назва об&apos;єкту:&nbsp;&nbsp;
-                                    <FormControl sx={{ minWidth: 140, mt: -1 }} size="small">
-                                        <Select
-                                            value={nameObject}
-                                            onChange={handleChangeName}
-                                            displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }}
-                                        >
-                                            <MenuItem value={1}>Комбінований</MenuItem>
-                                            <MenuItem value={2}>КНС</MenuItem>
-                                            <MenuItem value={3}>Свердловини</MenuItem>
-                                            <MenuItem value={4}>Офіс</MenuItem>
-                                            <MenuItem value={5}>Свердловини</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                </Typography>
-                                <Typography variant="h6" color="textSecondary" sx={{ mt: 3 }}>
-                                    Номер об&apos;єкту:&nbsp;&nbsp;
-                                    <FormControl sx={{ minWidth: 140, mt: -1 }} size="small">
-                                        <Select
-                                            value={numObject}
-                                            onChange={handleChangeNum}
-                                            displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }}
-                                        >
-                                            <MenuItem value={1}>КНС №1</MenuItem>
-                                            <MenuItem value={2}>КНС №2</MenuItem>
-                                            <MenuItem value={3}>КНС №3</MenuItem>
-                                            <MenuItem value={4}>КНС №4</MenuItem>
-                                            <MenuItem value={5}>КНС №5</MenuItem>
-                                            <MenuItem value={6}>КНС №6</MenuItem>
-                                            <MenuItem value={7}>КНС №7</MenuItem>
-                                            <MenuItem value={8}>КНС №8</MenuItem>
-                                            <MenuItem value={9}>КНС №9</MenuItem>
-                                            <MenuItem value={10}>КНС №10</MenuItem>
-                                            <MenuItem value={11}>КНС №11</MenuItem>
-                                            <MenuItem value={12}>КНС №12</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                </Typography>
+                            <Grid item lg={4}>
+                                <DateRangePicker
+                                    ranges={state}
+                                    onChange={handleOnChange}
+                                    maxDate={new Date()}
+                                    minDate={new Date(2022, 0, 1)} // January 1, 2022
+                                    locale={uk} // Set the locale to Ukrainian
+                                />
                             </Grid>
-                            <Grid item lg={12}>
-                                <Button variant="outlined" color="success">
+                            <Grid
+                                item
+                                lg={12}
+                                sx={{ display: 'flex', justifyContent: 'space-between' }}
+                            >
+                                <Button variant="outlined" color="success" onClick={handleGenerateReport}>
+                                    Згенерувати звіт
+                                </Button>
+                                <Button variant="outlined" color="primary">
                                     Завантажити звіт
+                                </Button>
+                                <Button variant="outlined" color="secondary" onClick={handleClearDate}>
+                                    Стерти дату
                                 </Button>
                             </Grid>
                         </Grid>
