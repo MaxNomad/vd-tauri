@@ -186,7 +186,7 @@ const ReportsRoot = () => {
     ]);
     const dispatch = useDispatch();
     const [ignoreZeroReading, setIgnoreZeroReading] = useState(true);
-    const [fullRange, setFullDataRange] = useState(false);
+    const [fullRange, setFullDataRange] = useState(true);
 
     // Використовуємо useSelector для отримання даних та стану завантаження
     const { data, loading } = useSelector((state) => state.report);
@@ -211,10 +211,17 @@ const ReportsRoot = () => {
     };
 
     const handleGenerateReport = () => {
+        const formatDate = (date) => {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        };
+    
         const params = {
-            PNSNumber: null, // Замініть на актуальне значення або додайте інпут
-            StartDate: state[0].startDate.toISOString().split('T')[0],
-            EndDate: state[0].endDate.toISOString().split('T')[0],
+            PNSNumber: null,
+            StartDate: formatDate(state[0].startDate),
+            EndDate: formatDate(state[0].endDate),
             IgnoreZeroReading: ignoreZeroReading ? 1 : 0,
             FullRange: fullRange ? 1 : 0
         };
@@ -228,7 +235,24 @@ const ReportsRoot = () => {
     const handleFullDataRange = (event) => {
         setFullDataRange(event.target.checked);
     };
-
+    const calculateDays = (start, end) => {
+        const msInDay = 24 * 60 * 60 * 1000;
+    
+        // Клонуємо дати, щоб не змінювати оригінальні
+        const startDate = new Date(start);
+        const endDate = new Date(end);
+    
+        // Нормалізуємо дати до півночі
+        startDate.setHours(0, 0, 0, 0);
+        endDate.setHours(0, 0, 0, 0);
+    
+        // Розраховуємо різницю в днях
+        const diff = (endDate - startDate) / msInDay;
+    
+        // Включаємо обидві дати в підрахунок
+        return Math.floor(diff) + 1;
+    };
+    
 
     const handleClearDate = () => {
         const today = new Date();
@@ -348,7 +372,7 @@ const ReportsRoot = () => {
                         </TableContainer>
                     </MainCard>
                 </Grid>
-                <Grid item lg={6} sx={{ position: "fixed", right: 50, top: 107, width: 1100 }}>
+                <Grid item lg={6} sx={{ position: "fixed", right: 25, top: 107, width:  {lg: 810,UWHD: 980}}}>
                     <MainCard>
                         <Grid container rowSpacing={4.5} columnSpacing={2.75}>
                             <Grid item lg={12}>
@@ -356,10 +380,10 @@ const ReportsRoot = () => {
                                     Налаштування та експорт
                                 </Typography>
                             </Grid>
-                            <Grid item lg={3}>
+                            <Grid item lg={2.8}>
                                 <Typography variant="h6" color="textSecondary" sx={{ mt: -1.5 }}>
                                     Проміжок часу:{' '}
-                                    {Math.round((state[0].endDate - state[0].startDate) / (1000 * 3600 * 24) + 1)} днів
+                                    {calculateDays(state[0].startDate, state[0].endDate)} днів
                                 </Typography>
                                 <Typography variant="h6" color="textSecondary" sx={{ mt: 1.5 }}>
                                     Початок: {state[0].startDate.toLocaleDateString()}
@@ -369,10 +393,10 @@ const ReportsRoot = () => {
                                 </Typography>
                                 <Typography variant="h6" color="textSecondary" sx={{ mt: 1.5, ml: -1.1 }}>
                                     <Checkbox defaultChecked checked={ignoreZeroReading}
-                                        onChange={handleIgnoreZeroChange} /> Ігнорування нульових значень
+                                        onChange={handleIgnoreZeroChange} /> Ігнорування нулів
                                 </Typography>
                                 <Typography variant="h6" color="textSecondary" sx={{ mt: 1.5, ml: -1.1 }}>
-                                    <Checkbox checked={fullRange}
+                                    <Checkbox defaultChecked checked={fullRange}
                                         onChange={handleFullDataRange} /> Дані за весь період
                                 </Typography>
 
