@@ -360,7 +360,7 @@ const ReportsRoot = () => {
 
 
                             </Grid>
-                            <Grid item lg={4}>
+                            <Grid item lg={4} sx={{mt: -3}}>
                                 <DateRangePicker
                                     ranges={state}
                                     onChange={handleOnChange}
