@@ -180,7 +180,7 @@ const ReportsRoot = () => {
     const [state, setState] = useState([
         {
             startDate: startOfWeek(today, { weekStartsOn: 1 }),
-            endDate: new Date(),
+            endDate: today,
             key: 'selection'
         }
     ]);
@@ -257,7 +257,7 @@ const ReportsRoot = () => {
     const handleClearDate = () => {
         const today = new Date();
         const start = startOfWeek(today, { weekStartsOn: 1 }); // Понеділок як перший день тижня
-        const end = endOfWeek(today, { weekStartsOn: 1 });
+        const end = today;
         setState([
             {
                 startDate: start,
