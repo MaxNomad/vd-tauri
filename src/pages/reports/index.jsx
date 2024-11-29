@@ -185,6 +185,8 @@ const ReportsRoot = () => {
         }
     ]);
     const dispatch = useDispatch();
+    const [ignoreZeroReading, setIgnoreZeroReading] = useState(true);
+    const [fullRange, setFullDataRange] = useState(false);
 
     // Використовуємо useSelector для отримання даних та стану завантаження
     const { data, loading } = useSelector((state) => state.report);
@@ -195,11 +197,16 @@ const ReportsRoot = () => {
     const isSelected = (active) => selected.indexOf(active) !== -1;
 
     useEffect(() => {
-        dispatch(getReport());
+        dispatch(getReport({ IgnoreZeroReading: ignoreZeroReading ? 1 : 0, FullRange: fullRange ? 1 : 0 }));
     }, [dispatch]);
 
     const handleOnChange = (ranges) => {
         const { selection } = ranges;
+        // Встановлюємо максимальну дату як поточний час
+        const now = new Date();
+        if (selection.endDate > now) {
+            selection.endDate = now;
+        }
         setState([selection]);
     };
 
@@ -208,10 +215,20 @@ const ReportsRoot = () => {
             PNSNumber: null, // Замініть на актуальне значення або додайте інпут
             StartDate: state[0].startDate.toISOString().split('T')[0],
             EndDate: state[0].endDate.toISOString().split('T')[0],
-            IgnoreZeroReading: 1 // Або додайте опцію для користувача
+            IgnoreZeroReading: ignoreZeroReading ? 1 : 0,
+            FullRange: fullRange ? 1 : 0
         };
         dispatch(getReport(params));
     };
+
+    const handleIgnoreZeroChange = (event) => {
+        setIgnoreZeroReading(event.target.checked);
+    };
+
+    const handleFullDataRange = (event) => {
+        setFullDataRange(event.target.checked);
+    };
+
 
     const handleClearDate = () => {
         const today = new Date();
@@ -225,7 +242,6 @@ const ReportsRoot = () => {
             }
         ]);
     };
-
     return (
         <ComponentSkeleton renderContent>
             <Grid container rowSpacing={4.5} columnSpacing={2.75}>
@@ -352,18 +368,21 @@ const ReportsRoot = () => {
                                     Кінець: {state[0].endDate.toLocaleDateString()}
                                 </Typography>
                                 <Typography variant="h6" color="textSecondary" sx={{ mt: 1.5, ml: -1.1 }}>
-                                    <Checkbox defaultChecked /> Ігнорування нульових значень
+                                    <Checkbox defaultChecked checked={ignoreZeroReading}
+                                        onChange={handleIgnoreZeroChange} /> Ігнорування нульових значень
                                 </Typography>
                                 <Typography variant="h6" color="textSecondary" sx={{ mt: 1.5, ml: -1.1 }}>
-                                    <Checkbox defaultChecked /> Дані за весь період
+                                    <Checkbox checked={fullRange}
+                                        onChange={handleFullDataRange} /> Дані за весь період
                                 </Typography>
 
 
                             </Grid>
-                            <Grid item lg={4} sx={{mt: -3}}>
+                            <Grid item lg={4} sx={{ mt: -3 }}>
                                 <DateRangePicker
                                     ranges={state}
                                     onChange={handleOnChange}
+                                    weekStartsOn={1}
                                     maxDate={new Date()}
                                     minDate={new Date(2022, 0, 1)} // Січень 1, 2022
                                     locale={uk} // Встановлення локалі української
