@@ -180,7 +180,7 @@ const ReportsRoot = () => {
     const [state, setState] = useState([
         {
             startDate: startOfWeek(today, { weekStartsOn: 1 }),
-            endDate: endOfWeek(today, { weekStartsOn: 1 }),
+            endDate: new Date(),
             key: 'selection'
         }
     ]);
