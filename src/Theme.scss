@@ -219,4 +219,53 @@ body:not(.dark-mode) {
             color: #999999;
         }
     }
+    .rdrCalendarWrapper {
+        background: #ffffff;
+        color: white;
+    }
+    .rdrDayDisabled {
+        background-color: rgb(255 255 255);
+    }
+    .rdrDefinedRangesWrapper {
+        background: #ffffff;
+    }
+    .rdrStaticRange {
+        background: #ffffff;
+    }
+    .rdrDateDisplayWrapper {
+        background-color: rgb(255 255 255);
+    }
+    .rdrNextPrevButton {
+        background: rgb(203, 203, 203);
+    }
+    
+    .rdrNextNextButton {
+        background: rgb(203, 203, 203);
+    }
+    
+    .rdrNextPrevButton:hover {
+        background: rgb(180, 180, 180);
+    }
+    
+    .rdrNextNextButton:hover {
+        background: rgb(180, 180, 180);
+    }
+    .rdrNextButton i {
+        border-color: transparent transparent transparent rgb(52, 52, 52);
+    
+    }
+    .rdrPprevButton i {
+        border-color: transparent rgb(52, 52, 52) transparent transparent;
+    
+    }
+    .rdrMonthAndYearPickers select {
+        color: #373737;
+    }
+    .rdrMonthPicker, .rdrYearPicker {
+        select {
+            option{
+                background-color: #eaeaea;
+            }
+        }
+    }
 }
