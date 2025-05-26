@@ -159,21 +159,6 @@ const PumpSinglePage = () => {
                                                 />
                                             </Grid>
                                         ) : null}
-                                        {data?.warnings?.conectError != null ? (
-                                            <Grid item xs={12} md={6} lg={6}>
-                                                <Status
-                                                    title={'Зв`язок з ПП'}
-                                                    newDesign={!userAccess}
-                                                    text={!data?.warnings?.conectError ? 'В нормі' : 'Зв`язок відсутній'}
-                                                    status={!data?.warnings?.conectError}
-                                                    extraText={
-                                                        !data?.warnings?.conectError
-                                                            ? 'Проблем не виявлено'
-                                                            : 'Виявлено проблему підлючення'
-                                                    }
-                                                />
-                                            </Grid>
-                                        ) : null}
                                         {data?.warnings?.doorIsOpen != null ? (
                                             <Grid item xs={12} md={6} lg={6}>
                                                 <Status
